@@ -1,78 +1,101 @@
-<div class="page-wrapper">
-  <div class="site-header__header-one-wrap two clearfix">
-    <app-navbar />
+<div
+  *ngIf="loading"
+  class="preload_section d-flex flex-column justify-content-center"
+  style="height: 100vh"
+>
+  <div class="d-flex justify-content-center">
+    <img
+      src="assets/images/loader.png"
+      class="preloader__image"
+      width="55"
+      alt=""
+    />
   </div>
-
-  <div class="preloader">
-    <img src="assets/images/loader.png" class="preloader__image" alt="" />
-  </div>
-  <!-- /.preloader -->
-
-  <router-outlet />
-
-  <!--Site Footer Bottom Start-->
-  <div class="site_footer_bottom">
-    <app-footer />
-  </div>
-  <!--Site Footer Bottom End-->
 </div>
+<!-- /.preloader -->
 
-<a href="#" data-target="html" class="scroll-to-target scroll-to-top"
-  ><i class="fa fa-angle-up"></i
-></a>
-
-<div class="mobile-nav__wrapper">
-  <div class="mobile-nav__overlay side-menu__toggler mobile-nav__toggler"></div>
-  <div class="mobile-nav__content">
-    <span class="mobile-nav__close side-menu__toggler mobile-nav__toggler">
-      <i class="fa fa-times"></i>
-    </span>
-    <div class="logo-box">
-      <a href="index.html" aria-label="logo image">
-        <img src="assets/images/resources/logo-2.png" alt="" />
-      </a>
+<div *ngIf="!loading">
+  <div class="page-wrapper">
+    <div class="site-header__header-one-wrap clearfix">
+      <app-navbar />
     </div>
-    <!-- /.logo-box -->
-    <div class="mobile-nav__container clearfix"></div>
-    <!-- /.mobile-nav__container -->
-    <ul class="mobile-nav__contact list-unstyled">
-      <li>
-        <i class="icon-message"></i>
-        <a href="mailto:needhelp@polimark.com">needhelptolins.com</a>
-      </li>
-      <li>
-        <i class="icon-phone-call"></i>
-        <a href="tel:666-888-0000">666 888 0000</a>
-      </li>
-    </ul>
-    <!-- /.mobile-nav__contact -->
-    <div class="mobile-nav__top">
-      <div class="mobile-nav__social">
-        <a href="#" aria-label="twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" aria-label="facebook"
-          ><i class="fab fa-facebook-square"></i
-        ></a>
-        <a href="#" aria-label="pinterest"
-          ><i class="fab fa-pinterest-p"></i
-        ></a>
-        <a href="#" aria-label="instagram"><i class="fab fa-instagram"></i></a>
+
+    <section class="listings_details_main_image_box">
+      <router-outlet />
+    </section>
+
+    <!--Site Footer Bottom Start-->
+    <div class="site_footer_bottom">
+      <app-footer />
+    </div>
+    <!--Site Footer Bottom End-->
+  </div>
+
+  <a href="#" data-target="html" class="scroll-to-target scroll-to-top"
+    ><i class="fa fa-angle-up"></i
+  ></a>
+
+  <div class="mobile-nav__wrapper">
+    <div
+      class="mobile-nav__overlay side-menu__toggler mobile-nav__toggler"
+    ></div>
+    <div class="mobile-nav__content">
+      <span class="mobile-nav__close side-menu__toggler mobile-nav__toggler">
+        <i class="fa fa-times"></i>
+      </span>
+      <div class="logo-box">
+        <a href="index.html" aria-label="logo image">
+          <img src="assets/images/resources/logo-2.png" alt="" />
+        </a>
       </div>
-      <!-- /.mobile-nav__social -->
+      <!-- /.logo-box -->
+      <div class="mobile-nav__container clearfix"></div>
+      <!-- /.mobile-nav__container -->
+      <ul class="mobile-nav__contact list-unstyled">
+        <li>
+          <i class="icon-message"></i>
+          <a href="mailto:needhelp@polimark.com">needhelptolins.com</a>
+        </li>
+        <li>
+          <i class="icon-phone-call"></i>
+          <a href="tel:666-888-0000">666 888 0000</a>
+        </li>
+      </ul>
+      <!-- /.mobile-nav__contact -->
+      <div class="mobile-nav__top">
+        <div class="mobile-nav__social">
+          <a href="#" aria-label="twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="facebook"
+            ><i class="fab fa-facebook-square"></i
+          ></a>
+          <a href="#" aria-label="pinterest"
+            ><i class="fab fa-pinterest-p"></i
+          ></a>
+          <a href="#" aria-label="instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+        </div>
+        <!-- /.mobile-nav__social -->
+      </div>
+      <!-- /.mobile-nav__top -->
     </div>
-    <!-- /.mobile-nav__top -->
   </div>
-</div>
 
-<div class="search-popup">
-  <div class="search-popup__overlay custom-cursor__overlay">
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-  </div>
-  <!-- /.search-popup__overlay -->
-  <div class="search-popup__inner">
-    <form action="#" class="search-popup__form">
-      <input type="text" name="search" placeholder="Type here to Search...." />
-      <button type="submit"><i class="fa fa-search"></i></button>
-    </form>
+  <div class="search-popup">
+    <div class="search-popup__overlay custom-cursor__overlay">
+      <div class="cursor"></div>
+      <div class="cursor-follower"></div>
+    </div>
+    <!-- /.search-popup__overlay -->
+    <div class="search-popup__inner">
+      <form action="#" class="search-popup__form">
+        <input
+          type="text"
+          name="search"
+          placeholder="Type here to Search...."
+        />
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
+    </div>
   </div>
 </div>
