@@ -12,7 +12,7 @@ export class AppService {
     try {
       // charger base url
       await this.loadBaseUrl();
-      await this.waitTsotraIzao();
+      // await this.waitTsotraIzao();
     } catch (error) {
       console.error(error);
     }

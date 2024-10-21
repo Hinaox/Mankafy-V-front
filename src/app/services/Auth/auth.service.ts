@@ -9,8 +9,8 @@ export class AuthService {
   constructor() {}
 
   public baseUrl(path?: string) {
-    if (path) return this.baseUrl + path;
-    return this.baseUrl;
+    if (path) return this.base_url + path;
+    return this.base_url;
   }
 
   public setBase_url(base: string) {

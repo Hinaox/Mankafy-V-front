@@ -1,19 +1,32 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AppService } from './services/App/app.service';
+import { LoadingService } from './services/loading/loading.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'mankafy';
-  loading = false;
 
-  constructor(private appService: AppService) {}
+  loading = false;
+  loadingSubscription?: Subscription;
+
+  constructor(
+    private appService: AppService,
+    private loadingService: LoadingService
+  ) {}
 
   async ngOnInit(): Promise<void> {
+    this.loadingSubscription = this.loadingService.loadingSubject.subscribe(
+      (data) => {
+        this.loading = data;
+      }
+    );
+
     this.loading = true;
     try {
       await this.appService.loadUtils();
@@ -21,5 +34,9 @@ export class AppComponent implements OnInit {
       console.error(error);
     }
     this.loading = false;
+  }
+
+  ngOnDestroy(): void {
+    this.loadingSubscription?.unsubscribe();
   }
 }
