@@ -10,6 +10,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpInterceptorInterceptor } from './services/httpInterceptor/http-interceptor.interceptor';
+import { GalleryComponent } from './pages/gallery/gallery.component';
+import { TestComponent } from './pages/test/test.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,8 @@ import { HttpInterceptorInterceptor } from './services/httpInterceptor/http-inte
     NavbarComponent,
     FooterComponent,
     LoginComponent,
+    GalleryComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,6 +29,7 @@ import { HttpInterceptorInterceptor } from './services/httpInterceptor/http-inte
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     {

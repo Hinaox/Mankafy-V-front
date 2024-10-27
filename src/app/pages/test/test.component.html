@@ -1,0 +1,9 @@
+<div class="conteneur">
+  <div
+    [@openClose]="isOpen ? 'open' : 'closed'"
+    *ngFor="let square of squares"
+    class="square"
+    style="cursor: pointer"
+    (click)="toggle()"
+  ></div>
+</div>

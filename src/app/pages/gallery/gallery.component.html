@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="albums d-flex">
+    <div
+      class="album aleatoire col-lg-3 d-flex flex-column justify-content-center"
+    >
+      <div class="text-center">
+        <div><span style="font-size: 1.5em">Aléatoire</span></div>
+        <div>
+          <span style="font-size: 2em"> <i class="bi bi-shuffle"></i> </span>
+        </div>
+      </div>
+    </div>
+    <div *ngFor="let album of albums" class="album col-lg-3"></div>
+  </div>
+  <div class="photos d-flex flex-wrap">
+    <div *ngFor="let photo of photos" class="photo col-lg-4">
+      {{ photo }}
+    </div>
+  </div>
+</div>
