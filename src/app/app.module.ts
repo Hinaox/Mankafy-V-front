@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,20 @@ import { HttpInterceptorInterceptor } from './services/httpInterceptor/http-inte
 import { GalleryComponent } from './pages/gallery/gallery.component';
 import { TestComponent } from './pages/test/test.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PlanningComponent } from './pages/planning/planning.component';
+import { registerLocaleData } from '@angular/common';
+
+import localeFr from '@angular/common/locales/fr';
+import { CalendarModule, DateAdapter, MOMENT } from 'angular-calendar';
+import { SchedulerModule } from 'angular-calendar-scheduler';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import moment from 'moment';
+import { PlanningService } from './services/planning/planning.service';
+import { CreateActivityComponent } from './pages/create-activity/create-activity.component';
+
+registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   declarations: [
@@ -22,6 +36,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     GalleryComponent,
     TestComponent,
+    PlanningComponent,
+    CreateActivityComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,13 +46,27 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    SchedulerModule.forRoot({
+      locale: 'en',
+      headerDateFormat: 'daysRange',
+      logEnabled: true,
+    }),
+    MatProgressSpinnerModule,
   ],
   providers: [
+    PlanningService,
+    { provide: LOCALE_ID, useValue: 'fr' },
+    { provide: MOMENT, useValue: moment },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorInterceptor,
       multi: true,
     },
+    provideAnimationsAsync(),
   ],
   bootstrap: [AppComponent],
 })

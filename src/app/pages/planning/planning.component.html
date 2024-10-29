@@ -1,0 +1,150 @@
+<mat-progress-spinner
+  *ngIf="!events"
+  color="primary"
+  mode="indeterminate"
+  class="mx-auto mt-5"
+>
+</mat-progress-spinner>
+
+<div class="calendar-container" *ngIf="events">
+  <div class="mt-4">
+    <div class="col-md-4 text-left">
+      <!--<button type="button" routerLink="add" class="btn btn-light m-1" *ngIf="isAdmin">
+                Aggiungi
+            </button>-->
+      <!--<div class="btn-group">
+                <button type="button" class="btn btn-primary"
+                    (click)="changeView('month')"
+                    [class.active]="view === 'month'">
+                    Mese
+                </button>
+                <button type="button" class="btn btn-primary"
+                    (click)="changeView('week')"
+                    [class.active]="view === 'week'">
+                    Settimana
+                </button>
+                <button type="button" class="btn btn-primary"
+                    (click)="changeView('day')"
+                    [class.active]="view === 'day'">
+                    Giorno
+                </button>
+            </div>-->
+    </div>
+    <div class="">
+      <div class="text-center mb-3">
+        <h3 class="mt-0">
+          {{
+            viewDate
+              | calendarSchedulerDate
+                : view + "ViewTitle"
+                : locale
+                : weekStartsOn
+                : excludeDays
+                : viewDays
+                : startsWithToday
+          }}
+        </h3>
+      </div>
+      <div>
+        <select
+          #viewDayOptionSelect1
+          class="form-select d-none d-md-block d-xl-none"
+          [ngModel]="viewDays"
+          (change)="viewDaysOptionChanged(viewDayOptionSelect1.value)"
+        >
+          <option [value]="1">Un jour</option>
+          <option [value]="3">Trois jours</option>
+          <option [value]="7">Semaine</option>
+          <option [value]="30">Mois</option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <div class="d-flex">
+        <div class="mr-2">
+          <select
+            #viewDayOptionSelect2
+            class="form-select m-1 form-control"
+            [ngModel]="viewDays"
+            (change)="viewDaysOptionChanged(viewDayOptionSelect2.value)"
+          >
+            <option [value]="1">Un jour</option>
+            <option [value]="3">Trois jours</option>
+            <option [value]="7">Semaine</option>
+          </select>
+        </div>
+        <div class="">
+          <div class="btn-group m-1" role="group">
+            <button
+              type="button"
+              class="btn btn-primary"
+              mwlCalendarPreviousView
+              [view]="view"
+              [(viewDate)]="viewDate"
+              [daysInWeek]="viewDays"
+              [excludeDays]="excludeDays"
+              [disabled]="prevBtnDisabled"
+              (viewDateChange)="dateOrViewChanged()"
+            >
+              Précédent
+            </button>
+            <button
+              type="button"
+              class="btn btn-light"
+              mwlCalendarToday
+              [(viewDate)]="viewDate"
+              (viewDateChange)="dateOrViewChanged()"
+            >
+              Ce jour
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              mwlCalendarNextView
+              [view]="view"
+              [(viewDate)]="viewDate"
+              [daysInWeek]="viewDays"
+              [excludeDays]="excludeDays"
+              [disabled]="nextBtnDisabled"
+              (viewDateChange)="dateOrViewChanged()"
+            >
+              Suivant
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div [ngSwitch]="view">
+    <calendar-scheduler-view
+      *ngSwitchCase="CalendarView.Week"
+      [viewDays]="viewDays"
+      [viewDate]="viewDate"
+      [events]="events"
+      [locale]="locale"
+      [responsive]="false"
+      [weekStartsOn]="weekStartsOn"
+      [excludeDays]="excludeDays"
+      [startsWithToday]="false"
+      [hourSegments]="1"
+      [dayStartHour]="dayStartHour"
+      [dayEndHour]="dayEndHour"
+      [dayModifier]="dayModifier"
+      [hourModifier]="hourModifier"
+      [segmentModifier]="segmentModifier"
+      [eventModifier]="eventModifier"
+      [showEventActions]="true"
+      [showSegmentHour]="true"
+      [zoomEventOnHover]="true"
+      (viewDaysChanged)="viewDaysChanged($event)"
+      (dayHeaderClicked)="dayHeaderClicked($event.day)"
+      (hourClicked)="hourClicked($event.hour)"
+      (segmentClicked)="segmentClicked('Clicked', $event.segment)"
+      (eventClicked)="eventClicked('Clicked', $event.event)"
+      (eventTimesChanged)="eventTimesChanged($event)"
+      [refresh]="refresh"
+    >
+    </calendar-scheduler-view>
+  </div>
+</div>
