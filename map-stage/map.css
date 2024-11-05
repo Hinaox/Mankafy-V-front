@@ -1,0 +1,27 @@
+/* Conteneur de la carte avec une forme verticale */
+#map {
+    height: 100vh;
+    width: 50%;
+    margin: 0 auto;
+    border: 2px solid black;
+}
+
+/* Pour les écrans plus petits, tu peux ajuster les dimensions */
+@media (max-width: 768px) {
+    #map {
+        width: 100%;
+    }
+}
+
+/* Style pour le paragraphe des coordonnées */
+#coordinates {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+button {
+    margin: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
