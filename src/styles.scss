@@ -1,3 +1,10 @@
+// les bordures à gauches de chaque taille d'écran
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+
 /* You can add global styles to this file, and also import other style files */
 .bordered {
   border-style: solid;
@@ -7,5 +14,11 @@
   border-color: rgba(255, 0, 0, 0.613);
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

@@ -25,6 +25,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import moment from 'moment';
 import { PlanningService } from './services/planning/planning.service';
 import { CreateActivityComponent } from './pages/create-activity/create-activity.component';
+import { MapComponent } from './components/map/map.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -38,6 +39,7 @@ registerLocaleData(localeFr, 'fr');
     TestComponent,
     PlanningComponent,
     CreateActivityComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +59,7 @@ registerLocaleData(localeFr, 'fr');
     }),
     MatProgressSpinnerModule,
   ],
+  exports: [MapComponent],
   providers: [
     PlanningService,
     { provide: LOCALE_ID, useValue: 'fr' },

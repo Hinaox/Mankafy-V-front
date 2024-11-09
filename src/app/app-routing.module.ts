@@ -7,6 +7,8 @@ import { GalleryComponent } from './pages/gallery/gallery.component';
 import { TestComponent } from './pages/test/test.component';
 import { PlanningComponent } from './pages/planning/planning.component';
 import { CreateActivityComponent } from './pages/create-activity/create-activity.component';
+import { DemandeDevisComponent } from './pages/demande-devis/demande-devis.component';
+import { DemandeDevisModule } from './pages/demande-devis/demande-devis.module';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,6 +17,7 @@ const routes: Routes = [
   { path: 'test', component: TestComponent },
   { path: 'planning', component: PlanningComponent },
   { path: 'create-activity', component: CreateActivityComponent },
+  { path: 'demande-devis', component: DemandeDevisComponent },
 ];
 
 @NgModule({
