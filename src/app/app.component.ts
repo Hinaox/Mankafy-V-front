@@ -23,10 +23,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    setTimeout(() => {
-      this.messageBox.success('Bonjour ee');
-    }, 2000);
-
     this.loadingSubscription = this.loadingService.loadingSubject.subscribe(
       (data) => {
         this.loading = data;

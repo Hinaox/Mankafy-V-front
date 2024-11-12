@@ -51,17 +51,43 @@
                       <a href="tel:92-888-000-2222">92 888 000 2222</a>
                     </div>
                   </li>
-                  <li>
-                    <div class="icon">
-                      <span class="icon-message"></span>
-                    </div>
-                    <div class="text">
-                      <p>Send Email</p>
-                      <a href="mailto:needhelp@company.com"
-                        >needhelpcompany.com</a
+                  <!-- user icon or login-->
+                  <li *ngIf="user">
+                    <div class="user_info">
+                      <span
+                        class="dropdown-toggle"
+                        type="button"
+                        id="dropdownUser"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
                       >
+                        <i class="bi bi-person-fill mr-2 userIcon"></i>
+                        {{ user.firstName }} {{ user.lastName }}
+                      </span>
+                      <div
+                        class="dropdown-menu dropdownUserMenu"
+                        aria-labelledby="dropdownUser"
+                      >
+                        <a class="dropdown-item mb-1 mt-2" routerLink="/profil"
+                          >Voir le profil</a
+                        >
+                        <a class="dropdown-item mb-1">
+                          <button (click)="onLogout()" class="btn btn-warning">
+                            Déconnexion
+                          </button>
+                        </a>
+                      </div>
                     </div>
                   </li>
+                  <li *ngIf="!user" class="">
+                    <a routerLink="/login"
+                      ><button class="btn-couleur2 btn">
+                        Connectez-vous
+                      </button></a
+                    >
+                  </li>
+                  <!-- end user icon or login -->
                 </ul>
               </div>
             </div>

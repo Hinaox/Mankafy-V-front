@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../Auth/auth.service';
+import User from '../../models/User';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,9 @@ export class AppService {
     try {
       // charger base url
       await this.loadBaseUrl();
-      // await this.waitTsotraIzao();
+      // then, get the user_info
+      const userInfo: User = await this.authService.getUserInfo();
+      this.authService.setUser(userInfo);
     } catch (error) {
       console.error(error);
     }

@@ -51,4 +51,9 @@ export class AuthService {
 
     this.userSubject.next(data);
   }
+
+  public logout() {
+    localStorage.removeItem('access_token');
+    this.setUser(undefined);
+  }
 }
