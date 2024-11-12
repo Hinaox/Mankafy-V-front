@@ -1,3 +1,5 @@
+import UserRole from './UserRole';
+
 export default class User {
   constructor(
     public userId?: number,
@@ -6,6 +8,7 @@ export default class User {
     public email?: string,
     public firstName?: string,
     public lastName?: string,
-    public profilPic?: string
+    public profilPic?: string,
+    public userRoles?: UserRole[]
   ) {}
 }

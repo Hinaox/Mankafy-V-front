@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { LoadingService } from '../../services/loading/loading.service';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/Auth/auth.service';
+import { MessageBoxService } from '../../services/message-box.service';
+import User from '../../models/User';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,8 @@ export class LoginComponent {
     private router: Router,
     private loadingService: LoadingService,
     private http: HttpClient,
-    private authService: AuthService
+    private authService: AuthService,
+    private messageBox: MessageBoxService
   ) {
     this.myForm = fb.group({
       email: [, [Validators.required, Validators.email]],
@@ -34,11 +37,22 @@ export class LoginComponent {
       const url = this.authService.baseUrl('/users/login');
       const body = { email, password };
       this.http.post(url, body).subscribe(
-        (data: any) => {
+        async (data: any) => {
           this.loadingService.stopLoading();
           if (data.token) {
             localStorage.setItem('access_token', data.token);
           }
+          this.messageBox.success('Authentification réussie');
+
+          // then, get the user_info
+          try {
+            const userInfo: User = await this.authService.getUserInfo();
+            this.authService.setUser(userInfo);
+          } catch (error) {
+            console.error('user null');
+            this.authService.setUser(undefined);
+          }
+
           this.router.navigate(['/']);
         },
         (err) => {
