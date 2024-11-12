@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './demande-devis.component.scss',
 })
 export class DemandeDevisComponent {
-  page = 'chooseDestination';
+  page = 'selectDatePeople';
+
+  setPage(page: string) {
+    this.page = page;
+  }
 }

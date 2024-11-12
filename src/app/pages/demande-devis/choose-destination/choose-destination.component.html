@@ -1,6 +1,16 @@
 <div class="container mt-4">
+  <span class="cursor couleur2">Retour</span>
+  <br />
   <!-- temp -->
-  <div>(temporaire)</div>
+  <div>
+    (temporaire)
+    <ul>
+      <li *ngFor="let element of destinations" (click)="onChooseDestination()">
+        {{ element }}
+      </li>
+    </ul>
+  </div>
+
   <!-- Fin temp -->
   <h2>Choisissez votre destination</h2>
   <div class="mt-3 carte">

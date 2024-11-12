@@ -1,3 +1,21 @@
+$couleur1: #1e8b10;
+$couleur2: #042f66;
+$couleur3: #f7a857;
+$couleur4: #250001;
+
+$couleur1Sombre: #1a5d11;
+$couleur2Sombre: #072348;
+
+$text-color: rgb(15, 15, 15);
+
+.couleur1 {
+  color: $couleur1;
+}
+
+.couleur2 {
+  color: $couleur2;
+}
+
 // les bordures à gauches de chaque taille d'écran
 $sm: 576px;
 $md: 768px;
@@ -14,6 +32,10 @@ $xxl: 1400px;
   border-color: rgba(255, 0, 0, 0.613);
 }
 
+.cursor {
+  cursor: pointer;
+}
+
 html,
 body {
   height: 100%;
@@ -21,4 +43,32 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.btn-couleur1 {
+  background-color: $couleur1;
+  color: $text-color;
+}
+.btn-couleur1:hover {
+  background-color: $couleur1Sombre;
+}
+.btn-couleur2 {
+  background-color: $couleur2;
+  color: white;
+}
+.btn-couleur2:hover {
+  background-color: $couleur2Sombre;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Masque les boutons d'incrémentation dans Chrome, Safari, Edge, Opera */
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Masque les boutons d'incrémentation dans Firefox */
+.no-spinner[type="number"] {
+  -moz-appearance: textfield;
 }

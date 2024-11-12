@@ -26,6 +26,7 @@ import moment from 'moment';
 import { PlanningService } from './services/planning/planning.service';
 import { CreateActivityComponent } from './pages/create-activity/create-activity.component';
 import { MapComponent } from './components/map/map.component';
+import { MessageBoxComponent } from './components/message-box/message-box.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -40,6 +41,7 @@ registerLocaleData(localeFr, 'fr');
     PlanningComponent,
     CreateActivityComponent,
     MapComponent,
+    MessageBoxComponent,
   ],
   imports: [
     BrowserModule,

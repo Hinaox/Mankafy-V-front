@@ -1,0 +1,29 @@
+.select-people-container {
+  border: 1px solid gray;
+  border-radius: 4px;
+  height: fit-content;
+
+  button {
+    background-color: rgba($color: #000000, $alpha: 0);
+    border-style: solid;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  button:hover {
+    background-color: rgba($color: blue, $alpha: 0.1);
+    border-style: solid;
+  }
+
+  .number-display {
+    border-style: none !important;
+    padding-left: 1.5em !important;
+    padding-right: 1.5em !important;
+    border: 0 !important;
+  }
+}
+
+.btn-valider {
+  font-size: 1.2em;
+  border: 1px solid gray;
+  width: 300px;
+}

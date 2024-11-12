@@ -1,0 +1,25 @@
+.messageBoxCard {
+  padding: 0.6em 2em;
+
+  margin: auto;
+  width: 60%;
+  margin-top: 10px;
+
+  text-align: center;
+  border-radius: 5px;
+}
+
+.normal {
+  background-color: rgba(rgb(181, 181, 181), 0.8);
+  color: black;
+}
+
+.danger {
+  background-color: rgba(red, 0.8);
+  color: white;
+}
+
+.success {
+  background-color: rgba(green, 0.8);
+  color: white;
+}

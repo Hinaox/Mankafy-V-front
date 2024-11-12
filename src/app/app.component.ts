@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AppService } from './services/App/app.service';
 import { LoadingService } from './services/loading/loading.service';
 import { Subscription } from 'rxjs';
+import { MessageBoxService } from './services/message-box.service';
 
 @Component({
   selector: 'app-root',
@@ -17,10 +18,15 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private appService: AppService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private messageBox: MessageBoxService
   ) {}
 
   async ngOnInit(): Promise<void> {
+    setTimeout(() => {
+      this.messageBox.success('Bonjour ee');
+    }, 2000);
+
     this.loadingSubscription = this.loadingService.loadingSubject.subscribe(
       (data) => {
         this.loading = data;
