@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from './Auth/auth.service';
 import { HttpClient } from '@angular/common/http';
-import ActivityType from '../models/ActivityType';
+import Location from '../models/Location';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ActivityTypeService {
+export class LocationService {
   constructor(private authService: AuthService, private http: HttpClient) {}
 
-  public findAll(): Promise<ActivityType[]> {
-    return new Promise<ActivityType[]>((resolve, reject) => {
-      const url = this.authService.baseUrl('/activity-types');
+  public findAll(): Promise<Location[]> {
+    return new Promise<Location[]>((resolve, reject) => {
+      const url = this.authService.baseUrl('/location');
       this.http.get(url).subscribe(
         (data: any) => {
           resolve(data);

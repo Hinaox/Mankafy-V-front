@@ -1,10 +1,153 @@
 <div class="mt-4 container">
-  <div class="d-flex">
+  <div class="d-flex align-self-stretch">
     <div class="col-lg-7 map-container">
       <app-map />
     </div>
     <div class="col-lg-5">
-      <form></form>
+      <h2>Créer activité</h2>
+      <form [formGroup]="myForm">
+        <div class="form-group">
+          <div><label for="" class="col-form-label">Coordonnées :</label></div>
+          <div class="d-flex">
+            <div style="padding-left: 0; padding-right: 3px" class="col-6">
+              <input
+                placeholder="X"
+                type="number"
+                class="form-control no-spinner"
+                formControlName="point_x"
+              />
+            </div>
+            <div style="padding-right: 0; padding-left: 3px" class="col-6">
+              <input
+                placeholder="Y"
+                type="number"
+                class="form-control no-spinner"
+                formControlName="point_y"
+              />
+            </div>
+          </div>
+          <small
+            >Pointez sur la carte pour définir automatiquement la valeur
+          </small>
+        </div>
+        <div class="form-group">
+          <div><label class="col-form-label">Région :</label></div>
+          <div>
+            <select
+              formControlName="locationId"
+              class="form-control"
+              name=""
+              id=""
+            >
+              <option [value]="item.id" *ngFor="let item of locations" value="">
+                {{ item.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div><label class="col-form-label">Type d'activité :</label></div>
+          <div>
+            <select
+              formControlName="activityTypeId"
+              class="form-control"
+              name=""
+              id=""
+            >
+              <option
+                [value]="item.id"
+                *ngFor="let item of activityTypes"
+                value=""
+              >
+                {{ item.nom ? item.nom : item.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div>
+            <label for="" class="col-form-label">Nom de l'activité :</label>
+          </div>
+          <div>
+            <input formControlName="name" type="text" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div>
+            <label for="" class="col-form-label">Durée (minutes) :</label>
+          </div>
+          <div>
+            <input
+              formControlName="duration"
+              min="0"
+              type="number"
+              class="form-control no-spinner"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <div>
+            <label for="" class="col-form-label"
+              >Durée minimale (minutes) :</label
+            >
+          </div>
+          <div>
+            <input
+              formControlName="minDuration"
+              min="0"
+              type="number"
+              class="form-control no-spinner"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <div>
+            <label for="" class="col-form-label">Heure d'ouverture :</label>
+          </div>
+          <div>
+            <input
+              formControlName="openingTime"
+              type="time"
+              class="form-control"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <div>
+            <label for="" class="col-form-label">Heure de fermeture :</label>
+          </div>
+          <div>
+            <input
+              formControlName="closingTime"
+              type="time"
+              class="form-control"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <div>
+            <label for="" class="col-form-label">Lien externe :</label>
+          </div>
+          <div>
+            <input formControlName="link" type="text" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div>
+            <label for="" class="col-form-label">Description :</label>
+          </div>
+          <div>
+            <textarea
+              formControlName="description"
+              type="text"
+              class="form-control"
+            ></textarea>
+          </div>
+        </div>
+        <button style="width: 100%" class="btn btn-couleur2">
+          Enregistrer
+        </button>
+      </form>
     </div>
   </div>
 </div>

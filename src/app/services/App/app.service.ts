@@ -18,6 +18,7 @@ export class AppService {
       this.authService.setUser(userInfo);
     } catch (error) {
       console.error(error);
+      this.authService.setUser(undefined);
     }
   }
 

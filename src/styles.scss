@@ -47,10 +47,11 @@ body {
 
 .btn-couleur1 {
   background-color: $couleur1;
-  color: $text-color;
+  color: white;
 }
 .btn-couleur1:hover {
   background-color: $couleur1Sombre;
+  color: white;
 }
 .btn-couleur2 {
   background-color: $couleur2;
