@@ -33,6 +33,8 @@ import {
   withLocalStorage,
   withSessionStorage,
 } from 'ngx-webstorage';
+import { CreateActivityTypeComponent } from './components/create-activity-type/create-activity-type.component';
+import { CreateActivityTypePageComponent } from './pages/create-activity-type-page/create-activity-type-page.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -48,6 +50,8 @@ registerLocaleData(localeFr, 'fr');
     CreateActivityComponent,
     MapComponent,
     MessageBoxComponent,
+    CreateActivityTypeComponent,
+    CreateActivityTypePageComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@ import { CreateActivityComponent } from './pages/create-activity/create-activity
 import { DemandeDevisComponent } from './pages/demande-devis/demande-devis.component';
 import { DemandeDevisModule } from './pages/demande-devis/demande-devis.module';
 import { adminGuardGuard } from './guard/admin-guard.guard';
+import { CreateActivityTypePageComponent } from './pages/create-activity-type-page/create-activity-type-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,6 +18,11 @@ const routes: Routes = [
   { path: 'gallery', component: GalleryComponent },
   { path: 'test', component: TestComponent },
   { path: 'planning', component: PlanningComponent },
+  {
+    path: 'create-activity-type',
+    component: CreateActivityTypePageComponent,
+    canActivate: [adminGuardGuard],
+  },
   {
     path: 'create-activity',
     canActivate: [adminGuardGuard],

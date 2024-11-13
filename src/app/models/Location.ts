@@ -6,6 +6,6 @@ export default class Location {
     public point_y?: number,
     public surface?: string,
     public parent?: Location,
-    description?: string
+    public description?: string
   ) {}
 }
