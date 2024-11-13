@@ -1,16 +1,20 @@
 <div class="mt-4 container">
   <div class="d-flex align-self-stretch">
     <div class="col-lg-7 map-container">
-      <app-map />
+      <app-map
+        [tempMarkerLatLng]="activityLocationMarker"
+        (handleClick)="onClickOnMap($event)"
+      />
     </div>
     <div class="col-lg-5">
-      <h2>Créer activité</h2>
+      <h2>Créer une activité</h2>
       <form [formGroup]="myForm">
         <div class="form-group">
           <div><label for="" class="col-form-label">Coordonnées :</label></div>
           <div class="d-flex">
             <div style="padding-left: 0; padding-right: 3px" class="col-6">
               <input
+                (change)="onChangeCoords()"
                 placeholder="X"
                 type="number"
                 class="form-control no-spinner"
@@ -19,6 +23,7 @@
             </div>
             <div style="padding-right: 0; padding-left: 3px" class="col-6">
               <input
+                (change)="onChangeCoords()"
                 placeholder="Y"
                 type="number"
                 class="form-control no-spinner"

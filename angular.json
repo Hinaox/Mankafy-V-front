@@ -34,6 +34,7 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/assets",
+              "src/media",
               {
                 "glob": "**/*",
                 "input": "public"

@@ -4,6 +4,8 @@ import { LocationService } from '../../services/location.service';
 import Location from '../../models/Location';
 import { ActivityTypeService } from '../../services/activity-type.service';
 import ActivityType from '../../models/ActivityType';
+import { LatLng } from 'leaflet';
+import { empty } from '../../utils/utils';
 
 @Component({
   selector: 'app-create-activity',
@@ -15,6 +17,8 @@ export class CreateActivityComponent implements OnInit {
 
   locations?: Location[];
   activityTypes?: ActivityType[];
+
+  activityLocationMarker?: L.LatLng;
 
   constructor(
     fb: FormBuilder,
@@ -78,6 +82,19 @@ export class CreateActivityComponent implements OnInit {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  onClickOnMap(coords: L.LatLng) {
+    this.point_x?.setValue(coords.lat);
+    this.point_y?.setValue(coords.lng);
+  }
+
+  onChangeCoords() {
+    const lat = this.point_x?.value;
+    const lng = this.point_y?.value;
+
+    if (!empty(lat) && !empty(lng))
+      this.activityLocationMarker = new LatLng(lat, lng);
   }
 
   get locationId() {
