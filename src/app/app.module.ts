@@ -27,6 +27,12 @@ import { PlanningService } from './services/planning/planning.service';
 import { CreateActivityComponent } from './pages/create-activity/create-activity.component';
 import { MapComponent } from './components/map/map.component';
 import { MessageBoxComponent } from './components/message-box/message-box.component';
+import {
+  provideNgxWebstorage,
+  withNgxWebstorageConfig,
+  withLocalStorage,
+  withSessionStorage,
+} from 'ngx-webstorage';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -63,6 +69,11 @@ registerLocaleData(localeFr, 'fr');
   ],
   exports: [MapComponent],
   providers: [
+    provideNgxWebstorage(
+      withNgxWebstorageConfig({ separator: ':', caseSensitive: true }),
+      withLocalStorage(),
+      withSessionStorage()
+    ),
     PlanningService,
     { provide: LOCALE_ID, useValue: 'fr' },
     { provide: MOMENT, useValue: moment },
