@@ -11,6 +11,7 @@ import { DemandeDevisComponent } from './pages/demande-devis/demande-devis.compo
 import { DemandeDevisModule } from './pages/demande-devis/demande-devis.module';
 import { adminGuardGuard } from './guard/admin-guard.guard';
 import { CreateActivityTypePageComponent } from './pages/create-activity-type-page/create-activity-type-page.component';
+import { CreateLocationComponent } from './pages/create-location/create-location.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +22,11 @@ const routes: Routes = [
   {
     path: 'create-activity-type',
     component: CreateActivityTypePageComponent,
+    canActivate: [adminGuardGuard],
+  },
+  {
+    path: 'create-location',
+    component: CreateLocationComponent,
     canActivate: [adminGuardGuard],
   },
   {

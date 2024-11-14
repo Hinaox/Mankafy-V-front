@@ -1,0 +1,67 @@
+<div class="mt-4 container">
+  <div class="d-flex">
+    <div class="col-lg-7">
+      <app-map
+        (handleClick)="onClickOnMap($event)"
+        [tempPolygonCoords]="currentPolygonCoords"
+      />
+    </div>
+    <div style="min-height: 100vh" class="col-lg-4">
+      <h2>Créer une destination</h2>
+      <form (ngSubmit)="onSubmitForm()" [formGroup]="myForm">
+        <div class="form-group">
+          <div><label for="" class="col-form-label">Nom :</label></div>
+          <div>
+            <input formControlName="name" type="text" class="form-control" />
+            <div *ngIf="name?.touched || name?.dirty">
+              <div *ngIf="name && name.errors && name.errors['required']">
+                <small class="text-danger">Ce champ est requis</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div><label for="" class="col-form-label">Description :</label></div>
+          <div>
+            <textarea
+              formControlName="description"
+              type="text"
+              class="form-control"
+            ></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div><label for="" class="col-form-label">Surface :</label></div>
+          <div *ngIf="!drawing">
+            <button
+              (click)="startDrawing()"
+              type="button"
+              class="btn btn-secondary"
+            >
+              Créer un nouveau polygone
+            </button>
+          </div>
+          <div *ngIf="drawing">
+            Dessinez sur la carte
+            <div class="d-flex">
+              <button (click)="deleteLastPoint()" class="btn btn-primary mr-2">
+                Annuler le dernier point
+              </button>
+              <button (click)="startDrawing()" class="btn btn-danger">
+                Réessayer
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button
+          [disabled]="myForm.invalid"
+          style="width: 100%"
+          class="btn btn-couleur2"
+        >
+          Enregistrer
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

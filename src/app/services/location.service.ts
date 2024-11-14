@@ -22,4 +22,18 @@ export class LocationService {
       );
     });
   }
+
+  public save(body: Location): Promise<Location> {
+    return new Promise<Location>((resolve, reject) => {
+      const url = this.authService.baseUrl('/location');
+      this.http.post(url, body).subscribe(
+        (data) => {
+          resolve(data);
+        },
+        (err) => {
+          reject(err);
+        }
+      );
+    });
+  }
 }
