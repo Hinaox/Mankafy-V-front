@@ -6,6 +6,11 @@ import { ActivityTypeService } from '../../services/activity-type.service';
 import ActivityType from '../../models/ActivityType';
 import { LatLng } from 'leaflet';
 import { empty } from '../../utils/utils';
+import { strictlyPositiveNumberValidator } from '../../utils/FormValidator';
+import Activity from '../../models/Activity';
+import { ActivityService } from '../../services/activity.service';
+import { LoadingService } from '../../services/loading/loading.service';
+import { MessageBoxService } from '../../services/message-box.service';
 
 @Component({
   selector: 'app-create-activity',
@@ -23,13 +28,16 @@ export class CreateActivityComponent implements OnInit {
   constructor(
     fb: FormBuilder,
     private locationService: LocationService,
-    private activityTypeService: ActivityTypeService
+    private activityTypeService: ActivityTypeService,
+    private activityService: ActivityService,
+    private loading: LoadingService,
+    private messageBox: MessageBoxService
   ) {
     this.myForm = fb.group({
       locationId: ['', [Validators.required]],
       name: ['', [Validators.required]],
-      duration: ['', [Validators.required]],
-      minDuration: [''],
+      duration: ['', [Validators.required, strictlyPositiveNumberValidator()]],
+      minDuration: ['', [strictlyPositiveNumberValidator()]],
       openingTime: [''],
       closingTime: [''],
       link: [''],
@@ -89,12 +97,63 @@ export class CreateActivityComponent implements OnInit {
     this.point_y?.setValue(coords.lng);
   }
 
+  onSelectLocation(location: Location) {
+    this.locationId?.setValue(location.id);
+  }
+
   onChangeCoords() {
     const lat = this.point_x?.value;
     const lng = this.point_y?.value;
 
     if (!empty(lat) && !empty(lng))
       this.activityLocationMarker = new LatLng(lat, lng);
+  }
+
+  async onSubmitForm() {
+    if (this.myForm.valid) {
+      const locationId = this.locationId?.value;
+      const name = this.name?.value;
+      var duration = this.duration?.value;
+      var minDuration = this.minDuration?.value;
+      const openingTime = this.openingTime?.value;
+      const closingTime = this.closingTime?.value;
+      const link = this.link?.value;
+      const description = this.description?.value;
+      const activityTypeId = this.activityTypeId?.value;
+      const point_x = this.point_x?.value;
+      const point_y = this.point_y?.value;
+
+      if (!empty(duration)) {
+        duration = duration * 60;
+      }
+      if (!empty(minDuration)) {
+        minDuration = minDuration * 60;
+      }
+
+      const body: Activity = {
+        locationId,
+        name,
+        duration,
+        minDuration,
+        openingTime,
+        closingTime,
+        link,
+        description,
+        activityTypeId,
+        point_x,
+        point_y,
+      };
+
+      try {
+        this.loading.startLoading();
+        await this.activityService.save(body);
+        this.loading.stopLoading();
+        this.messageBox.success('Enregistrement réussi');
+        this.myForm.reset();
+      } catch (error) {
+        console.error(error);
+      }
+    }
   }
 
   get locationId() {

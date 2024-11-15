@@ -4,11 +4,12 @@
       <app-map
         [tempMarkerLatLng]="activityLocationMarker"
         (handleClick)="onClickOnMap($event)"
+        (handleLocationClick)="onSelectLocation($event)"
       />
     </div>
     <div class="col-lg-5">
       <h2>Créer une activité</h2>
-      <form [formGroup]="myForm">
+      <form [formGroup]="myForm" (ngSubmit)="onSubmitForm()">
         <div class="form-group">
           <div><label for="" class="col-form-label">Coordonnées :</label></div>
           <div class="d-flex">
@@ -34,6 +35,25 @@
           <small
             >Pointez sur la carte pour définir automatiquement la valeur
           </small>
+          <div
+            *ngIf="
+              point_x?.touched ||
+              point_x?.dirty ||
+              point_y?.touched ||
+              point_y?.dirty
+            "
+          >
+            <div
+              *ngIf="
+                (point_x && point_x.errors && point_x.errors['required']) ||
+                (point_y && point_y.errors && point_y.errors['required'])
+              "
+            >
+              <small class="text-danger"
+                >Veuillez compléter les coordonnées</small
+              >
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <div><label class="col-form-label">Région :</label></div>
@@ -48,6 +68,19 @@
                 {{ item.name }}
               </option>
             </select>
+            <div *ngIf="locationId?.touched || locationId?.dirty">
+              <div
+                *ngIf="
+                  locationId &&
+                  locationId.errors &&
+                  locationId.errors['required']
+                "
+              >
+                <small class="text-danger"
+                  >Veuillez selectionner la région</small
+                >
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-group">
@@ -67,6 +100,17 @@
                 {{ item.nom ? item.nom : item.name }}
               </option>
             </select>
+            <div *ngIf="activityTypeId?.touched || activityTypeId?.dirty">
+              <div
+                *ngIf="
+                  activityTypeId &&
+                  activityTypeId.errors &&
+                  activityTypeId.errors['required']
+                "
+              >
+                <small class="text-danger">Ce champ est requis</small>
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-group">
@@ -75,6 +119,11 @@
           </div>
           <div>
             <input formControlName="name" type="text" class="form-control" />
+            <div *ngIf="name?.touched || name?.dirty">
+              <div *ngIf="name && name.errors && name.errors['required']">
+                <small class="text-danger">Ce champ est requis</small>
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-group">
@@ -88,6 +137,22 @@
               type="number"
               class="form-control no-spinner"
             />
+            <div *ngIf="duration?.touched || duration?.dirty">
+              <div
+                *ngIf="
+                  duration && duration.errors && duration.errors['required']
+                "
+              >
+                <small class="text-danger">Ce champ est requis</small>
+              </div>
+              <div
+                *ngIf="
+                  duration && duration.errors && duration.errors['notPositive']
+                "
+              >
+                <small class="text-danger">Ce champ doit être positif</small>
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-group">
@@ -103,6 +168,17 @@
               type="number"
               class="form-control no-spinner"
             />
+            <div *ngIf="minDuration?.touched || minDuration?.dirty">
+              <div
+                *ngIf="
+                  minDuration &&
+                  minDuration.errors &&
+                  minDuration.errors['notPositive']
+                "
+              >
+                <small class="text-danger">Ce champ doit être positif</small>
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-group">
@@ -149,7 +225,11 @@
             ></textarea>
           </div>
         </div>
-        <button style="width: 100%" class="btn btn-couleur2">
+        <button
+          [disabled]="myForm.invalid"
+          style="width: 100%"
+          class="btn btn-couleur2"
+        >
           Enregistrer
         </button>
       </form>

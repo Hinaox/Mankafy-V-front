@@ -4,17 +4,21 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
 import * as L from 'leaflet';
+import { LocationService } from '../../services/location.service';
+import Location from '../../models/Location';
+import { ColorService } from '../../services/color.service';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss',
 })
-export class MapComponent implements AfterViewInit, OnChanges {
+export class MapComponent implements AfterViewInit, OnChanges, OnInit {
   private map: any;
 
   // marqueur temporaire
@@ -30,9 +34,20 @@ export class MapComponent implements AfterViewInit, OnChanges {
     [-11.0, 51.0], // Nord-Est (coordonnées approx.)
   ];
 
-  @Output() handleClick = new EventEmitter<L.LatLng>();
+  // les données
+  parentLocations?: Location[];
+  displayParentLocations = true;
+  parentPolygons?: { polygon: L.Polygon; locationIndex?: number }[];
 
-  constructor() {}
+  @Output() handleClick = new EventEmitter<L.LatLng>();
+  @Output() handleLocationClick = new EventEmitter<Location>();
+
+  constructor(
+    private locationService: LocationService,
+    private colorService: ColorService
+  ) {}
+
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['tempMarkerLatLng']) {
@@ -89,6 +104,18 @@ export class MapComponent implements AfterViewInit, OnChanges {
     }
   }
 
+  onToggleDisplayParentLocations(event: any) {
+    const checked = event.target.checked;
+    if (checked) {
+      this.drawParentLocations();
+    } else if (!checked && this.parentPolygons) {
+      this.colorService.reset();
+      for (let polygon of this.parentPolygons) {
+        polygon.polygon?.remove();
+      }
+    }
+  }
+
   ngAfterViewInit(): void {
     this.initMap();
 
@@ -110,5 +137,62 @@ export class MapComponent implements AfterViewInit, OnChanges {
     });
 
     this.tempPolygon.addTo(this.map);
+
+    // locations
+    this.loadParentLocations();
+  }
+
+  private async loadParentLocations() {
+    try {
+      this.parentLocations = await this.locationService.findParents();
+      this.drawParentLocations();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  private drawParentLocations() {
+    this.parentPolygons = [];
+    if (this.parentLocations) {
+      for (var i = 0; i < this.parentLocations.length; i++) {
+        const location = this.parentLocations[i];
+        if (location.surface) {
+          const surfaceStr = location.surface;
+          try {
+            // traitement de la surface
+            const surfaceTab = JSON.parse('[' + surfaceStr + ']');
+            if (surfaceTab?.length) {
+              const coords: L.LatLngExpression[] = surfaceTab;
+              const color = this.colorService.getNextColor();
+              const polygonStyles = {
+                color: color, // Couleur des bordures
+                fillColor: color, // Couleur de remplissage
+                fillOpacity: 0.5, // Opacité du remplissage
+              };
+
+              const polygon = L.polygon(coords, polygonStyles);
+              polygon.addTo(this.map);
+              const object = { polygon: polygon, locationIndex: i };
+              this.parentPolygons.push(object);
+
+              const index = i;
+
+              // event listener
+              polygon.on('click', () => {
+                this.onParentPolygonClick(object);
+              });
+            }
+          } catch (error) {}
+        }
+      }
+    }
+  }
+
+  onParentPolygonClick(objet: { polygon: L.Polygon; locationIndex: number }) {
+    if (this.parentLocations) {
+      const location = this.parentLocations[objet.locationIndex];
+      this.handleLocationClick.emit(location);
+      console.log('emit');
+    }
   }
 }

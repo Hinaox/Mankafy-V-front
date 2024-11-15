@@ -36,4 +36,18 @@ export class LocationService {
       );
     });
   }
+
+  public findParents(): Promise<Location[]> {
+    return new Promise<Location[]>((resolve, reject) => {
+      const url = this.authService.baseUrl('/location/parents');
+      this.http.get(url).subscribe(
+        (data: any) => {
+          resolve(data);
+        },
+        (err) => {
+          reject(err);
+        }
+      );
+    });
+  }
 }

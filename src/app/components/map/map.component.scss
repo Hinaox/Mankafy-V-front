@@ -10,3 +10,19 @@
   height: 100%;
   cursor: pointer;
 }
+
+.sideMenu {
+  position: absolute;
+  padding: 5px;
+  top: 10px;
+  right: 20px;
+  z-index: 500;
+  font-size: 0.8em;
+  background-color: rgba(white, 0.3);
+  border-radius: 5px;
+
+  input {
+    position: relative;
+    bottom: -0.1em;
+  }
+}
