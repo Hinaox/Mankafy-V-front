@@ -11,8 +11,25 @@ export class ActivityService {
 
   public save(body: Activity): Promise<Activity> {
     return new Promise<Activity>((resolve, reject) => {
-      const url = this.authService.baseUrl('/location');
+      const url = this.authService.baseUrl('/activity');
       this.http.post(url, body).subscribe(
+        (data: any) => {
+          resolve(data);
+        },
+        (err) => {
+          reject(err);
+        }
+      );
+    });
+  }
+
+  // get all activity in location and children locations
+  public findAllByLocation(locationId: number): Promise<Activity[]> {
+    return new Promise<Activity[]>((resolve, reject) => {
+      const url = this.authService.baseUrl(
+        '/activity/byLocation?locationId=' + locationId
+      );
+      this.http.get(url).subscribe(
         (data: any) => {
           resolve(data);
         },

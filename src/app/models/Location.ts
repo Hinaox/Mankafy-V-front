@@ -5,6 +5,7 @@ export default class Location {
     public point_x?: number,
     public point_y?: number,
     public surface?: string,
+    public parentId?: number,
     public parent?: Location,
     public description?: string
   ) {}

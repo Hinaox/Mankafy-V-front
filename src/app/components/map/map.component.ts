@@ -12,6 +12,8 @@ import * as L from 'leaflet';
 import { LocationService } from '../../services/location.service';
 import Location from '../../models/Location';
 import { ColorService } from '../../services/color.service';
+import Activity from '../../models/Activity';
+import { ActivityService } from '../../services/activity.service';
 
 @Component({
   selector: 'app-map',
@@ -20,6 +22,8 @@ import { ColorService } from '../../services/color.service';
 })
 export class MapComponent implements AfterViewInit, OnChanges, OnInit {
   private map: any;
+
+  private readonly defaultZoom = 6.4;
 
   // marqueur temporaire
   tempMarker?: L.Marker;
@@ -34,17 +38,48 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
     [-11.0, 51.0], // Nord-Est (coordonnées approx.)
   ];
 
-  // les données
+  // les données location
   parentLocations?: Location[];
   displayParentLocations = true;
   parentPolygons?: { polygon: L.Polygon; locationIndex?: number }[];
 
+  // les données activités
+  activities?: Activity[];
+  activityMarkers?: L.Marker[];
+
+  // message
+  messageDisplay = false;
+  message = '';
+
+  // les icones utiles
+  restaurantIcon = L.icon({
+    iconUrl: '/assets/icons/restaurant-marker.png', // Chemin vers votre image
+    iconSize: [38, 38], // Taille de l'icône
+    iconAnchor: [19, 38], // Point d'ancrage (au centre en bas)
+    popupAnchor: [0, -38], // Position du popup par rapport à l'icône
+  });
+  hotelIcon = L.icon({
+    iconUrl: '/assets/icons/activity-marker.png', // Chemin vers votre image
+    iconSize: [38, 38], // Taille de l'icône
+    iconAnchor: [19, 38], // Point d'ancrage (au centre en bas)
+    popupAnchor: [0, -38], // Position du popup par rapport à l'icône
+  });
+  activityIcon = L.icon({
+    iconUrl: '/assets/icons/activity-marker.png', // Chemin vers votre image
+    iconSize: [38, 38], // Taille de l'icône
+    iconAnchor: [19, 38], // Point d'ancrage (au centre en bas)
+    popupAnchor: [0, -38], // Position du popup par rapport à l'icône
+  });
+
   @Output() handleClick = new EventEmitter<L.LatLng>();
   @Output() handleLocationClick = new EventEmitter<Location>();
 
+  @Input() autoZoomInParentLocations = true;
+
   constructor(
     private locationService: LocationService,
-    private colorService: ColorService
+    private colorService: ColorService,
+    private activityService: ActivityService
   ) {}
 
   ngOnInit(): void {}
@@ -67,7 +102,7 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
       zoom: 6.4,
       maxBounds: this.madagascarBounds,
       maxBoundsViscosity: 1.0,
-      minZoom: 6.4,
+      minZoom: this.defaultZoom,
       maxZoom: 18,
     });
 
@@ -85,15 +120,22 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
 
     // Ajouter l'événement de clic pour récupérer les coordonnées
     this.map.on('click', this.onMapClick.bind(this));
+    this.map.on('zoom', () => {
+      const zoomLevel = this.map.getZoom();
+      if (zoomLevel == this.defaultZoom) {
+        this.drawParentLocations();
+        this.removeActivityMarkers();
+      }
+    });
   }
 
   private onMapClick(event: L.LeafletMouseEvent): void {
     this.handleClick.emit(event.latlng);
-    // ajouter marqueur temporaire
-    if (this.tempMarker) {
-      this.tempMarker.remove();
-    }
-    this.tempMarker = L.marker(event.latlng).addTo(this.map);
+    // // ajouter marqueur temporaire
+    // if (this.tempMarker) {
+    //   this.tempMarker.remove();
+    // }
+    // this.tempMarker = L.marker(event.latlng).addTo(this.map);
   }
 
   private setTempPolygonCoords(data?: L.LatLngExpression[]) {
@@ -109,7 +151,6 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
     if (checked) {
       this.drawParentLocations();
     } else if (!checked && this.parentPolygons) {
-      this.colorService.reset();
       for (let polygon of this.parentPolygons) {
         polygon.polygon?.remove();
       }
@@ -151,7 +192,19 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
     }
   }
 
+  private removeLocationPoligons() {
+    console.log('remove locations');
+
+    if (this.parentPolygons) {
+      for (let item of this.parentPolygons) {
+        item.polygon.remove();
+      }
+    }
+  }
+
   private drawParentLocations() {
+    this.colorService.reset();
+    this.removeLocationPoligons();
     this.parentPolygons = [];
     if (this.parentLocations) {
       for (var i = 0; i < this.parentLocations.length; i++) {
@@ -188,11 +241,94 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
     }
   }
 
-  onParentPolygonClick(objet: { polygon: L.Polygon; locationIndex: number }) {
+  async onParentPolygonClick(objet: {
+    polygon: L.Polygon;
+    locationIndex: number;
+  }) {
     if (this.parentLocations) {
       const location = this.parentLocations[objet.locationIndex];
       this.handleLocationClick.emit(location);
-      console.log('emit');
+
+      // le zoom automatique
+      if (this.autoZoomInParentLocations) {
+        const bounds = objet.polygon.getBounds();
+        this.map.fitBounds(bounds);
+
+        // charger les activités
+        if (location.id) {
+          await this.loadActivities(location.id);
+          this.showActivities();
+        }
+
+        // masquer les autres
+        if (this.parentPolygons) {
+          const color = 'red';
+          for (let polygon of this.parentPolygons) {
+            const poly = polygon.polygon;
+            poly.remove();
+          }
+          // placer l'ancien polygone en tant que bordure de la zone
+          this.parentPolygons = [];
+          const nouveau = objet.polygon.setStyle({
+            fillColor: 'rgba(0,0,0,0)',
+          });
+          nouveau.addTo(this.map);
+          this.parentPolygons.push(objet);
+        }
+      }
     }
+  }
+
+  // activity functions
+  async loadActivities(locationId: number) {
+    this.message = 'Chargement des activités';
+    this.messageDisplay = true;
+    try {
+      this.activities = await this.activityService.findAllByLocation(
+        locationId
+      );
+    } catch (error) {
+      console.error(error);
+    }
+    this.messageDisplay = false;
+  }
+
+  async showActivities() {
+    if (this.activities) {
+      this.activityMarkers = [];
+      this.removeActivityMarkers();
+      for (let activity of this.activities) {
+        if (activity.point_x && activity.point_y) {
+          var icon = this.activityIcon;
+          // set the icon
+          switch (activity.activityType?.name) {
+            case 'restaurant':
+              icon = this.restaurantIcon;
+              break;
+            case 'breakPoint':
+              icon = this.hotelIcon;
+              break;
+          }
+
+          const latlng = L.latLng(activity.point_x, activity.point_y);
+          const marker = L.marker(latlng, { icon: icon });
+          this.activityMarkers.push(marker);
+          marker.addTo(this.map);
+        }
+      }
+    }
+  }
+
+  removeActivityMarkers() {
+    if (this.activityMarkers) {
+      for (let marker of this.activityMarkers) {
+        marker.remove();
+      }
+    }
+  }
+  // end activity functions
+
+  hideMessage() {
+    this.messageDisplay = false;
   }
 }

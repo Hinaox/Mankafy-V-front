@@ -130,7 +130,7 @@ export class CreateActivityComponent implements OnInit {
         minDuration = minDuration * 60;
       }
 
-      const body: Activity = {
+      const body: any = {
         locationId,
         name,
         duration,
@@ -144,9 +144,18 @@ export class CreateActivityComponent implements OnInit {
         point_y,
       };
 
+      // delete all empty fields
+      for (let key in body) {
+        if (empty(body[key])) {
+          delete body[key];
+        }
+      }
+
       try {
         this.loading.startLoading();
-        await this.activityService.save(body);
+        const retour = await this.activityService.save(body);
+        console.log(retour);
+
         this.loading.stopLoading();
         this.messageBox.success('Enregistrement réussi');
         this.myForm.reset();

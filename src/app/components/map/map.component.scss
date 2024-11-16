@@ -14,15 +14,25 @@
 .sideMenu {
   position: absolute;
   padding: 5px;
-  top: 10px;
+  top: 30px;
   right: 20px;
   z-index: 500;
   font-size: 0.8em;
-  background-color: rgba(white, 0.3);
+  background-color: rgba(white, 0.5);
   border-radius: 5px;
 
   input {
     position: relative;
     bottom: -0.1em;
   }
+}
+
+.messageMapComponent {
+  position: absolute;
+  width: 100%;
+  top: 40vh;
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(white, 0.5);
+  z-index: 500;
 }
