@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-chat',
@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrl: './chat.component.scss',
 })
 export class ChatComponent {
+  @Output() handleClose = new EventEmitter<void>();
+
   messages: { corps: string; sender: string }[] = [
     { corps: 'Salut, comment-allez vous ?', sender: 'user' },
     { corps: 'Ça va bien et vous ?', sender: 'bot' },
@@ -26,4 +28,8 @@ export class ChatComponent {
     },
     { corps: 'Nous sommes un groupe de 4 personnes', sender: 'user' },
   ];
+
+  onCloseChatBox() {
+    this.handleClose.emit();
+  }
 }

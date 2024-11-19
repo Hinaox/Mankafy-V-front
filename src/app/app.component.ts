@@ -1,22 +1,45 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { AppService } from './services/App/app.service';
 import { LoadingService } from './services/loading/loading.service';
 import { Subscription } from 'rxjs';
 import { MessageBoxService } from './services/message-box.service';
+import { animate, style, transition, trigger } from '@angular/animations';
+
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  animations: [
+    trigger('myInsertRemoveTrigger', [
+      transition(':enter', [
+        style({ opacity: 0, translate: '300px' }),
+        animate('300ms', style({ opacity: 1, translate: '0px' })),
+      ]),
+      transition(':leave', [
+        animate('300ms', style({ opacity: 0, translate: '300px' })),
+      ]),
+    ]),
+
+    trigger('chatTipsTrigger', [
+      transition(':enter', [
+        style({ opacity: 0, width: 0 }),
+        animate('500ms', style({ opacity: 1, width: 200 })),
+      ]),
+      transition(':leave', [animate('500ms', style({ opacity: 0, width: 0 }))]),
+    ]),
+  ],
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   title = 'mankafy';
 
   loading = false;
   loadingSubscription?: Subscription;
 
-  chatboxOpened = true;
+  chatboxOpened = false;
+  chatTipsShown = true;
 
   constructor(
     private appService: AppService,
@@ -40,7 +63,25 @@ export class AppComponent implements OnInit, OnDestroy {
     this.loading = false;
   }
 
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.chatTipsShown = false;
+    }, 10000);
+  }
+
   ngOnDestroy(): void {
     this.loadingSubscription?.unsubscribe();
+  }
+
+  onOpenChatBox() {
+    this.chatboxOpened = true;
+  }
+
+  onCloseChatBox() {
+    this.chatboxOpened = false;
+  }
+
+  onHideChatTips() {
+    this.chatTipsShown = false;
   }
 }

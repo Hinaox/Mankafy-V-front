@@ -46,13 +46,28 @@
 
   <!-- chat -->
   <!-- chat button -->
-  <button *ngIf="!chatboxOpened" class="activate-chat-button btn">
+  <button
+    @myInsertRemoveTrigger
+    *ngIf="!chatboxOpened"
+    class="activate-chat-button btn"
+    (click)="onOpenChatBox()"
+  >
     <img src="/assets/icons/chatbot.png" alt="" />
   </button>
   <!-- end chat button -->
+  <!-- chat tips -->
+  <div
+    @chatTipsTrigger
+    *ngIf="chatTipsShown"
+    class="chat-tips"
+    (mouseover)="onHideChatTips()"
+  >
+    Appuyez pour discuter
+  </div>
+  <!-- end chat tips -->
   <!-- chat container -->
-  <div class="chat-container">
-    <app-chat />
+  <div @myInsertRemoveTrigger *ngIf="chatboxOpened" class="chat-container">
+    <app-chat (handleClose)="onCloseChatBox()" />
   </div>
   <!-- end chat container -->
   <!-- end chat -->

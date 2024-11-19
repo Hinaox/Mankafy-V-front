@@ -1,5 +1,23 @@
 @import "../styles.scss";
 
+@keyframes tremblement {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-2px, 0px);
+  }
+  50% {
+    transform: translate(2px, -0px);
+  }
+  75% {
+    transform: translate(-2px, -0px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
 .messageBoxContainer {
   position: absolute;
   width: 100vw;
@@ -19,6 +37,22 @@
   img {
     width: 50px;
   }
+}
+
+.chat-tips {
+  position: fixed;
+  top: 92vh;
+  right: 100px;
+  border: 1px solid gray;
+  z-index: 5;
+  padding: 8px;
+  border-radius: 20px;
+  background-color: $couleur2Clair;
+  color: white;
+  white-space: nowrap;
+
+  display: inline-block; /* pour un meilleur contrôle de l'effet */
+  animation: tremblement 1s infinite;
 }
 
 .chat-container {
