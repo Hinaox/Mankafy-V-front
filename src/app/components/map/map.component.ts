@@ -45,7 +45,7 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
 
   // les données activités
   activities?: Activity[];
-  activityMarkers?: L.Marker[];
+  activityMarkers?: { marker: L.Marker; activity: Activity }[];
 
   // message
   messageDisplay = false;
@@ -297,6 +297,7 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
     if (this.activities) {
       this.activityMarkers = [];
       this.removeActivityMarkers();
+
       for (let activity of this.activities) {
         if (activity.point_x && activity.point_y) {
           var icon = this.activityIcon;
@@ -312,7 +313,23 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
 
           const latlng = L.latLng(activity.point_x, activity.point_y);
           const marker = L.marker(latlng, { icon: icon });
-          this.activityMarkers.push(marker);
+          this.activityMarkers.push({ marker: marker, activity: activity });
+
+          // les infos du marqueur
+          if (activity.name) {
+            marker.bindTooltip(activity.name, {
+              permanent: true,
+              direction: 'right',
+            });
+
+            marker.bindPopup(`
+              <div style="padding: 2px; border-radius: 2px; font-size: 0.8em" >
+              <b style="font-size: 1.2em" >${activity.name}</b> <br/> <br/>
+              <button style="font-size: 1em; width: 100%" class="btn btn-success" >Ajouter</button>
+              </div>
+              `);
+          }
+
           marker.addTo(this.map);
         }
       }
@@ -322,7 +339,7 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
   removeActivityMarkers() {
     if (this.activityMarkers) {
       for (let marker of this.activityMarkers) {
-        marker.remove();
+        marker.marker.remove();
       }
     }
   }

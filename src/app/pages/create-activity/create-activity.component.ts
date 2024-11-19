@@ -36,7 +36,7 @@ export class CreateActivityComponent implements OnInit {
     this.myForm = fb.group({
       locationId: ['', [Validators.required]],
       name: ['', [Validators.required]],
-      duration: ['', [Validators.required, strictlyPositiveNumberValidator()]],
+      duration: ['', [strictlyPositiveNumberValidator()]],
       minDuration: ['', [strictlyPositiveNumberValidator()]],
       openingTime: [''],
       closingTime: [''],
@@ -120,8 +120,8 @@ export class CreateActivityComponent implements OnInit {
       const link = this.link?.value;
       const description = this.description?.value;
       const activityTypeId = this.activityTypeId?.value;
-      const point_x = this.point_x?.value;
-      const point_y = this.point_y?.value;
+      const point_x = parseFloat(this.point_x?.value);
+      const point_y = parseFloat(this.point_y?.value);
 
       if (!empty(duration)) {
         duration = duration * 60;
@@ -162,6 +162,16 @@ export class CreateActivityComponent implements OnInit {
       } catch (error) {
         console.error(error);
       }
+    }
+  }
+
+  onInputXCoords(event: any) {
+    const value = event.target.value;
+
+    const split = value.split(',');
+    if (split.length == 2) {
+      this.point_x?.setValue(parseFloat(split[0]));
+      this.point_y?.setValue(parseFloat(split[1]));
     }
   }
 

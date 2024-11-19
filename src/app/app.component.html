@@ -36,9 +36,26 @@
     <!--Site Footer Bottom End-->
   </div>
 
+  <!-- bouton de retour en haut -->
+  <!--
   <a href="#" data-target="html" class="scroll-to-target scroll-to-top"
     ><i class="fa fa-angle-up"></i
   ></a>
+  -->
+  <!-- end bouton de retour en haut -->
+
+  <!-- chat -->
+  <!-- chat button -->
+  <button *ngIf="!chatboxOpened" class="activate-chat-button btn">
+    <img src="/assets/icons/chatbot.png" alt="" />
+  </button>
+  <!-- end chat button -->
+  <!-- chat container -->
+  <div class="chat-container">
+    <app-chat />
+  </div>
+  <!-- end chat container -->
+  <!-- end chat -->
 
   <div class="mobile-nav__wrapper">
     <div

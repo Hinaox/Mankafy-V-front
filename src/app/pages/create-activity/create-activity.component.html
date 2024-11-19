@@ -16,8 +16,8 @@
             <div style="padding-left: 0; padding-right: 3px" class="col-6">
               <input
                 (change)="onChangeCoords()"
+                (input)="onInputXCoords($event)"
                 placeholder="X"
-                type="number"
                 class="form-control no-spinner"
                 formControlName="point_x"
               />
@@ -26,7 +26,6 @@
               <input
                 (change)="onChangeCoords()"
                 placeholder="Y"
-                type="number"
                 class="form-control no-spinner"
                 formControlName="point_y"
               />

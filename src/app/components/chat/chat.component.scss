@@ -1,0 +1,32 @@
+@import "../../../styles.scss";
+
+.conteneur {
+  height: 100%;
+  font-size: 0.85em;
+
+  .header {
+    height: 5%;
+  }
+
+  .message-list {
+    height: 83%;
+  }
+  .user-field {
+    height: 12%;
+  }
+
+  input {
+    font-size: 1em !important;
+  }
+  button {
+    font-size: 1em !important;
+  }
+
+  .btn-send {
+    @extend .btn-couleur1;
+  }
+
+  .message-input {
+    border-style: none;
+  }
+}

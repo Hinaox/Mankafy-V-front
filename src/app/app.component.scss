@@ -1,5 +1,32 @@
+@import "../styles.scss";
+
 .messageBoxContainer {
   position: absolute;
   width: 100vw;
   z-index: 99;
+}
+
+.activate-chat-button {
+  position: fixed;
+  top: 90vh;
+  right: 20px;
+  z-index: 5;
+  background-color: $couleur1;
+  border-radius: 100%;
+  border-style: 2px solid white !important;
+  padding: 12px;
+
+  img {
+    width: 50px;
+  }
+}
+
+.chat-container {
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  background-color: white;
+  z-index: 5;
+  width: 300px;
+  height: 400px;
 }

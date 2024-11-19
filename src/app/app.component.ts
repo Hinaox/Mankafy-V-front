@@ -16,6 +16,8 @@ export class AppComponent implements OnInit, OnDestroy {
   loading = false;
   loadingSubscription?: Subscription;
 
+  chatboxOpened = true;
+
   constructor(
     private appService: AppService,
     private loadingService: LoadingService,

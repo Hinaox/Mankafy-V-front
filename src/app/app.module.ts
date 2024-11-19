@@ -36,6 +36,7 @@ import {
 import { CreateActivityTypeComponent } from './components/create-activity-type/create-activity-type.component';
 import { CreateActivityTypePageComponent } from './pages/create-activity-type-page/create-activity-type-page.component';
 import { CreateLocationComponent } from './pages/create-location/create-location.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -54,6 +55,7 @@ registerLocaleData(localeFr, 'fr');
     CreateActivityTypeComponent,
     CreateActivityTypePageComponent,
     CreateLocationComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
