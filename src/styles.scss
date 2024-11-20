@@ -17,6 +17,16 @@ $text-color: rgb(15, 15, 15);
   color: $couleur2;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.card {
+  padding: 5px;
+  background-color: white;
+  color: $text-color;
+}
+
 // les bordures à gauches de chaque taille d'écran
 $sm: 576px;
 $md: 768px;

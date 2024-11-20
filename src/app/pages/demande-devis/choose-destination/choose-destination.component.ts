@@ -34,4 +34,8 @@ export class ChooseDestinationComponent implements OnChanges {
   setDevisEnCours(data?: PlanningClient) {
     this.devisEnCours = data;
   }
+
+  onRetour() {
+    this.handlePageChange.emit('selectDatePeople');
+  }
 }

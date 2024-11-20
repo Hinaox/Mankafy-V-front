@@ -1,10 +1,41 @@
 <div class="container mt-4">
-  <span class="cursor couleur2">Retour</span>
+  <span (click)="onRetour()" class="couleur2 cursor-pointer"
+    >Revenir en arrière</span
+  >
   <br />
 
-  <!-- Fin temp -->
-  <h2>Choisissez votre destination</h2>
-  <div class="mt-3 carte">
-    <app-map style="height: 100%" />
+  <div class="previous-informations-container card mt-3">
+    <table class="table">
+      <tr>
+        <td>
+          <small>Départ</small> <br />
+          <i class="bi bi-calendar mr-2"></i>
+          {{ devisEnCours?.dateDepart | datePipeFR }}
+        </td>
+        <td>
+          <small>Retour</small> <br />
+          <i class="bi bi-calendar mr-2"></i>
+          {{ devisEnCours?.dateRetour | datePipeFR }}
+        </td>
+        <td>
+          <small>Passagers</small> <br />
+          <i class="bi bi-people mr-2"></i>
+          {{ devisEnCours?.peopleNumber }} personne{{
+            devisEnCours &&
+            devisEnCours.peopleNumber &&
+            devisEnCours.peopleNumber > 1
+              ? "s"
+              : ""
+          }}
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="mt-3">
+    <h2>Choisissez votre destination</h2>
+    <div class="mt-3 carte">
+      <app-map [showDestinationsOption]="false" style="height: 100%" />
+    </div>
   </div>
 </div>

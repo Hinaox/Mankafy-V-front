@@ -6,11 +6,13 @@
     <div id="map"></div>
   </div>
   <div class="sideMenu">
-    Afficher les destinations &nbsp;
-    <input
-      (change)="onToggleDisplayParentLocations($event)"
-      [(ngModel)]="displayParentLocations"
-      type="checkbox"
-    />
+    <div *ngIf="showDestinationsOption">
+      Afficher les destinations &nbsp;
+      <input
+        (change)="onToggleDisplayParentLocations($event)"
+        [(ngModel)]="displayParentLocations"
+        type="checkbox"
+      />
+    </div>
   </div>
 </div>

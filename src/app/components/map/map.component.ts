@@ -52,6 +52,9 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
   messageDisplay = false;
   message = '';
 
+  // display options options
+  @Input() showDestinationsOption = true;
+
   // les icones utiles
   restaurantIcon = L.icon({
     iconUrl: '/assets/icons/restaurant-marker.png', // Chemin vers votre image

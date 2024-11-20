@@ -1,11 +1,15 @@
 <div *ngIf="page == 'selectDatePeople'">
   <app-select-date-people
+    [devisEnCours]="devisEnCours"
     (handleChange)="setDevisEnCours($event)"
     (handlePageChange)="setPage($event)"
   />
 </div>
 <div *ngIf="page == 'chooseDestination'">
-  <app-choose-destination (handlePageChange)="setPage($event)" />
+  <app-choose-destination
+    (handlePageChange)="setPage($event)"
+    [devisEnCours]="devisEnCours"
+  />
 </div>
 <div *ngIf="page == 'chooseBreakPoint'">
   <app-select-break-point />

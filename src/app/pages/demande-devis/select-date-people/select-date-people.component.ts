@@ -87,6 +87,16 @@ export class SelectDatePeopleComponent implements OnChanges {
 
   setDevisEnCours(data?: PlanningClient) {
     this.devisEnCours = data;
+
+    if (data?.peopleNumber) {
+      this.peopleNumber?.setValue(data.peopleNumber);
+    }
+    if (data?.dateDepart) {
+      this.dateDepart?.setValue(data.dateDepart);
+    }
+    if (data?.dateRetour) {
+      this.dateRetour?.setValue(data.dateRetour);
+    }
   }
 
   get peopleNumber() {

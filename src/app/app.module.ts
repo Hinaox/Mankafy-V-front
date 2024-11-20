@@ -14,7 +14,7 @@ import { GalleryComponent } from './pages/gallery/gallery.component';
 import { TestComponent } from './pages/test/test.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlanningComponent } from './pages/planning/planning.component';
-import { registerLocaleData } from '@angular/common';
+import { DatePipe, registerLocaleData } from '@angular/common';
 
 import localeFr from '@angular/common/locales/fr';
 import { CalendarModule, DateAdapter, MOMENT } from 'angular-calendar';
@@ -37,11 +37,13 @@ import { CreateActivityTypeComponent } from './components/create-activity-type/c
 import { CreateActivityTypePageComponent } from './pages/create-activity-type-page/create-activity-type-page.component';
 import { CreateLocationComponent } from './pages/create-location/create-location.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { DateFRPipe } from './utils/DateFR.pipe';
 
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   declarations: [
+    DateFRPipe,
     AppComponent,
     NavbarComponent,
     FooterComponent,
@@ -75,8 +77,9 @@ registerLocaleData(localeFr, 'fr');
     }),
     MatProgressSpinnerModule,
   ],
-  exports: [MapComponent],
+  exports: [MapComponent, DateFRPipe],
   providers: [
+    DatePipe,
     provideNgxWebstorage(
       withNgxWebstorageConfig({ separator: ':', caseSensitive: true }),
       withLocalStorage(),
