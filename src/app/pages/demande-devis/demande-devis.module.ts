@@ -6,6 +6,7 @@ import { ChooseDestinationComponent } from './choose-destination/choose-destinat
 import { SelectBreakPointComponent } from './select-break-point/select-break-point.component';
 import { SelectDatePeopleComponent } from './select-date-people/select-date-people.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DestinationMapComponent } from './destination-map/destination-map.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ChooseDestinationComponent,
     SelectBreakPointComponent,
     SelectDatePeopleComponent,
+    DestinationMapComponent,
   ],
   imports: [CommonModule, AppModule, FormsModule, ReactiveFormsModule],
 })
