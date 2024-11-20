@@ -1,15 +1,21 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import PlanningClient from '../../../models/PlanningClient';
 
 @Component({
   selector: 'app-choose-destination',
   templateUrl: './choose-destination.component.html',
   styleUrl: './choose-destination.component.scss',
 })
-export class ChooseDestinationComponent {
+export class ChooseDestinationComponent implements OnChanges {
   @Output() handlePageChange = new EventEmitter<string>();
-
-  // données temporaire
-  destinations = ['sud', 'ouest', 'nord', 'est'];
+  @Input() devisEnCours?: PlanningClient;
 
   onChooseDestination() {
     const valid = true;
@@ -17,5 +23,15 @@ export class ChooseDestinationComponent {
     if (valid) {
       this.handlePageChange.emit('chooseBreakPoint');
     }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['devisEnCours']) {
+      this.setDevisEnCours(changes['devisEnCours'].currentValue);
+    }
+  }
+
+  setDevisEnCours(data?: PlanningClient) {
+    this.devisEnCours = data;
   }
 }

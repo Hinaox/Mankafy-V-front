@@ -9,6 +9,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import * as L from 'leaflet';
+import 'leaflet.markercluster';
 import { LocationService } from '../../services/location.service';
 import Location from '../../models/Location';
 import { ColorService } from '../../services/color.service';
@@ -298,6 +299,9 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
       this.activityMarkers = [];
       this.removeActivityMarkers();
 
+      // creation d'un cluster
+      const group = L.markerClusterGroup();
+
       for (let activity of this.activities) {
         if (activity.point_x && activity.point_y) {
           var icon = this.activityIcon;
@@ -311,8 +315,8 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
               break;
           }
 
-          const latlng = L.latLng(activity.point_x, activity.point_y);
-          const marker = L.marker(latlng, { icon: icon });
+          const coords = L.latLng(activity.point_x, activity.point_y);
+          const marker = L.marker(coords, { icon: icon });
           this.activityMarkers.push({ marker: marker, activity: activity });
 
           // les infos du marqueur
@@ -330,9 +334,12 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
               `);
           }
 
+          // ajouter le marqueur à la map
           marker.addTo(this.map);
+          group.addLayer(marker);
         }
       }
+      this.map.addLayer(group);
     }
   }
 

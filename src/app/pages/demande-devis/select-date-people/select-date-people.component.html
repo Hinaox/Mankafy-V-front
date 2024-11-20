@@ -7,32 +7,55 @@
     ></i>
     <div class="d-flex select-people-container">
       <div>
-        <button class="btn">-</button>
+        <button
+          [disabled]="peopleNumber?.value <= 1"
+          (click)="decreasePeopleNumber()"
+          class="btn"
+        >
+          -
+        </button>
       </div>
       <div>
-        <div class="number-display form-control">5</div>
+        <div class="number-display form-control">{{ peopleNumber?.value }}</div>
       </div>
       <div>
-        <button class="btn">+</button>
+        <button (click)="increasePeopleNumber()" class="btn">+</button>
       </div>
     </div>
   </div>
   <div class="mt-5">
     <h4>Selectionnez les dates :</h4>
     <div class="">
-      <form (ngSubmit)="onSubmitForm()">
+      <form [formGroup]="myForm" (ngSubmit)="onSubmitForm()">
         <div class="d-lg-flex">
           <div class="form-group mr-lg-3">
             <div><label class="col-form-label">Départ :</label></div>
-            <div><input type="date" class="form-control" /></div>
+            <div>
+              <input
+                formControlName="dateDepart"
+                type="date"
+                class="form-control"
+              />
+            </div>
           </div>
           <div class="form-group">
             <div><label class="col-form-label">Retour :</label></div>
-            <div><input type="date" class="form-control" /></div>
+            <div>
+              <input
+                formControlName="dateRetour"
+                type="date"
+                class="form-control"
+              />
+            </div>
           </div>
         </div>
         <div class="mt-4">
-          <button class="btn btn-valider btn-couleur2">Valider</button>
+          <button
+            [disabled]="myForm.invalid"
+            class="btn btn-valider btn-couleur2"
+          >
+            Valider
+          </button>
         </div>
       </form>
     </div>

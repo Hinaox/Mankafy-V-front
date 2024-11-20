@@ -39,7 +39,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   loadingSubscription?: Subscription;
 
   chatboxOpened = false;
-  chatTipsShown = true;
+  chatTipsShown = false;
 
   constructor(
     private appService: AppService,
@@ -65,8 +65,11 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.chatTipsShown = false;
-    }, 10000);
+      this.chatTipsShown = true;
+      setTimeout(() => {
+        this.chatTipsShown = false;
+      }, 10000);
+    }, 3000);
   }
 
   ngOnDestroy(): void {

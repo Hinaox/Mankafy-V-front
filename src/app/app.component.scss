@@ -44,7 +44,7 @@
   top: 92vh;
   right: 100px;
   border: 1px solid gray;
-  z-index: 5;
+  z-index: 1000;
   padding: 8px;
   border-radius: 20px;
   background-color: $couleur2Clair;
@@ -60,7 +60,7 @@
   bottom: 30px;
   right: 20px;
   background-color: white;
-  z-index: 5;
+  z-index: 1000;
   width: 300px;
   height: 400px;
 

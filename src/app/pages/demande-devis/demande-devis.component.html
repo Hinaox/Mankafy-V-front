@@ -1,5 +1,8 @@
 <div *ngIf="page == 'selectDatePeople'">
-  <app-select-date-people (handlePageChange)="setPage($event)" />
+  <app-select-date-people
+    (handleChange)="setDevisEnCours($event)"
+    (handlePageChange)="setPage($event)"
+  />
 </div>
 <div *ngIf="page == 'chooseDestination'">
   <app-choose-destination (handlePageChange)="setPage($event)" />

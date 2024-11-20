@@ -6,6 +6,9 @@ export default class PlanningClient {
     public user?: User,
     public dateDepart?: Date,
     public dateRetour?: Date,
-    public isActive?: boolean
+    public isActive?: boolean,
+    public peopleNumber?: number,
+    public locationId?: number,
+    public location?: Location
   ) {}
 }
