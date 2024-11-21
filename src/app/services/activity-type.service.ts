@@ -7,11 +7,19 @@ import ActivityType from '../models/ActivityType';
   providedIn: 'root',
 })
 export class ActivityTypeService {
+  public readonly BREAKPOINT_TYPE = 'breakPoint';
+  public readonly RESTAURANT_TYPE = 'restaurant';
+  public readonly ACTIVITY_TYPE = 'activity';
+
   constructor(private authService: AuthService, private http: HttpClient) {}
 
-  public findAll(): Promise<ActivityType[]> {
+  public findAll(filtres?: any): Promise<ActivityType[]> {
     return new Promise<ActivityType[]>((resolve, reject) => {
-      const url = this.authService.baseUrl('/activity-types');
+      var url = this.authService.baseUrl('/activity-types?');
+
+      for (let key in filtres) {
+        url += `&${key}=${filtres[key]}`;
+      }
       this.http.get(url).subscribe(
         (data: any) => {
           resolve(data);
