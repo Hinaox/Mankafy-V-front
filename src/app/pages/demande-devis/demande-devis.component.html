@@ -9,6 +9,7 @@
   <app-choose-destination
     (handlePageChange)="setPage($event)"
     [devisEnCours]="devisEnCours"
+    (handleChange)="setDevisEnCours($event)"
   />
 </div>
 <div *ngIf="page == 'chooseBreakPoint'">

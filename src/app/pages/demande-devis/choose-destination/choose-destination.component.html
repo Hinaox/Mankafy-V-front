@@ -35,7 +35,9 @@
   <div class="mt-3">
     <h2>Choisissez votre destination</h2>
     <div class="mt-3 carte">
-      <app-destination-map />
+      <app-destination-map
+        (handleSelectDestination)="onSelectDestination($event)"
+      />
     </div>
   </div>
 </div>

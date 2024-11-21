@@ -1,3 +1,4 @@
+import Location from './Location';
 import User from './User';
 
 export default class PlanningClient {

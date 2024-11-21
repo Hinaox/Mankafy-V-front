@@ -7,6 +7,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import PlanningClient from '../../../models/PlanningClient';
+import Location from '../../../models/Location';
 
 @Component({
   selector: 'app-choose-destination',
@@ -16,6 +17,7 @@ import PlanningClient from '../../../models/PlanningClient';
 export class ChooseDestinationComponent implements OnChanges {
   @Output() handlePageChange = new EventEmitter<string>();
   @Input() devisEnCours?: PlanningClient;
+  @Output() handleChange = new EventEmitter<PlanningClient>();
 
   onChooseDestination() {
     const valid = true;
@@ -37,5 +39,12 @@ export class ChooseDestinationComponent implements OnChanges {
 
   onRetour() {
     this.handlePageChange.emit('selectDatePeople');
+  }
+
+  onSelectDestination(destination: Location) {
+    if (this.devisEnCours) {
+      this.devisEnCours.location = destination;
+      this.handleChange.emit(this.devisEnCours);
+    }
   }
 }
