@@ -1,9 +1,11 @@
 import {
   AfterViewInit,
   Component,
+  EventEmitter,
   Input,
   OnChanges,
   OnInit,
+  Output,
   SimpleChanges,
 } from '@angular/core';
 import Activity from '../../../models/Activity';
@@ -21,6 +23,8 @@ export class SelectBreakPointComponent
   breakPoints?: Activity[];
 
   @Input() devisEnCours?: PlanningClient;
+  @Output() handlePageChange = new EventEmitter<string>();
+  @Output() handleChange = new EventEmitter<PlanningClient>();
 
   constructor(private activityService: ActivityService) {}
 
@@ -53,5 +57,10 @@ export class SelectBreakPointComponent
 
   setDevisEnCours(data?: PlanningClient) {
     this.devisEnCours = data;
+  }
+
+  onRetour() {
+    delete this.devisEnCours?.location;
+    this.handleChange.emit(this.devisEnCours);
   }
 }

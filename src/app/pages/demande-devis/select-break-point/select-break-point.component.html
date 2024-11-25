@@ -1,1 +1,45 @@
-<p>select-break-point works!</p>
+<div class="container mt-4">
+  <span (click)="onRetour()" class="couleur2 cursor-pointer"
+    >Revenir en arrière</span
+  >
+  <br />
+
+  <div class="previous-informations-container card mt-3">
+    <table class="table">
+      <tr>
+        <td>
+          <small>Destination</small> <br />
+          <i class="bi bi-map mr-2"></i>
+          {{ devisEnCours?.location?.name }}
+        </td>
+        <td>
+          <small>Départ</small> <br />
+          <i class="bi bi-calendar mr-2"></i>
+          {{ devisEnCours?.dateDepart | datePipeFR }}
+        </td>
+        <td>
+          <small>Retour</small> <br />
+          <i class="bi bi-calendar mr-2"></i>
+          {{ devisEnCours?.dateRetour | datePipeFR }}
+        </td>
+        <td>
+          <small>Passagers</small> <br />
+          <i class="bi bi-people mr-2"></i>
+          {{ devisEnCours?.peopleNumber }} personne{{
+            devisEnCours &&
+            devisEnCours.peopleNumber &&
+            devisEnCours.peopleNumber > 1
+              ? "s"
+              : ""
+          }}
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="mt-3">
+    <h2>Choisissez les points d'arrêt</h2>
+    <div class="mt-3 carte">
+      <app-breakpoint-map [breakPoints]="breakPoints" />
+    </div>
+  </div>
+</div>

@@ -15,6 +15,7 @@ import Location from '../../models/Location';
 import { ColorService } from '../../services/color.service';
 import Activity from '../../models/Activity';
 import { ActivityService } from '../../services/activity.service';
+import { MapService } from '../../services/map.service';
 
 @Component({
   selector: 'app-map',
@@ -55,26 +56,6 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
   // display options options
   @Input() showDestinationsOption = true;
 
-  // les icones utiles
-  restaurantIcon = L.icon({
-    iconUrl: '/assets/icons/restaurant-marker.png', // Chemin vers votre image
-    iconSize: [38, 38], // Taille de l'icône
-    iconAnchor: [19, 38], // Point d'ancrage (au centre en bas)
-    popupAnchor: [0, -38], // Position du popup par rapport à l'icône
-  });
-  hotelIcon = L.icon({
-    iconUrl: '/assets/icons/activity-marker.png', // Chemin vers votre image
-    iconSize: [38, 38], // Taille de l'icône
-    iconAnchor: [19, 38], // Point d'ancrage (au centre en bas)
-    popupAnchor: [0, -38], // Position du popup par rapport à l'icône
-  });
-  activityIcon = L.icon({
-    iconUrl: '/assets/icons/activity-marker.png', // Chemin vers votre image
-    iconSize: [38, 38], // Taille de l'icône
-    iconAnchor: [19, 38], // Point d'ancrage (au centre en bas)
-    popupAnchor: [0, -38], // Position du popup par rapport à l'icône
-  });
-
   @Output() handleClick = new EventEmitter<L.LatLng>();
   @Output() handleLocationClick = new EventEmitter<Location>();
 
@@ -83,7 +64,8 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
   constructor(
     private locationService: LocationService,
     private colorService: ColorService,
-    private activityService: ActivityService
+    private activityService: ActivityService,
+    private mapService: MapService
   ) {}
 
   ngOnInit(): void {}
@@ -307,14 +289,14 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
 
       for (let activity of this.activities) {
         if (activity.point_x && activity.point_y) {
-          var icon = this.activityIcon;
+          var icon = this.mapService.activityIcon;
           // set the icon
           switch (activity.activityType?.name) {
             case 'restaurant':
-              icon = this.restaurantIcon;
+              icon = this.mapService.restaurantIcon;
               break;
             case 'breakPoint':
-              icon = this.hotelIcon;
+              icon = this.mapService.hotelIcon;
               break;
           }
 
