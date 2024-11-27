@@ -8,6 +8,7 @@ import { SelectDatePeopleComponent } from './select-date-people/select-date-peop
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DestinationMapComponent } from './destination-map/destination-map.component';
 import { BreakpointMapComponent } from './breakpoint-map/breakpoint-map.component';
+import { SideMenuBreakPointComponent } from './side-menu-break-point/side-menu-break-point.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { BreakpointMapComponent } from './breakpoint-map/breakpoint-map.componen
     SelectDatePeopleComponent,
     DestinationMapComponent,
     BreakpointMapComponent,
+    SideMenuBreakPointComponent,
   ],
   imports: [CommonModule, AppModule, FormsModule, ReactiveFormsModule],
 })

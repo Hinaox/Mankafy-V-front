@@ -38,12 +38,14 @@ import { CreateActivityTypePageComponent } from './pages/create-activity-type-pa
 import { CreateLocationComponent } from './pages/create-location/create-location.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { DateFRPipe } from './utils/DateFR.pipe';
+import { DatetimeFRPipe } from './utils/DatetimeFR.pipe';
 
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   declarations: [
     DateFRPipe,
+    DatetimeFRPipe,
     AppComponent,
     NavbarComponent,
     FooterComponent,
@@ -77,7 +79,7 @@ registerLocaleData(localeFr, 'fr');
     }),
     MatProgressSpinnerModule,
   ],
-  exports: [MapComponent, DateFRPipe],
+  exports: [MapComponent, DateFRPipe, DatetimeFRPipe],
   providers: [
     DatePipe,
     provideNgxWebstorage(

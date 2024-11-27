@@ -60,8 +60,10 @@ export class SelectDatePeopleComponent implements OnChanges {
       }
 
       const peopleNumber = this.peopleNumber?.value;
-      const dateDepart = this.dateDepart?.value;
-      const dateRetour = this.dateRetour?.value;
+      const dateDepart = new Date(this.dateDepart?.value);
+      dateDepart.setHours(6, 0, 0);
+      const dateRetour = new Date(this.dateRetour?.value);
+      dateRetour.setHours(6, 0, 0);
 
       this.devisEnCours.peopleNumber = peopleNumber;
       this.devisEnCours.dateDepart = dateDepart;

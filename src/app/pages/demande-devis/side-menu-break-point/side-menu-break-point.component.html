@@ -1,0 +1,34 @@
+<div class="side-menu-breakpoint" *ngIf="breakPoint">
+  <img [src]="breakPoint.imagePath" style="width: 100%" alt="" />
+  <div class="content p-2">
+    <div class="d-flex">
+      <div
+        (click)="setTab('presentation')"
+        class="{{ tab == 'presentation' ? 'underline' : '' }} cursor-pointer"
+      >
+        Présentation
+      </div>
+      <div
+        (click)="setTab('tarifs')"
+        class="ml-2 cursor-pointer {{ tab == 'tarifs' ? 'underline' : '' }}"
+      >
+        Tarifs
+      </div>
+    </div>
+    <div *ngIf="tab == 'presentation'" class="mt-2">
+      <h3>{{ breakPoint.name }}</h3>
+      <p>{{ breakPoint.description }}</p>
+    </div>
+    <br />
+    <b>Distance</b> : {{ distance | number : "1.0-0" }} km <br />
+    <b>Date de départ</b> : {{ departure | datetimePipeFR }} <br />
+    <b>Date d'arrivée</b> : {{ arrival | datetimePipeFR }} <br />
+    <button
+      (click)="onBreakPointChoice()"
+      style="width: 100%"
+      class="btn btn-couleur1 mt-3"
+    >
+      Choisir
+    </button>
+  </div>
+</div>

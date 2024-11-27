@@ -2,7 +2,12 @@
   <div class="breakpoint-map-frame">
     <div id="breakpoint-map"></div>
     <div @sideMenuTrigger *ngIf="selectedBreakPoint" class="side-menu">
-      Ce ci est la fiche de l'activité
+      <app-side-menu-break-point
+        [route]="route"
+        [breakPoint]="selectedBreakPoint"
+        [devisEnCours]="devisEnCours"
+        (handleChoice)="onBreakPointChoice($event)"
+      />
     </div>
   </div>
 </div>

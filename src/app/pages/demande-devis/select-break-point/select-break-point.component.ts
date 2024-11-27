@@ -26,6 +26,7 @@ export class SelectBreakPointComponent
 {
   breakPoints?: Activity[];
   routeLines?: number[][];
+  route?: RouteFetch;
 
   @Input() devisEnCours?: PlanningClient;
   @Output() handlePageChange = new EventEmitter<string>();
@@ -86,7 +87,7 @@ export class SelectBreakPointComponent
           startPoint,
           endPoint
         );
-        console.log(route);
+        this.setRoute(route);
 
         if (route.route) {
           if (route.route.routes && route.route.routes[0]) {
@@ -107,5 +108,9 @@ export class SelectBreakPointComponent
         console.error(error);
       }
     }
+  }
+
+  setRoute(data?: RouteFetch) {
+    this.route = data;
   }
 }

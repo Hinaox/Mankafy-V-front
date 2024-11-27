@@ -16,6 +16,7 @@ export default class Activity {
     public description?: string,
     public image?: string,
     public activityTypeId?: number,
-    public activityType?: ActivityType
+    public activityType?: ActivityType,
+    public imagePath?: string
   ) {}
 }

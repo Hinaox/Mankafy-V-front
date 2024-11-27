@@ -13,6 +13,8 @@ import { Breakpoints } from '@angular/cdk/layout';
 import { MapService } from '../../../services/map.service';
 import { AuthService } from '../../../services/Auth/auth.service';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { RouteFetch } from '../../../models/Route';
+import PlanningClient from '../../../models/PlanningClient';
 
 @Component({
   selector: 'app-breakpoint-map',
@@ -38,11 +40,14 @@ export class BreakpointMapComponent implements OnChanges, AfterViewInit {
     [-11.0, 51.0], // Nord-Est (coordonnées approx.)
   ];
 
+  @Input() devisEnCours?: PlanningClient;
+  @Input() route?: RouteFetch;
   @Input() routeLines?: number[][];
   routeLinePolyLine?: L.Polyline;
   @Input() breakPoints?: Activity[];
   breakPointMarkers?: { marker: L.Marker; breakPoint: Activity }[];
   @Output() handleSelectBreakPoint = new EventEmitter<Activity>();
+  @Output() handleBreakPointChoice = new EventEmitter<Activity>();
   selectedBreakPoint?: Activity;
 
   constructor(
@@ -56,6 +61,12 @@ export class BreakpointMapComponent implements OnChanges, AfterViewInit {
     }
     if (changes['routeLines']) {
       this.setRouteLines(changes['routeLines'].currentValue);
+    }
+    if (changes['route']) {
+      this.setRoute(changes['route'].currentValue);
+    }
+    if (changes['devisEnCours']) {
+      this.setDevisEnCours(changes['devisEnCours'].currentValue);
     }
   }
 
@@ -129,50 +140,6 @@ export class BreakpointMapComponent implements OnChanges, AfterViewInit {
           if (this.map) {
             marker.addTo(this.map);
 
-            // // popup
-            // const img = breakPoint.image
-            //   ? breakPoint.image
-            //   : 'default_breakpoint.jpg';
-            // const imgPath = this.authService.baseUrl('/assets/images/' + img);
-            // const content = document.createElement('div');
-            // content.style.width = '300px';
-            // content.style.fontSize = '0.9em';
-
-            // const imgElement = document.createElement('img');
-            // imgElement.src = imgPath;
-            // imgElement.style.width = '100%';
-            // content.appendChild(imgElement);
-
-            // const nameContainerElement = document.createElement('div');
-            // nameContainerElement.classList.add('text-center', 'mt-2');
-            // content.appendChild(nameContainerElement);
-
-            // const arrivageElement = document.createElement('div');
-            // arrivageElement.innerHTML = `<b>Date d'arrivée : Lundi 5 janvier à 20h</b>`;
-            // content.appendChild(arrivageElement);
-
-            // const nameElement = document.createElement('b');
-            // nameElement.style.fontSize = '1.25em';
-            // nameElement.innerHTML = breakPoint.name ? breakPoint.name : '';
-            // nameContainerElement.appendChild(nameElement);
-
-            // const descriptionElement = document.createElement('p');
-            // descriptionElement.innerHTML = breakPoint.description
-            //   ? breakPoint.description
-            //   : '';
-            // content.appendChild(descriptionElement);
-
-            // const button = document.createElement('button');
-            // button.classList.add('btn', 'btn-success');
-            // button.style.width = '100%';
-            // button.innerHTML = 'Choisir';
-            // content.appendChild(button);
-
-            // button.addEventListener('click', () => {});
-
-            // marker.bindPopup(content, {});
-            // // end popup
-
             // tooltip
             const toolTipName = breakPoint.name ? breakPoint.name : '';
             marker.bindTooltip(toolTipName, {
@@ -185,7 +152,7 @@ export class BreakpointMapComponent implements OnChanges, AfterViewInit {
             marker.on('click', () => {
               this.handleSelectBreakPoint.emit(breakPoint);
               this.map?.setView(coords, 8.5);
-              this.selectedBreakPoint = breakPoint;
+              this.setSelectedBreakPoint(breakPoint);
             });
             // end marker event listener
 
@@ -193,6 +160,16 @@ export class BreakpointMapComponent implements OnChanges, AfterViewInit {
           }
         }
       }
+    }
+  }
+  setSelectedBreakPoint(data?: Activity) {
+    this.selectedBreakPoint = data;
+    if (this.selectedBreakPoint) {
+      const img = this.selectedBreakPoint.image
+        ? this.selectedBreakPoint.image
+        : 'default_breakpoint.jpg';
+      const imgPath = this.authService.baseUrl('/assets/images/' + img);
+      this.selectedBreakPoint.imagePath = imgPath;
     }
   }
   removeBreakPoints() {
@@ -224,5 +201,17 @@ export class BreakpointMapComponent implements OnChanges, AfterViewInit {
   }
   removeRouteLines() {
     this.routeLinePolyLine?.remove();
+  }
+
+  setRoute(data?: RouteFetch) {
+    this.route = data;
+  }
+
+  setDevisEnCours(data?: PlanningClient) {
+    this.devisEnCours = data;
+  }
+
+  onBreakPointChoice(data: Activity) {
+    this.handleBreakPointChoice.emit(data);
   }
 }
