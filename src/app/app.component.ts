@@ -7,6 +7,8 @@ import { MessageBoxService } from './services/message-box.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 import * as $ from 'jquery';
+import { decodePolyline } from './utils/utils';
+import { RouteFetch } from './models/Route';
 
 @Component({
   selector: 'app-root',

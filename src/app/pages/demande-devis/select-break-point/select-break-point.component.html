@@ -39,7 +39,11 @@
   <div class="mt-3">
     <h2>Choisissez les points d'arrêt</h2>
     <div class="mt-3 carte">
-      <app-breakpoint-map [breakPoints]="breakPoints" />
+      <app-breakpoint-map
+        (handleSelectBreakPoint)="onSelectBreakPoint($event)"
+        [breakPoints]="breakPoints"
+        [routeLines]="routeLines"
+      />
     </div>
   </div>
 </div>

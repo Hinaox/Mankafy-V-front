@@ -14,6 +14,7 @@ export default class Activity {
     public closingTime?: string,
     public link?: string,
     public description?: string,
+    public image?: string,
     public activityTypeId?: number,
     public activityType?: ActivityType
   ) {}
