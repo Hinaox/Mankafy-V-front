@@ -12,6 +12,9 @@
     (handleChange)="setDevisEnCours($event)"
   />
 </div>
+<div *ngIf="page == 'selectActivities'">
+  <app-select-activities />
+</div>
 <div *ngIf="page == 'chooseBreakPoint'">
   <app-select-break-point
     [devisEnCours]="devisEnCours"

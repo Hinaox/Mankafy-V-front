@@ -1,4 +1,5 @@
 import Location from './Location';
+import PlanningClientActivity from './PlanningClientActivity';
 import User from './User';
 
 export default class PlanningClient {
@@ -10,6 +11,7 @@ export default class PlanningClient {
     public isActive?: boolean,
     public peopleNumber?: number,
     public locationId?: number,
-    public location?: Location
+    public location?: Location,
+    public planningClientActivities?: PlanningClientActivity[]
   ) {}
 }

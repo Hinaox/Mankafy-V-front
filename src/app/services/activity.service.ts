@@ -72,4 +72,11 @@ export class ActivityService {
       );
     });
   }
+
+  public getDistanceDuration(
+    activity_id: number,
+    another_activity_id: number | null
+  ): Promise<number> {
+    return new Promise<number>((resolve, reject) => {});
+  }
 }

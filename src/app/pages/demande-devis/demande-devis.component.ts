@@ -12,6 +12,7 @@ export class DemandeDevisComponent implements OnInit {
   readonly DATE_PEOPLE_PAGE = 'selectDatePeople';
   readonly DESTINATION_PAGE = 'chooseDestination';
   readonly BREAKPOINT_PAGE = 'chooseBreakPoint';
+  readonly ACTIVITY_PAGE = 'selectActivities';
 
   page = 'selectDatePeople';
 
@@ -44,7 +45,7 @@ export class DemandeDevisComponent implements OnInit {
     ) {
       this.setPage(this.DESTINATION_PAGE);
       if (data.location) {
-        this.setPage(this.BREAKPOINT_PAGE);
+        this.setPage(this.ACTIVITY_PAGE);
       }
     }
   }

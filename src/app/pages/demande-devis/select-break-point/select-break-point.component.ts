@@ -15,6 +15,8 @@ import { MapService } from '../../../services/map.service';
 import { LatLngExpression } from 'leaflet';
 import { RouteFetch } from '../../../models/Route';
 import { decodePolyline } from '../../../utils/utils';
+import PlanningClientActivity from '../../../models/PlanningClientActivity';
+import { PlanningClientService } from '../../../services/planning-client.service';
 
 @Component({
   selector: 'app-select-break-point',
@@ -34,7 +36,8 @@ export class SelectBreakPointComponent
 
   constructor(
     private activityService: ActivityService,
-    private mapService: MapService
+    private mapService: MapService,
+    private planninClientService: PlanningClientService
   ) {}
 
   ngOnInit(): void {}
@@ -112,5 +115,15 @@ export class SelectBreakPointComponent
 
   setRoute(data?: RouteFetch) {
     this.route = data;
+  }
+
+  onSubmitBreakPoint(breakPoint: Activity) {
+    if (this.devisEnCours) {
+      if (!this.devisEnCours.planningClientActivities) {
+        this.devisEnCours.planningClientActivities = [];
+      }
+      const planningClientActivity: PlanningClientActivity = {};
+      planningClientActivity.activity = breakPoint;
+    }
   }
 }

@@ -320,7 +320,7 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
           }
 
           // ajouter le marqueur à la map
-          marker.addTo(this.map);
+          // marker.addTo(this.map);
           group.addLayer(marker);
         }
       }

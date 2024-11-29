@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DestinationMapComponent } from './destination-map/destination-map.component';
 import { BreakpointMapComponent } from './breakpoint-map/breakpoint-map.component';
 import { SideMenuBreakPointComponent } from './side-menu-break-point/side-menu-break-point.component';
+import { SelectActivitiesComponent } from './select-activities/select-activities.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SideMenuBreakPointComponent } from './side-menu-break-point/side-menu-b
     DestinationMapComponent,
     BreakpointMapComponent,
     SideMenuBreakPointComponent,
+    SelectActivitiesComponent,
   ],
   imports: [CommonModule, AppModule, FormsModule, ReactiveFormsModule],
 })

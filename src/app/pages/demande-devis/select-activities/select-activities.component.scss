@@ -1,0 +1,18 @@
+.select-activities {
+  color: rgb(46, 46, 46);
+  font-family: "Inter", sans-serif;
+
+  .map-container {
+    height: 100vh;
+  }
+
+  .form-container {
+    .col-form-label {
+    }
+
+    .form-control {
+      width: 500px;
+      padding: 30px 20px;
+    }
+  }
+}
