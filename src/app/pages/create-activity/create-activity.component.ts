@@ -12,12 +12,16 @@ import { ActivityService } from '../../services/activity.service';
 import { LoadingService } from '../../services/loading/loading.service';
 import { MessageBoxService } from '../../services/message-box.service';
 
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-create-activity',
   templateUrl: './create-activity.component.html',
   styleUrl: './create-activity.component.scss',
 })
 export class CreateActivityComponent implements OnInit {
+  faCoffee = faCoffee;
+
   myForm: FormGroup;
 
   locations?: Location[];

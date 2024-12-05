@@ -9,6 +9,11 @@ $couleur2Clair: #074290;
 
 $text-color: rgb(31, 31, 31);
 
+.underline-couleur2 {
+  border-bottom: 2px solid $couleur2;
+  padding: 0 50px 10px 0;
+}
+
 .couleur1 {
   color: $couleur1;
 }
@@ -72,6 +77,13 @@ body {
 .btn-couleur2:hover {
   background-color: $couleur2Sombre;
   color: rgba(255, 255, 255, 0.5);
+}
+
+.ombrer {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1),
+    /* Ombre en bas */ 0px -4px 6px rgba(0, 0, 0, 0.05),
+    /* Ombre en haut */ 4px 0px 6px rgba(0, 0, 0, 0.05),
+    /* Ombre à droite */ -4px 0px 6px rgba(0, 0, 0, 0.05); /* Ombre à gauche */
 }
 
 /* Masque les boutons d'incrémentation dans Chrome, Safari, Edge, Opera */

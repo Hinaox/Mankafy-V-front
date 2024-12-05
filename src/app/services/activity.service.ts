@@ -28,6 +28,66 @@ export class ActivityService {
     });
   }
 
+  public findActivitiesByLocation(locationId: number): Promise<Activity[]> {
+    return new Promise<Activity[]>(async (resolve, reject) => {
+      // first, get activity type id
+      const activityType = await this.activityTypeService.findAll({
+        name: this.activityTypeService.ACTIVITY_TYPE,
+      });
+      if (activityType.length) {
+        const activityTypeId = activityType[0].id;
+        const url = this.authService.baseUrl(
+          '/activity/byLocation?locationId=' +
+            locationId +
+            '&activityTypeId=' +
+            activityTypeId
+        );
+        this.http.get(url).subscribe(
+          (data: any) => {
+            resolve(data);
+          },
+          (err) => {
+            reject(err);
+          }
+        );
+      } else {
+        reject('Type activity introuvable');
+      }
+    });
+  }
+
+  public findActivitiesByLocationWithDistanceDuration(
+    locationId: number
+  ): Promise<{ activity: Activity; distance: number; duration: number }[]> {
+    return new Promise<
+      { activity: Activity; distance: number; duration: number }[]
+    >(async (resolve, reject) => {
+      // first, get activity type id
+      const activityType = await this.activityTypeService.findAll({
+        name: this.activityTypeService.ACTIVITY_TYPE,
+      });
+      if (activityType.length) {
+        const activityTypeId = activityType[0].id;
+        const url = this.authService.baseUrl(
+          '/activity/byLocationWithDistanceDuration?locationId=' +
+            locationId +
+            '&activityTypeId=' +
+            activityTypeId
+        );
+        this.http.get(url).subscribe(
+          (data: any) => {
+            resolve(data);
+          },
+          (err) => {
+            reject(err);
+          }
+        );
+      } else {
+        reject('Type activity introuvable');
+      }
+    });
+  }
+
   public findBreakPointsByLocation(locationId: number): Promise<Activity[]> {
     return new Promise<Activity[]>(async (resolve, reject) => {
       // first, get breakpoint type id

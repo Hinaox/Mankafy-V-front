@@ -1,0 +1,24 @@
+<div
+  [@openClose]="isOpen ? 'open' : 'closed'"
+  class="d-flex activity-view-container"
+  (click)="toggleView()"
+>
+  <div
+    class="image-container"
+    style="
+      background-image: url('{{ imageSrc }}');
+    "
+  ></div>
+  <div class="description-container">
+    <h4 style="text-align: center">{{ activity?.activity?.name }}</h4>
+    <div class="mt-2 mb-2">
+      <hr />
+    </div>
+    <div>
+      <i class="fa-solid fa-road couleur2"></i>&nbsp;{{
+        distance | number : "1.0-0"
+      }}
+      km
+    </div>
+  </div>
+</div>

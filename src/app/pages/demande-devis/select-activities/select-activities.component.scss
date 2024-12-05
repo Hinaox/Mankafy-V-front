@@ -7,12 +7,32 @@
   }
 
   .form-container {
+    background-color: rgb(250, 250, 250);
+    padding: 25px 50px;
     .col-form-label {
     }
 
-    .form-control {
-      width: 500px;
+    .champ,
+    .btn {
+      width: 100%;
       padding: 30px 20px;
     }
+
+    mat-slider {
+      width: 100%;
+    }
   }
+}
+
+.example-section {
+  margin: 12px 0;
+}
+
+.example-margin {
+  margin: 0 12px;
+}
+
+ul {
+  list-style-type: none;
+  margin-top: 4px;
 }

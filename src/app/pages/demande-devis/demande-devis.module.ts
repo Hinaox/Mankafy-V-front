@@ -10,6 +10,10 @@ import { DestinationMapComponent } from './destination-map/destination-map.compo
 import { BreakpointMapComponent } from './breakpoint-map/breakpoint-map.component';
 import { SideMenuBreakPointComponent } from './side-menu-break-point/side-menu-break-point.component';
 import { SelectActivitiesComponent } from './select-activities/select-activities.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ActivityMapComponent } from './activity-map/activity-map.component';
+import { ActivitySuggestionViewComponent } from './select-activities/activity-suggestion-view/activity-suggestion-view.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,16 @@ import { SelectActivitiesComponent } from './select-activities/select-activities
     BreakpointMapComponent,
     SideMenuBreakPointComponent,
     SelectActivitiesComponent,
+    ActivityMapComponent,
+    ActivitySuggestionViewComponent,
   ],
-  imports: [CommonModule, AppModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    AppModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSliderModule,
+    MatCheckboxModule,
+  ],
 })
 export class DemandeDevisModule {}
