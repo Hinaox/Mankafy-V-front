@@ -1,0 +1,30 @@
+<!-- Modal -->
+<div
+  class="modal fade"
+  [id]="name"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+  style=""
+>
+  <div class="modal-dialog modal-dialog-centered large" style="">
+    <div class="modal-content" style="">
+      <div class="modal-header">
+        <h5
+          [innerHTML]="header"
+          class="modal-title"
+          id="exampleModalLabel"
+        ></h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

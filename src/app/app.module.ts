@@ -39,6 +39,7 @@ import { CreateLocationComponent } from './pages/create-location/create-location
 import { ChatComponent } from './components/chat/chat.component';
 import { DateFRPipe } from './utils/DateFR.pipe';
 import { DatetimeFRPipe } from './utils/DatetimeFR.pipe';
+import { ModalComponent } from './components/modal/modal.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -60,6 +61,7 @@ registerLocaleData(localeFr, 'fr');
     CreateActivityTypePageComponent,
     CreateLocationComponent,
     ChatComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,7 +81,7 @@ registerLocaleData(localeFr, 'fr');
     }),
     MatProgressSpinnerModule,
   ],
-  exports: [MapComponent, DateFRPipe, DatetimeFRPipe],
+  exports: [MapComponent, DateFRPipe, DatetimeFRPipe, ModalComponent],
   providers: [
     DatePipe,
     provideNgxWebstorage(

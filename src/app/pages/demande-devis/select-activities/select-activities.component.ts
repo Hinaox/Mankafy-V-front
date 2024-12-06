@@ -1,8 +1,10 @@
 import {
   Component,
+  EventEmitter,
   Input,
   OnChanges,
   OnInit,
+  Output,
   SimpleChanges,
 } from '@angular/core';
 import PlanningClient from '../../../models/PlanningClient';
@@ -28,6 +30,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 })
 export class SelectActivitiesComponent implements OnChanges, OnInit {
   @Input() devisEnCours?: PlanningClient;
+  @Output() handleChange = new EventEmitter<PlanningClient>();
 
   filtersShown = false;
 
@@ -38,7 +41,12 @@ export class SelectActivitiesComponent implements OnChanges, OnInit {
 
   activities?: { activity: Activity; distance: number; duration: number }[];
 
-  onRetour() {}
+  onRetour() {
+    if (this.devisEnCours) {
+      delete this.devisEnCours.location;
+      this.handleChange.emit(this.devisEnCours);
+    }
+  }
 
   constructor(private activityService: ActivityService) {}
 

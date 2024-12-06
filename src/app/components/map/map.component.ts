@@ -109,7 +109,7 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
     this.map.on('zoom', () => {
       const zoomLevel = this.map.getZoom();
       if (zoomLevel == this.defaultZoom) {
-        this.drawParentLocations();
+        // this.drawParentLocations();
         this.removeActivityMarkers();
       }
     });
@@ -135,7 +135,7 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
   onToggleDisplayParentLocations(event: any) {
     const checked = event.target.checked;
     if (checked) {
-      this.drawParentLocations();
+      // this.drawParentLocations();
     } else if (!checked && this.parentPolygons) {
       for (let polygon of this.parentPolygons) {
         polygon.polygon?.remove();
@@ -172,7 +172,7 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
   private async loadParentLocations() {
     try {
       this.parentLocations = await this.locationService.findParents();
-      this.drawParentLocations();
+      // this.drawParentLocations();
     } catch (error) {
       console.error(error);
     }
@@ -217,9 +217,9 @@ export class MapComponent implements AfterViewInit, OnChanges, OnInit {
               const index = i;
 
               // event listener
-              polygon.on('click', () => {
-                this.onParentPolygonClick(object);
-              });
+              // polygon.on('click', () => {
+              //   this.onParentPolygonClick(object);
+              // });
             }
           } catch (error) {}
         }

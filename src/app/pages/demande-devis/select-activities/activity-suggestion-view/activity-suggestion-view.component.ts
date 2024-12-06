@@ -9,24 +9,12 @@ import {
   trigger,
 } from '@angular/animations';
 
+declare const bootstrap: any;
+
 @Component({
   selector: 'app-activity-suggestion-view',
   templateUrl: './activity-suggestion-view.component.html',
   styleUrl: './activity-suggestion-view.component.scss',
-  animations: [
-    trigger('openClose', [
-      state(
-        'open',
-        style({
-          position: 'absolute',
-          width: '1000px',
-          left: '0',
-        })
-      ),
-      state('closed', style({ position: 'inherit', width: '*' })),
-      transition('open<=>closed', [animate('200ms')]),
-    ]),
-  ],
 })
 export class ActivitySuggestionViewComponent implements OnChanges {
   @Input() activity?: {
@@ -36,8 +24,7 @@ export class ActivitySuggestionViewComponent implements OnChanges {
   };
   imageSrc: string | null = null;
   distance = 0;
-
-  isOpen = false;
+  name = '';
 
   constructor(private authService: AuthService) {}
 
@@ -53,6 +40,7 @@ export class ActivitySuggestionViewComponent implements OnChanges {
     duration: number;
   }) {
     this.activity = data;
+    this.name = this.activity?.activity.name ? this.activity.activity.name : '';
     const img = this.activity?.activity.image
       ? this.activity.activity.image
       : 'default_activity.jpg';
@@ -62,7 +50,11 @@ export class ActivitySuggestionViewComponent implements OnChanges {
     this.distance = this.activity?.distance ? this.activity.distance / 1000 : 0;
   }
 
-  toggleView() {
-    this.isOpen = !this.isOpen;
+  onOpenActivityModal() {
+    const element = document.getElementById('modalActivityView');
+    if (element) {
+      const modal = bootstrap.Modal.getOrCreateInstance(element);
+      modal.show();
+    } else console.error('element introuvable');
   }
 }

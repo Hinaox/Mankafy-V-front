@@ -1,8 +1,4 @@
-<div
-  [@openClose]="isOpen ? 'open' : 'closed'"
-  class="d-flex activity-view-container"
-  (click)="toggleView()"
->
+<div (click)="onOpenActivityModal()" class="d-flex activity-view-container">
   <div
     class="image-container"
     style="
@@ -22,3 +18,5 @@
     </div>
   </div>
 </div>
+
+<app-modal name="modalActivityView" [header]="name"></app-modal>

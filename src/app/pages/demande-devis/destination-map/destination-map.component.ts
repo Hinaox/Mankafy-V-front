@@ -73,6 +73,7 @@ export class DestinationMapComponent implements AfterViewInit, OnInit {
   async loadDestinations() {
     try {
       this.destinations = await this.locationService.findParents();
+      console.log('destinations', this.destinations);
     } catch (error) {
       console.error(error);
     }
@@ -104,20 +105,6 @@ export class DestinationMapComponent implements AfterViewInit, OnInit {
               const imgPath = this.authService.baseUrl(
                 '/assets/images/' + imgName
               );
-
-              // polygon tooltip (destionation description)
-              // polygon.bindPopup(
-              //   `
-              //   <div style="width: 300px; font-size: 0.9em;" >
-              //   <img style="width: 100%" src="${imgPath}" />
-              //   <div class="text-center mt-2" >
-              //   <b style="font-size: 1.25em" >${destination.name}</b>
-              //   </div>
-              //   <p style="white-space: wrap" >${destination.description}</p>
-              //   <button onClick="${this.onSelectDestination}" class="btn btn-success" style="width: 100%" >Choisir</button>
-              //   </div>
-              //   `
-              // );
 
               const content = document.createElement('div');
               content.style.width = '300px';
@@ -158,8 +145,14 @@ export class DestinationMapComponent implements AfterViewInit, OnInit {
               polygon.addTo(this.map);
               const object = { polygon: polygon, destination: destination };
               this.destinationPolygons.push(object);
+            } else {
+              throw 'impossible de lire surfaceTab.length';
             }
-          } catch (error) {}
+          } catch (error) {
+            console.error(error);
+          }
+        } else {
+          console.error('undefined destination.surface', destination.id);
         }
       }
     }

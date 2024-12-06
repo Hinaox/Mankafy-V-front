@@ -14,6 +14,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ActivityMapComponent } from './activity-map/activity-map.component';
 import { ActivitySuggestionViewComponent } from './select-activities/activity-suggestion-view/activity-suggestion-view.component';
+import { CalendrierComponent } from './calendrier/calendrier.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ActivitySuggestionViewComponent } from './select-activities/activity-su
     SelectActivitiesComponent,
     ActivityMapComponent,
     ActivitySuggestionViewComponent,
+    CalendrierComponent,
   ],
   imports: [
     CommonModule,
