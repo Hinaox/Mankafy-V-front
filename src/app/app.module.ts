@@ -40,6 +40,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { DateFRPipe } from './utils/DateFR.pipe';
 import { DatetimeFRPipe } from './utils/DatetimeFR.pipe';
 import { ModalComponent } from './components/modal/modal.component';
+import { CalendarService } from './services/calendar.service';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -98,6 +99,9 @@ registerLocaleData(localeFr, 'fr');
       multi: true,
     },
     provideAnimationsAsync(),
+    CalendarService,
+    { provide: LOCALE_ID, useValue: 'fr' },
+    { provide: MOMENT, useValue: moment },
   ],
   bootstrap: [AppComponent],
 })
