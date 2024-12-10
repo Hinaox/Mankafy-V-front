@@ -1,4 +1,11 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import Activity from '../../../../models/Activity';
 import { AuthService } from '../../../../services/Auth/auth.service';
 import {
@@ -17,6 +24,9 @@ declare const bootstrap: any;
   styleUrl: './activity-suggestion-view.component.scss',
 })
 export class ActivitySuggestionViewComponent implements OnChanges {
+  @Output() handleConfirm = new EventEmitter<Activity>();
+
+  @Input() checked = false;
   @Input() activity?: {
     activity: Activity;
     distance: number;
@@ -48,13 +58,5 @@ export class ActivitySuggestionViewComponent implements OnChanges {
       '/assets/images/activity_covers/' + img
     );
     this.distance = this.activity?.distance ? this.activity.distance / 1000 : 0;
-  }
-
-  onOpenActivityModal() {
-    const element = document.getElementById('modalActivityView');
-    if (element) {
-      const modal = bootstrap.Modal.getOrCreateInstance(element);
-      modal.show();
-    } else console.error('element introuvable');
   }
 }

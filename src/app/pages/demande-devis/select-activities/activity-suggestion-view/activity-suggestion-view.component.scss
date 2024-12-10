@@ -1,6 +1,10 @@
 @import "../../../../../styles.scss";
 
 .activity-view-container {
+  &.checked {
+    background-color: rgba(110, 255, 110, 0.358);
+  }
+
   &:hover {
     @extend .ombrer;
     cursor: pointer;

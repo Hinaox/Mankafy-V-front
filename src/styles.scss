@@ -8,6 +8,11 @@ $couleur2Sombre: #072348;
 $couleur2Clair: #074290;
 
 $text-color: rgb(31, 31, 31);
+$background: rgb(219, 219, 219);
+
+.hello {
+  font-size: 8px;
+}
 
 .underline-couleur2 {
   border-bottom: 2px solid $couleur2;

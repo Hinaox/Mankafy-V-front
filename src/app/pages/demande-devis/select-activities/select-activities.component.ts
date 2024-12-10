@@ -11,6 +11,11 @@ import PlanningClient from '../../../models/PlanningClient';
 import { ActivityService } from '../../../services/activity.service';
 import Activity from '../../../models/Activity';
 import { animate, style, transition, trigger } from '@angular/animations';
+import PlanningClientActivity from '../../../models/PlanningClientActivity';
+import { PlanningClientUtilsService } from '../../../utils/planning-client-utils.service';
+import { LocalStorageService } from 'ngx-webstorage';
+
+declare const bootstrap: any;
 
 @Component({
   selector: 'app-select-activities',
@@ -39,6 +44,11 @@ export class SelectActivitiesComponent implements OnChanges, OnInit {
   ];
   tri = 'distance';
 
+  // data for modal
+  selectedActivity?: Activity;
+  //
+  selectedActivities: Activity[] = [];
+
   activities?: { activity: Activity; distance: number; duration: number }[];
 
   onRetour() {
@@ -48,10 +58,21 @@ export class SelectActivitiesComponent implements OnChanges, OnInit {
     }
   }
 
-  constructor(private activityService: ActivityService) {}
+  constructor(
+    private activityService: ActivityService,
+    private planningClientUtils: PlanningClientUtilsService,
+    private localStorageService: LocalStorageService
+  ) {}
 
   ngOnInit(): void {
     this.loadActivities();
+    // load selected Activities
+    const selectedActivities = this.localStorageService.retrieve(
+      'devisSelectedActivities'
+    );
+    if (selectedActivities) {
+      this.selectedActivities = selectedActivities;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -85,5 +106,47 @@ export class SelectActivitiesComponent implements OnChanges, OnInit {
 
   setFiltersShown(value: boolean) {
     this.filtersShown = value;
+  }
+
+  onOpenActivityModal(data?: Activity) {
+    this.selectedActivity = data;
+    const element = document.getElementById('modalActivityView');
+    if (element) {
+      const modal = bootstrap.Modal.getOrCreateInstance(element);
+      modal.show();
+    } else console.error('element introuvable');
+  }
+
+  onAddSelectedActivity() {
+    if (this.selectedActivity) {
+      if (this.devisEnCours) {
+        try {
+          // ajouter l'activité
+          this.selectedActivities.push(this.selectedActivity);
+          // stocker
+          this.localStorageService.store(
+            'devisSelectedActivities',
+            this.selectedActivities
+          );
+
+          // fermer modal
+          const element = document.getElementById('modalActivityView');
+          if (element) {
+            const modal = bootstrap.Modal.getOrCreateInstance(element);
+            modal.hide();
+          } else console.error('element introuvable');
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        console.error('Undefined devis en cours');
+      }
+    } else {
+      console.error('Undefined selected activity');
+    }
+  }
+
+  isActivitySelected(activity: Activity) {
+    return this.selectedActivities.some((el) => el.id == activity.id);
   }
 }

@@ -41,6 +41,7 @@ import { DateFRPipe } from './utils/DateFR.pipe';
 import { DatetimeFRPipe } from './utils/DatetimeFR.pipe';
 import { ModalComponent } from './components/modal/modal.component';
 import { CalendarService } from './services/calendar.service';
+import { ModalLargeComponent } from './components/modal-large/modal-large.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -63,6 +64,7 @@ registerLocaleData(localeFr, 'fr');
     CreateLocationComponent,
     ChatComponent,
     ModalComponent,
+    ModalLargeComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +84,13 @@ registerLocaleData(localeFr, 'fr');
     }),
     MatProgressSpinnerModule,
   ],
-  exports: [MapComponent, DateFRPipe, DatetimeFRPipe, ModalComponent],
+  exports: [
+    MapComponent,
+    DateFRPipe,
+    DatetimeFRPipe,
+    ModalComponent,
+    ModalLargeComponent,
+  ],
   providers: [
     DatePipe,
     provideNgxWebstorage(

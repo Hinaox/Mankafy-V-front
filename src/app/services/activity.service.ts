@@ -136,7 +136,24 @@ export class ActivityService {
   public getDistanceDuration(
     activity_id: number,
     another_activity_id: number | null
-  ): Promise<number> {
-    return new Promise<number>((resolve, reject) => {});
+  ): Promise<{ distance: number; duration: number }> {
+    return new Promise<{ distance: number; duration: number }>(
+      (resolve, reject) => {
+        var url = this.authService.baseUrl(
+          '/map/distanceBetweenActivities?activity_id=' + activity_id
+        );
+        if (another_activity_id) {
+          url += '&another_activity_id=' + another_activity_id;
+        }
+        this.http.get(url).subscribe(
+          (data: any) => {
+            resolve(data);
+          },
+          (err) => {
+            reject(err);
+          }
+        );
+      }
+    );
   }
 }

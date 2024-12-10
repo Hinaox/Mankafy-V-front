@@ -168,8 +168,14 @@
             </select>
           </div>
           <div class="mt-3">
-            <div *ngFor="let activity of activities">
-              <app-activity-suggestion-view [activity]="activity" />
+            <div
+              (click)="onOpenActivityModal(activity.activity)"
+              *ngFor="let activity of activities"
+            >
+              <app-activity-suggestion-view
+                [checked]="isActivitySelected(activity)"
+                [activity]="activity"
+              />
             </div>
           </div>
         </div>
@@ -177,3 +183,23 @@
     </div>
   </div>
 </div>
+
+<app-modal-large
+  name="modalActivityView"
+  [header]="
+    selectedActivity && selectedActivity.name ? selectedActivity.name : ''
+  "
+>
+  <p>
+    {{ selectedActivity?.description }}
+  </p>
+  <div class="mt-2">
+    <button
+      (click)="onAddSelectedActivity()"
+      style="width: 100%"
+      class="btn btn-couleur1"
+    >
+      Choisir
+    </button>
+  </div>
+</app-modal-large>

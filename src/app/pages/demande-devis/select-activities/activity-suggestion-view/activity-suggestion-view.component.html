@@ -1,4 +1,4 @@
-<div (click)="onOpenActivityModal()" class="d-flex activity-view-container">
+<div class="d-flex activity-view-container {{ checked ? 'checked' : '' }}">
   <div
     class="image-container"
     style="
@@ -18,5 +18,3 @@
     </div>
   </div>
 </div>
-
-<app-modal name="modalActivityView" [header]="name"></app-modal>
