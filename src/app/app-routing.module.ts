@@ -12,6 +12,7 @@ import { DemandeDevisModule } from './pages/demande-devis/demande-devis.module';
 import { adminGuardGuard } from './guard/admin-guard.guard';
 import { CreateActivityTypePageComponent } from './pages/create-activity-type-page/create-activity-type-page.component';
 import { CreateLocationComponent } from './pages/create-location/create-location.component';
+import { PayementComponent } from './pages/payement/payement.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'gallery', component: GalleryComponent },
   { path: 'test', component: TestComponent },
   { path: 'planning', component: PlanningComponent },
+  { path: 'payement',component: PayementComponent},
   {
     path: 'create-activity-type',
     component: CreateActivityTypePageComponent,

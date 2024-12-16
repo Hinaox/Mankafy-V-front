@@ -1,0 +1,41 @@
+<div class="payment-form-container">
+    <form [formGroup]="payementForm" (ngSubmit)="onSubmit()" novalidate>
+        <!-- Numéro de compte -->
+        <div class="form-group">
+            <label for="accountNumber">Numéro de compte*</label>
+            <input id="accountNumber" type="text" class="form-control" formControlName="accountNumber"
+                placeholder="Entrez votre numéro de compte" />
+            <small *ngIf="payementForm.get('accountNumber')?.invalid && payementForm.get('accountNumber')?.touched"
+                class="text-danger">
+                Numéro de compte invalide (8-16 caractères).
+            </small>
+        </div>
+
+        <!-- Nom sur le compte -->
+        <div class="form-group">
+            <label for="accountName">Nom sur le compte*</label>
+            <input id="accountName" type="text" class="form-control" formControlName="accountName"
+                placeholder="Entrez le nom sur le compte" />
+            <small *ngIf="payementForm.get('accountName')?.invalid && payementForm.get('accountName')?.touched"
+                class="text-danger">
+                Le nom doit contenir au moins 3 caractères.
+            </small>
+        </div>
+
+        <!-- Référence de la transaction -->
+        <div class="form-group">
+            <label for="transactionRef">Référence de la transaction*</label>
+            <input id="transactionRef" type="text" class="form-control" formControlName="transactionRef"
+                placeholder="Entrez la référence de transaction" />
+            <small *ngIf="payementForm.get('transactionRef')?.invalid && payementForm.get('transactionRef')?.touched"
+                class="text-danger">
+                Référence invalide (6-20 caractères alphanumériques).
+            </small>
+        </div>
+
+        <!-- Bouton de soumission -->
+        <button class="confirm-button btn btn-couleur2 justify-content-center" [disabled]="payementForm.invalid" type="submit">
+            Confirmer le paiement
+        </button>
+    </form>
+</div>

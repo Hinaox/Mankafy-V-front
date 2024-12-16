@@ -42,6 +42,9 @@ import { DatetimeFRPipe } from './utils/DatetimeFR.pipe';
 import { ModalComponent } from './components/modal/modal.component';
 import { CalendarService } from './services/calendar.service';
 import { ModalLargeComponent } from './components/modal-large/modal-large.component';
+import { PayementComponent } from './pages/payement/payement.component';
+import { PayementInfoComponent } from './components/payement-info/payement-info.component';
+import { PayementFormComponent } from './components/payement-form/payement-form.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -65,6 +68,9 @@ registerLocaleData(localeFr, 'fr');
     ChatComponent,
     ModalComponent,
     ModalLargeComponent,
+    PayementComponent,
+    PayementInfoComponent,
+    PayementFormComponent,
   ],
   imports: [
     BrowserModule,

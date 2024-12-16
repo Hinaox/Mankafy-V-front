@@ -1,0 +1,28 @@
+<div class="payment-container bordered">
+    <h1 class="title text-center">Choisissez votre mode de paiement</h1>
+    <div class="payment-options mt-4">
+        <div class="payment-card" (click)="selectPayment('Orange Money')">
+            <img src="assets/images/payement/Orange.png" alt="Orange Money" class="payment-logo" />
+            <h2 class="payment-title text-center">Orange Money</h2>
+        </div>
+        <div class="payment-card" (click)="selectPayment('Mvola')">
+            <img src="assets/images/payement/mvola.png" alt="Mvola" class="payment-logo" />
+            <h2 class="payment-title text-center">Mvola</h2>
+        </div>
+        <div class="payment-card" (click)="selectPayment('VISA')">
+            <img src="assets/images/payement/Visa.png" alt="VISA" class="payment-logo" />
+            <h2 class="payment-title text-center">VISA</h2>
+        </div>
+    </div>
+    <div class="container d-flex justify-content-center align-items-center mt-3 ">
+        <app-payement-info class="col-12 col-md-6 bordered" 
+            [selectedPayment]="selectedPayment"
+            [payementTypeInfo]="payementTypeInfo"
+        >
+
+        </app-payement-info>
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+        <app-payement-form class="col-12 col-md-3 "></app-payement-form>
+    </div>
+</div>
