@@ -536,7 +536,7 @@ li {
 .header_top_one_logo {
     position: relative;
     display: block;
-    padding: 50.4px 0;
+    padding:0;
 }
 
 .header_top_one_logo a {}

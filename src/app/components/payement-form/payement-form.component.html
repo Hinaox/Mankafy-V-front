@@ -33,6 +33,17 @@
             </small>
         </div>
 
+        <!-- Adresse de facturation -->
+        <div class="form-group">
+            <label for="facturationAdress">Adresse de facturation*</label>
+            <input id="facturationAdress" type="text" class="form-control" formControlName="facturationAdress"
+                placeholder="Entrez votre adresse de facturation" />
+            <small *ngIf="payementForm.get('facturationAdress')?.invalid && payementForm.get('facturationAdress')?.touched"
+                class="text-danger">
+                L'adresse doit contenir au moins 5 caractères.
+            </small>
+        </div>
+
         <!-- Bouton de soumission -->
         <button class="confirm-button btn btn-couleur2 justify-content-center" [disabled]="payementForm.invalid" type="submit">
             Confirmer le paiement

@@ -14,9 +14,10 @@ export class PayementFormComponent implements OnInit {
   ) { }
   ngOnInit(): void {
     this.payementForm = this.fb.group({
-      accountNumber: ['', [Validators.required, Validators.pattern('^[0-9]{8,27}$')]], // Numéro de compte : 8-16 chiffres
-      accountName: ['', [Validators.required, Validators.minLength(3)]], // Nom sur le compte : au moins 3 caractères
-      transactionRef: ['', [Validators.required, Validators.pattern('^[A-Za-z0-9]{6,34}$')]] // Référence de transaction : 6-20 alphanumériques
+      accountNumber: ['', [Validators.required, Validators.pattern('^[A-Za-z0-9]{6,27}$')]], // 6-27 caractères alphanumériques
+      accountName: ['', [Validators.required, Validators.minLength(3)]], // Min 3 caractères
+      facturationAdress: ['', [Validators.required, Validators.minLength(5)]], // Min 5 caractères
+      transactionRef: ['', [Validators.required, Validators.pattern('^[A-Za-z0-9]{6,34}$')]] // 6-34 alphanumériques
     });
   }
 
