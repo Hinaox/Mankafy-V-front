@@ -12,6 +12,9 @@ export default class PlanningClient {
     public peopleNumber?: number,
     public locationId?: number,
     public location?: Location,
-    public planningClientActivities?: PlanningClientActivity[]
+    public planningClientActivities?: PlanningClientActivity[],
+
+    // données non enregistrées
+    public finalDestination?: Location
   ) {}
 }

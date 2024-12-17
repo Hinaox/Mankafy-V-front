@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <div class="mb-3">
+    <a (click)="onCancel()" class="cursor-pointer couleur2"
+      >Revenir en arrière</a
+    >
+  </div>
+  <div class="previous-informations-container card mt-3 mb-2">
+    <table class="table">
+      <tr>
+        <td>
+          <small>Destination</small> <br />
+          <i class="bi bi-map mr-2"></i>
+          {{ planningClient?.location?.name }}
+        </td>
+        <td>
+          <small>Départ</small> <br />
+          <i class="bi bi-calendar mr-2"></i>
+          {{ planningClient?.dateDepart | datePipeFR }}
+        </td>
+        <td>
+          <small>Retour</small> <br />
+          <i class="bi bi-calendar mr-2"></i>
+          {{ planningClient?.dateRetour | datePipeFR }}
+        </td>
+        <td>
+          <small>Passagers</small> <br />
+          <i class="bi bi-people mr-2"></i>
+          {{ planningClient?.peopleNumber }} personne{{
+            planningClient &&
+            planningClient.peopleNumber &&
+            planningClient.peopleNumber > 1
+              ? "s"
+              : ""
+          }}
+        </td>
+      </tr>
+    </table>
+  </div>
+  <app-select-breakpoints [planningClient]="planningClient" />
+</div>

@@ -1,0 +1,6 @@
+<div id="routeDigraphsList" class="d-flex"></div>
+<app-destination-map
+  (handleChoice)="onDestinationChoice($event)"
+  [routeDigraphs]="routeDigraphs"
+  [planningClient]="planningClient"
+/>

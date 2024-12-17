@@ -191,6 +191,8 @@ export class BreakpointMapComponent implements OnChanges, AfterViewInit {
       try {
         const coords: any = this.routeLines;
         const line: L.Polyline = L.polyline(coords);
+        console.log('route length', this.routeLines.length, this.routeLines);
+
         if (this.map) line.addTo(this.map);
         else throw 'undefined map';
         this.routeLinePolyLine = line;

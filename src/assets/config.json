@@ -1,3 +1,26 @@
 {
-  "baseUrl": "http://localhost:3000"
+  "baseUrl": "http://localhost:3000",
+  "paiementInfo": [
+    {
+      "name": "Orange Money",
+      "logo": "assets/images/payment/Orange.png",
+      "numero": "+261(0) 32 32 332 32",
+      "description": "Instructions pour Orange Money...",
+      "status": true
+    },
+    {
+      "name": "Mvola",
+      "logo": "assets/images/payment/mvola.png",
+      "numero": "+261(0) 34 34 334 34",
+      "description": "Instructions pour Mvola...",
+      "status": true
+    },
+    {
+      "name": "VISA",
+      "logo": "assets/images/payment/Visa.png",
+      "iban": "MG46 0000 8030 1605 0030 1377 643",
+      "description": "Instructions pour Mvola...",
+      "status": true
+    }
+  ]
 }
