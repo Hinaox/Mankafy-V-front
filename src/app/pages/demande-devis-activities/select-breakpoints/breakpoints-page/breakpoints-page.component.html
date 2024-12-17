@@ -1,0 +1,19 @@
+<div>
+  <h3>
+    Vous avez choisi <b>{{ finalDestination?.name }}</b> comme destination
+  </h3>
+</div>
+<div class="mb-5">
+  <div *ngIf="!breakpoints.length">
+    <app-first-breakpoint-page
+      [breakpointsRoute]="breakpointsRoute"
+      [planningClient]="planningClient"
+    />
+  </div>
+  <div *ngIf="breakpoints.length">
+    <app-next-breakpoint-page />
+  </div>
+</div>
+<div>
+  <app-planning-calendar [planningClient]="planningClient" />
+</div>

@@ -1,0 +1,14 @@
+<div class="mt-4">
+  <div *ngIf="page == FINAL_DESTINATION_PAGE">
+    <app-select-final-destination
+      (handleChoice)="onFinalDestinationChoice($event)"
+      [planningClient]="planningClient"
+    />
+  </div>
+  <div *ngIf="page == BREAKPOINTS_PAGE">
+    <app-breakpoints-page
+      [finalDestination]="finalDestination"
+      [planningClient]="planningClient"
+    />
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div>
+  <div class="final-destination-map-container bordered">
+    <div class="final-destination-map-frame">
+      <div id="final-destination-map"></div>
+      <div *ngIf="selectedLocation" class="sideMenu p-3">
+        <app-location-side-menu
+          [selectedLocation]="selectedLocation"
+          (handleAnnuler)="resetLocationMarkerIcons()"
+          (handleChoice)="onDestinationChoice()"
+        />
+      </div>
+    </div>
+  </div>
+</div>

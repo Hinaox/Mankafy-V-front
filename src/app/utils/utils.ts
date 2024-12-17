@@ -7,7 +7,10 @@ export function empty(str: string | number | undefined | null) {
   return str.trim() == '';
 }
 
-export function decodePolyline(encodedPolyline: any, includeElevation?: any) {
+export function decodePolyline(
+  encodedPolyline: any,
+  includeElevation?: any
+): any {
   // array that holds the points
   let points = [];
   let index = 0;

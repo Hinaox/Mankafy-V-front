@@ -1,0 +1,23 @@
+.final-destination-map-container {
+  height: 80vh;
+}
+
+.final-destination-map-frame {
+  height: 100%;
+  position: relative;
+}
+
+#final-destination-map {
+  height: 100%;
+  cursor: pointer;
+}
+
+.sideMenu {
+  width: 400px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 500;
+  background-color: white;
+  right: 0;
+}

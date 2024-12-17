@@ -12,6 +12,18 @@ export class MapService {
   startPoint: L.LatLngExpression = [-18.90332092867509, 47.52113602393204];
 
   // les icones utiles
+  public readonly unSelectedMarkerIcon = L.icon({
+    iconUrl: '/assets/icons/activity-marker.png', // Chemin vers votre image
+    iconSize: [20, 20], // Taille de l'icône
+    iconAnchor: [10, 20], // Point d'ancrage (au centre en bas)
+    popupAnchor: [0, -38], // Position du popup par rapport à l'icône
+  });
+  public readonly selectedMarkerIcon = L.icon({
+    iconUrl: '/assets/icons/blue-activity-marker.png', // Chemin vers votre image
+    iconSize: [45, 45], // Taille de l'icône
+    iconAnchor: [24, 43], // Point d'ancrage (au centre en bas)
+    popupAnchor: [0, -38], // Position du popup par rapport à l'icône
+  });
   public readonly restaurantIcon = L.icon({
     iconUrl: '/assets/icons/restaurant-marker.png', // Chemin vers votre image
     iconSize: [38, 38], // Taille de l'icône

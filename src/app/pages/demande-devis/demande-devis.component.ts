@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import PlanningClient from '../../models/PlanningClient';
 import { LocalStorageService } from 'ngx-webstorage';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-demande-devis',
@@ -19,7 +20,10 @@ export class DemandeDevisComponent implements OnInit {
 
   devisEnCours?: PlanningClient;
 
-  constructor(private localStorageService: LocalStorageService) {}
+  constructor(
+    private localStorageService: LocalStorageService,
+    private router: Router
+  ) {}
 
   setPage(page: string) {
     this.page = page;
@@ -46,7 +50,8 @@ export class DemandeDevisComponent implements OnInit {
     ) {
       this.setPage(this.DESTINATION_PAGE);
       if (data.location) {
-        this.setPage(this.ACTIVITY_PAGE);
+        // si la location déjà été choisi, on redirige le client vers la page des activités
+        this.router.navigate(['/demande-devis-activities']);
       }
     }
   }

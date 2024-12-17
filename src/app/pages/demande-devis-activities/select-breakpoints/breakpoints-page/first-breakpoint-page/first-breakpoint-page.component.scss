@@ -1,0 +1,40 @@
+@import "../../../../../../styles.scss";
+
+.location-container {
+  padding: 5px;
+  .location-body {
+    border: 1px solid $couleur1;
+    border-radius: 5px;
+    padding: 15px 10px;
+    min-width: 180px;
+    min-height: 300px;
+    text-align: center;
+  }
+
+  .location-body.active {
+    h5 {
+      color: rgb(52, 52, 52);
+    }
+    background: linear-gradient(-45deg, rgba($couleur1, 0.5), white, white);
+    .icon {
+      color: $couleur1;
+    }
+  }
+
+  .location-body.active:hover {
+    @extend .ombrer;
+    cursor: pointer;
+    background: linear-gradient(
+      -45deg,
+      white,
+      rgba($couleur1, 0.5),
+      rgba($couleur1, 0.5)
+    );
+  }
+
+  .location-body.inactive {
+    background: linear-gradient(-45deg, lightgray, white);
+    color: gray;
+    border-color: darkgray;
+  }
+}

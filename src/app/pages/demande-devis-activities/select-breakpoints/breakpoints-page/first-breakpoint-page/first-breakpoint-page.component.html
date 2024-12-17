@@ -1,0 +1,63 @@
+<div>
+  <p>
+    Votre départ est progammé le
+    <b>{{ planningClient?.dateDepart | date : "EEEE d MMMM y" }} à 7:00</b>
+  </p>
+  <h4>Choisissez votre point d'arrêt :</h4>
+  <div class="d-flex justify-content-around mt-4">
+    <div
+      class="location-container"
+      *ngFor="let location of breakpointsRouteDistanceDurations"
+      mat-raised-button
+      matTooltip="Arrivée prévue à {{ location.arrivalTime | date : 'HH:mm' }}"
+      aria-label="Button that displays a tooltip when focused or hovered over"
+    >
+      <div
+        class="location-body d-flex flex-column justify-content-around active"
+      >
+        <div>
+          <h5>
+            <b>{{ location.location.name }}</b>
+          </h5>
+        </div>
+        <div>
+          <i class="fa-solid fa-road icon"></i> &nbsp;{{
+            location.distance / 1000 | number : "1.0-0"
+          }}
+          km
+        </div>
+        <div>
+          <i class="fa-regular fa-clock icon"></i> &nbsp;
+          {{ location.duration / 3600 | number : "1.0-0" }} h
+        </div>
+      </div>
+    </div>
+    <div
+      class="location-container"
+      *ngFor="let location of disabledBreakpointsRouteDistanceDurations"
+      mat-raised-button
+      matTooltip="Déplacement direct impossible en voiture"
+      aria-label="Button that displays a tooltip when focused or hovered over"
+    >
+      <div
+        class="location-body d-flex flex-column justify-content-around inactive"
+      >
+        <div>
+          <h5>
+            <b>{{ location.location.name }}</b>
+          </h5>
+        </div>
+        <div>
+          <i class="fa-solid fa-road icon"></i> &nbsp;{{
+            location.distance / 1000 | number : "1.0-0"
+          }}
+          km
+        </div>
+        <div>
+          <i class="fa-regular fa-clock icon"></i> &nbsp;
+          {{ location.duration / 3600 | number : "1.0-0" }} h
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
