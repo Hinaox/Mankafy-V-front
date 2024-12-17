@@ -34,6 +34,7 @@
     "leaflet.markercluster": "^1.5.3",
     "mankafy": "file:",
     "moment": "^2.30.1",
+    "ngx-webstorage": "^19.0.0",
     "overlapping-marker-spiderfier": "^1.1.4",
     "overlapping-marker-spiderfier-leaflet": "^0.2.7",
     "rxjs": "~7.8.0",
