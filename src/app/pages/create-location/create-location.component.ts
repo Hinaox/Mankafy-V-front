@@ -7,9 +7,10 @@ import { LocationService } from '../../services/location.service';
 import { MessageBoxService } from '../../services/message-box.service';
 
 @Component({
-  selector: 'app-create-location',
-  templateUrl: './create-location.component.html',
-  styleUrl: './create-location.component.scss',
+    selector: 'app-create-location',
+    templateUrl: './create-location.component.html',
+    styleUrl: './create-location.component.scss',
+    standalone: false
 })
 export class CreateLocationComponent {
   myForm: FormGroup;

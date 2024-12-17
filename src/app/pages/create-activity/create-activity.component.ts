@@ -15,9 +15,10 @@ import { MessageBoxService } from '../../services/message-box.service';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-create-activity',
-  templateUrl: './create-activity.component.html',
-  styleUrl: './create-activity.component.scss',
+    selector: 'app-create-activity',
+    templateUrl: './create-activity.component.html',
+    styleUrl: './create-activity.component.scss',
+    standalone: false
 })
 export class CreateActivityComponent implements OnInit {
   faCoffee = faCoffee;

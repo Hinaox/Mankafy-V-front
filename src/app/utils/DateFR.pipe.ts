@@ -6,7 +6,8 @@ import localeFr from '@angular/common/locales/fr';
   providedIn: 'root',
 })
 @Pipe({
-  name: 'datePipeFR',
+    name: 'datePipeFR',
+    standalone: false
 })
 export class DateFRPipe implements PipeTransform {
   constructor(private datePipe: DatePipe) {

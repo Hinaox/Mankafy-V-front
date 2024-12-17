@@ -19,9 +19,10 @@ import {
 declare const bootstrap: any;
 
 @Component({
-  selector: 'app-activity-suggestion-view',
-  templateUrl: './activity-suggestion-view.component.html',
-  styleUrl: './activity-suggestion-view.component.scss',
+    selector: 'app-activity-suggestion-view',
+    templateUrl: './activity-suggestion-view.component.html',
+    styleUrl: './activity-suggestion-view.component.scss',
+    standalone: false
 })
 export class ActivitySuggestionViewComponent implements OnChanges {
   @Output() handleConfirm = new EventEmitter<Activity>();

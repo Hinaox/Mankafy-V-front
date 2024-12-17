@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
-  selector: 'app-payement-form',
-  templateUrl: './payement-form.component.html',
-  styleUrl: './payement-form.component.scss'
+    selector: 'app-payement-form',
+    templateUrl: './payement-form.component.html',
+    styleUrl: './payement-form.component.scss',
+    standalone: false
 })
 export class PayementFormComponent implements OnInit {
   payementForm!: FormGroup;

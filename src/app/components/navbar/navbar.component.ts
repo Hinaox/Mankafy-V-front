@@ -4,9 +4,10 @@ import User from '../../models/User';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss',
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrl: './navbar.component.scss',
+    standalone: false
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   user?: User;

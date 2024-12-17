@@ -14,9 +14,10 @@ import {
 import PlanningClient from '../../../models/PlanningClient';
 
 @Component({
-  selector: 'app-select-date-people',
-  templateUrl: './select-date-people.component.html',
-  styleUrl: './select-date-people.component.scss',
+    selector: 'app-select-date-people',
+    templateUrl: './select-date-people.component.html',
+    styleUrl: './select-date-people.component.scss',
+    standalone: false
 })
 export class SelectDatePeopleComponent implements OnChanges {
   @Output() handlePageChange = new EventEmitter<string>();

@@ -18,20 +18,21 @@ import { LocalStorageService } from 'ngx-webstorage';
 declare const bootstrap: any;
 
 @Component({
-  selector: 'app-select-activities',
-  templateUrl: './select-activities.component.html',
-  styleUrl: './select-activities.component.scss',
-  animations: [
-    trigger('slideTrigger', [
-      transition(':enter', [
-        style({ height: '0px', opacity: 0 }),
-        animate('300ms ease-out', style({ height: '*', opacity: 1 })),
-      ]),
-      transition(':leave', [
-        animate('300ms ease-in', style({ height: '0px', opacity: 0 })),
-      ]),
-    ]),
-  ],
+    selector: 'app-select-activities',
+    templateUrl: './select-activities.component.html',
+    styleUrl: './select-activities.component.scss',
+    animations: [
+        trigger('slideTrigger', [
+            transition(':enter', [
+                style({ height: '0px', opacity: 0 }),
+                animate('300ms ease-out', style({ height: '*', opacity: 1 })),
+            ]),
+            transition(':leave', [
+                animate('300ms ease-in', style({ height: '0px', opacity: 0 })),
+            ]),
+        ]),
+    ],
+    standalone: false
 })
 export class SelectActivitiesComponent implements OnChanges, OnInit {
   @Input() devisEnCours?: PlanningClient;

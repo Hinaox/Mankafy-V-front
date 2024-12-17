@@ -35,9 +35,10 @@ import { endOfDay, addMonths } from 'date-fns';
 import { CalendarService } from '../../../services/calendar.service';
 import PlanningClient from '../../../models/PlanningClient';
 @Component({
-  selector: 'app-calendrier',
-  templateUrl: './calendrier.component.html',
-  styleUrl: './calendrier.component.scss',
+    selector: 'app-calendrier',
+    templateUrl: './calendrier.component.html',
+    styleUrl: './calendrier.component.scss',
+    standalone: false
 })
 export class CalendrierComponent implements OnChanges {
   // planning data

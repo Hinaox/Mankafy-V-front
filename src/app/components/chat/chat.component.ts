@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-chat',
-  templateUrl: './chat.component.html',
-  styleUrl: './chat.component.scss',
+    selector: 'app-chat',
+    templateUrl: './chat.component.html',
+    styleUrl: './chat.component.scss',
+    standalone: false
 })
 export class ChatComponent {
   @Output() handleClose = new EventEmitter<void>();

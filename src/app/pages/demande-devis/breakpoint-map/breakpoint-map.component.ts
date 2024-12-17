@@ -17,20 +17,21 @@ import { RouteFetch } from '../../../models/Route';
 import PlanningClient from '../../../models/PlanningClient';
 
 @Component({
-  selector: 'app-breakpoint-map',
-  templateUrl: './breakpoint-map.component.html',
-  styleUrl: './breakpoint-map.component.scss',
-  animations: [
-    trigger('sideMenuTrigger', [
-      transition(':enter', [
-        style({ opacity: 0, translate: '300px' }),
-        animate('300ms', style({ opacity: 1, translate: '0px' })),
-      ]),
-      transition(':leave', [
-        animate('300ms', style({ opacity: 0, translate: '300px' })),
-      ]),
-    ]),
-  ],
+    selector: 'app-breakpoint-map',
+    templateUrl: './breakpoint-map.component.html',
+    styleUrl: './breakpoint-map.component.scss',
+    animations: [
+        trigger('sideMenuTrigger', [
+            transition(':enter', [
+                style({ opacity: 0, translate: '300px' }),
+                animate('300ms', style({ opacity: 1, translate: '0px' })),
+            ]),
+            transition(':leave', [
+                animate('300ms', style({ opacity: 0, translate: '300px' })),
+            ]),
+        ]),
+    ],
+    standalone: false
 })
 export class BreakpointMapComponent implements OnChanges, AfterViewInit {
   map?: L.Map;

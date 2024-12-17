@@ -5,9 +5,10 @@ import { AuthService } from '../../services/Auth/auth.service';
 import PayementInfo from '../../models/PayementInfo';
 
 @Component({
-  selector: 'app-payement',
-  templateUrl: './payement.component.html',
-  styleUrls: ['./payement.component.scss']
+    selector: 'app-payement',
+    templateUrl: './payement.component.html',
+    styleUrls: ['./payement.component.scss'],
+    standalone: false
 })
 export class PayementComponent {
   selectedPayment: string | null = null;

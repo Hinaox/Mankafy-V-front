@@ -13,9 +13,10 @@ import { ColorService } from '../../../services/color.service';
 import { AuthService } from '../../../services/Auth/auth.service';
 
 @Component({
-  selector: 'app-destination-map',
-  templateUrl: './destination-map.component.html',
-  styleUrl: './destination-map.component.scss',
+    selector: 'app-destination-map',
+    templateUrl: './destination-map.component.html',
+    styleUrl: './destination-map.component.scss',
+    standalone: false
 })
 export class DestinationMapComponent implements AfterViewInit, OnInit {
   private map: any;

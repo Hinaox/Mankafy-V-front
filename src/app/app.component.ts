@@ -11,28 +11,28 @@ import { decodePolyline } from './utils/utils';
 import { RouteFetch } from './models/Route';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-  animations: [
-    trigger('myInsertRemoveTrigger', [
-      transition(':enter', [
-        style({ opacity: 0, translate: '300px' }),
-        animate('300ms', style({ opacity: 1, translate: '0px' })),
-      ]),
-      transition(':leave', [
-        animate('300ms', style({ opacity: 0, translate: '300px' })),
-      ]),
-    ]),
-
-    trigger('chatTipsTrigger', [
-      transition(':enter', [
-        style({ opacity: 0, width: 0 }),
-        animate('500ms', style({ opacity: 1, width: 200 })),
-      ]),
-      transition(':leave', [animate('500ms', style({ opacity: 0, width: 0 }))]),
-    ]),
-  ],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss',
+    animations: [
+        trigger('myInsertRemoveTrigger', [
+            transition(':enter', [
+                style({ opacity: 0, translate: '300px' }),
+                animate('300ms', style({ opacity: 1, translate: '0px' })),
+            ]),
+            transition(':leave', [
+                animate('300ms', style({ opacity: 0, translate: '300px' })),
+            ]),
+        ]),
+        trigger('chatTipsTrigger', [
+            transition(':enter', [
+                style({ opacity: 0, width: 0 }),
+                animate('500ms', style({ opacity: 1, width: 200 })),
+            ]),
+            transition(':leave', [animate('500ms', style({ opacity: 0, width: 0 }))]),
+        ]),
+    ],
+    standalone: false
 })
 export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   title = 'mankafy';

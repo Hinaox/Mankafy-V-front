@@ -10,9 +10,10 @@ import Activity from '../../../models/Activity';
 import { MapService } from '../../../services/map.service';
 
 @Component({
-  selector: 'app-activity-map',
-  templateUrl: './activity-map.component.html',
-  styleUrl: './activity-map.component.scss',
+    selector: 'app-activity-map',
+    templateUrl: './activity-map.component.html',
+    styleUrl: './activity-map.component.scss',
+    standalone: false
 })
 export class ActivityMapComponent implements AfterViewInit, OnChanges {
   map?: L.Map;

@@ -19,9 +19,10 @@ import PlanningClientActivity from '../../../models/PlanningClientActivity';
 import { PlanningClientService } from '../../../services/planning-client.service';
 
 @Component({
-  selector: 'app-select-break-point',
-  templateUrl: './select-break-point.component.html',
-  styleUrl: './select-break-point.component.scss',
+    selector: 'app-select-break-point',
+    templateUrl: './select-break-point.component.html',
+    styleUrl: './select-break-point.component.scss',
+    standalone: false
 })
 export class SelectBreakPointComponent
   implements OnInit, OnChanges, AfterViewInit

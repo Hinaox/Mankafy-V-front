@@ -10,9 +10,10 @@ import PlanningClient from '../../../models/PlanningClient';
 import Location from '../../../models/Location';
 
 @Component({
-  selector: 'app-choose-destination',
-  templateUrl: './choose-destination.component.html',
-  styleUrl: './choose-destination.component.scss',
+    selector: 'app-choose-destination',
+    templateUrl: './choose-destination.component.html',
+    styleUrl: './choose-destination.component.scss',
+    standalone: false
 })
 export class ChooseDestinationComponent implements OnChanges {
   @Output() handlePageChange = new EventEmitter<string>();

@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-modal-large',
-  templateUrl: './modal-large.component.html',
-  styleUrl: './modal-large.component.scss',
+    selector: 'app-modal-large',
+    templateUrl: './modal-large.component.html',
+    styleUrl: './modal-large.component.scss',
+    standalone: false
 })
 export class ModalLargeComponent implements AfterViewInit {
   @Input() name = '';

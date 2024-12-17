@@ -11,9 +11,10 @@ import { RouteFetch } from '../../../models/Route';
 import PlanningClient from '../../../models/PlanningClient';
 
 @Component({
-  selector: 'app-side-menu-break-point',
-  templateUrl: './side-menu-break-point.component.html',
-  styleUrl: './side-menu-break-point.component.scss',
+    selector: 'app-side-menu-break-point',
+    templateUrl: './side-menu-break-point.component.html',
+    styleUrl: './side-menu-break-point.component.scss',
+    standalone: false
 })
 export class SideMenuBreakPointComponent implements OnChanges {
   tab = 'presentation';

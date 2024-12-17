@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-create-activity-type',
-  templateUrl: './create-activity-type.component.html',
-  styleUrl: './create-activity-type.component.scss',
+    selector: 'app-create-activity-type',
+    templateUrl: './create-activity-type.component.html',
+    styleUrl: './create-activity-type.component.scss',
+    standalone: false
 })
 export class CreateActivityTypeComponent {
   myForm: FormGroup;

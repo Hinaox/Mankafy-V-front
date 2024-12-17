@@ -8,9 +8,10 @@ import { MessageBoxService } from '../../services/message-box.service';
 import User from '../../models/User';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.scss',
+    standalone: false
 })
 export class LoginComponent {
   myForm: FormGroup;

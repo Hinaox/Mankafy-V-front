@@ -3,9 +3,10 @@ import { Subscription } from 'rxjs';
 import { MessageBoxService } from '../../services/message-box.service';
 
 @Component({
-  selector: 'app-message-box',
-  templateUrl: './message-box.component.html',
-  styleUrl: './message-box.component.scss',
+    selector: 'app-message-box',
+    templateUrl: './message-box.component.html',
+    styleUrl: './message-box.component.scss',
+    standalone: false
 })
 export class MessageBoxComponent implements OnInit {
   messageShown = false;

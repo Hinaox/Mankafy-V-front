@@ -1,4 +1,4 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -45,6 +45,7 @@ import { ModalLargeComponent } from './components/modal-large/modal-large.compon
 import { PayementComponent } from './pages/payement/payement.component';
 import { PayementInfoComponent } from './components/payement-info/payement-info.component';
 import { PayementFormComponent } from './components/payement-form/payement-form.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -89,6 +90,12 @@ registerLocaleData(localeFr, 'fr');
       logEnabled: true,
     }),
     MatProgressSpinnerModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   exports: [
     MapComponent,

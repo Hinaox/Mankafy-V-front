@@ -3,9 +3,10 @@ import PlanningClient from '../../models/PlanningClient';
 import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
-  selector: 'app-demande-devis',
-  templateUrl: './demande-devis.component.html',
-  styleUrl: './demande-devis.component.scss',
+    selector: 'app-demande-devis',
+    templateUrl: './demande-devis.component.html',
+    styleUrl: './demande-devis.component.scss',
+    standalone: false
 })
 export class DemandeDevisComponent implements OnInit {
   // the pages

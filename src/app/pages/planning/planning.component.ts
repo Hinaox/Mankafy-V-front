@@ -27,9 +27,10 @@ import { endOfDay, addMonths } from 'date-fns';
 import { PlanningService } from '../../services/planning/planning.service';
 
 @Component({
-  selector: 'app-planning',
-  templateUrl: './planning.component.html',
-  styleUrl: './planning.component.scss',
+    selector: 'app-planning',
+    templateUrl: './planning.component.html',
+    styleUrl: './planning.component.scss',
+    standalone: false
 })
 export class PlanningComponent {
   title = 'Angular Calendar Scheduler Demo';

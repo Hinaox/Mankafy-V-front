@@ -18,9 +18,10 @@ import { ActivityService } from '../../services/activity.service';
 import { MapService } from '../../services/map.service';
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrl: './map.component.scss',
+    selector: 'app-map',
+    templateUrl: './map.component.html',
+    styleUrl: './map.component.scss',
+    standalone: false
 })
 export class MapComponent implements AfterViewInit, OnChanges, OnInit {
   private map: any;
