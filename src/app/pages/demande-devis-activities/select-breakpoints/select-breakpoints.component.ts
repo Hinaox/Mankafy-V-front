@@ -8,6 +8,7 @@ import RouteDigraph from '../../../models/RouteDigraph';
   selector: 'app-select-breakpoints',
   templateUrl: './select-breakpoints.component.html',
   styleUrl: './select-breakpoints.component.scss',
+  standalone: false,
 })
 export class SelectBreakpointsComponent implements OnChanges {
   public readonly FINAL_DESTINATION_PAGE = 'finalDestinationPage';

@@ -8,6 +8,7 @@ import { duration } from 'moment';
   selector: 'app-first-breakpoint-page',
   templateUrl: './first-breakpoint-page.component.html',
   styleUrl: './first-breakpoint-page.component.scss',
+  standalone: false,
 })
 export class FirstBreakpointPageComponent implements OnChanges {
   @Input() planningClient?: PlanningClient;

@@ -27,6 +27,7 @@ import {
   templateUrl: './select-final-destination.component.html',
   styleUrl: './select-final-destination.component.scss',
   encapsulation: ViewEncapsulation.None,
+  standalone: false,
   animations: [
     trigger('activable', [
       state('active', style({ backgroundColor: 'red' })),

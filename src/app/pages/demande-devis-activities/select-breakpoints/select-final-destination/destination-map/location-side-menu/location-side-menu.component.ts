@@ -12,6 +12,7 @@ import Location from '../../../../../../models/Location';
   selector: 'app-location-side-menu',
   templateUrl: './location-side-menu.component.html',
   styleUrl: './location-side-menu.component.scss',
+  standalone: false,
 })
 export class LocationSideMenuComponent implements OnChanges {
   @Input() selectedLocation?: Location;

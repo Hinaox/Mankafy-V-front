@@ -22,6 +22,7 @@ import PlanningClient from '../../../../../models/PlanningClient';
   selector: 'app-destination-map',
   templateUrl: './destination-map.component.html',
   styleUrl: './destination-map.component.scss',
+  standalone: false,
 })
 export class DestinationMapComponent implements AfterViewInit, OnChanges {
   private map?: L.Map;

@@ -15,6 +15,7 @@ import { RouteDigraphService } from '../../../../services/route-digraph.service'
   selector: 'app-breakpoints-page',
   templateUrl: './breakpoints-page.component.html',
   styleUrl: './breakpoints-page.component.scss',
+  standalone: false,
 })
 export class BreakpointsPageComponent implements OnInit, OnChanges {
   @Input() finalDestination?: Location;

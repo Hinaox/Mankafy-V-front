@@ -42,6 +42,7 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './planning-calendar.component.html',
   styleUrl: './planning-calendar.component.scss',
   encapsulation: ViewEncapsulation.None,
+  standalone: false,
 })
 export class PlanningCalendarComponent implements OnChanges {
   // planning data

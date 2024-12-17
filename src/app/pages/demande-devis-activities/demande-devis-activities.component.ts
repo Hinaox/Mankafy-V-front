@@ -7,6 +7,7 @@ import { LocalStorageService } from 'ngx-webstorage';
   selector: 'app-demande-devis-activities',
   templateUrl: './demande-devis-activities.component.html',
   styleUrl: './demande-devis-activities.component.scss',
+  standalone: false,
 })
 export class DemandeDevisActivitiesComponent implements OnInit {
   planningClient?: PlanningClient;
