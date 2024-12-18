@@ -30,6 +30,8 @@ import { HttpInterceptorInterceptor } from '../../services/httpInterceptor/http-
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CalendarService } from '../../services/calendar.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { SelectHotelComponent } from './select-breakpoints/breakpoints-page/select-hotel/select-hotel.component';
+import { SelectActivitiesComponent } from './select-breakpoints/breakpoints-page/select-activities/select-activities.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     FirstBreakpointPageComponent,
     NextBreakpointPageComponent,
     PlanningCalendarComponent,
+    SelectHotelComponent,
+    SelectActivitiesComponent,
   ],
   imports: [
     AppModule,

@@ -46,6 +46,7 @@ import { PayementComponent } from './pages/payement/payement.component';
 import { PayementInfoComponent } from './components/payement-info/payement-info.component';
 import { PayementFormComponent } from './components/payement-form/payement-form.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { StylizedButtonComponent } from './components-utils/stylized-button/stylized-button.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -72,6 +73,7 @@ registerLocaleData(localeFr, 'fr');
     PayementComponent,
     PayementInfoComponent,
     PayementFormComponent,
+    StylizedButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -94,7 +96,7 @@ registerLocaleData(localeFr, 'fr');
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
   exports: [
@@ -103,6 +105,7 @@ registerLocaleData(localeFr, 'fr');
     DatetimeFRPipe,
     ModalComponent,
     ModalLargeComponent,
+    StylizedButtonComponent,
   ],
   providers: [
     DatePipe,

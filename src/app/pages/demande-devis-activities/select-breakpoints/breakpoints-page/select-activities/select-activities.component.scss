@@ -1,0 +1,48 @@
+@import "../../../../../../styles.scss";
+
+.conteneur {
+  min-height: 50vh;
+
+  .yes-not-button {
+    color: $couleur2 !important;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .activity-container {
+    padding: 5px;
+    .activity-body {
+      border: 1px solid lightgray;
+      border-radius: 5px;
+      height: 350px;
+
+      .image {
+        width: 100%;
+        height: 50%;
+        background-size: cover;
+      }
+
+      .description {
+        height: 50%;
+        padding: 10px 5px;
+
+        text-align: center;
+
+        .activity-title {
+          font-size: 1.3em;
+          font-weight: bold;
+          color: rgb(53, 53, 53);
+        }
+      }
+
+      &:hover {
+        @extend .ombrer;
+        cursor: pointer;
+      }
+
+      &.checked {
+        background-color: rgba(0, 128, 0, 0.47);
+      }
+    }
+  }
+}

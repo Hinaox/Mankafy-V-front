@@ -1,3 +1,4 @@
+import Activity from './Activity';
 import Location from './Location';
 import PlanningClientActivity from './PlanningClientActivity';
 import User from './User';
@@ -15,6 +16,12 @@ export default class PlanningClient {
     public planningClientActivities?: PlanningClientActivity[],
 
     // données non enregistrées
-    public finalDestination?: Location
+    public finalDestination?: Location,
+    public breakpoints?: {
+      breakpoint: Activity;
+      hotel: Activity;
+      date: Date;
+    }[],
+    public trajets?: { dateDebut: Date; dateFin: Date }[]
   ) {}
 }

@@ -14,6 +14,33 @@ export class PlanningClientUtilsService {
     private activityService: ActivityService
   ) {}
 
+  async addBreakpointActivities(data: {
+    location: Location;
+    hotel: Activity;
+    activities: Activity[];
+  }) {}
+
+  findLastActivity(
+    planningClient: PlanningClient
+  ): PlanningClientActivity | null {
+    var lastDate: Date | null = null;
+    var retour: PlanningClientActivity | null = null;
+    if (planningClient.planningClientActivities) {
+      for (let pActivity of planningClient.planningClientActivities) {
+        const dateFin = pActivity.dateFin;
+        if (!dateFin) continue;
+        if (!lastDate) {
+          lastDate = dateFin;
+          retour = pActivity;
+        } else if (lastDate && lastDate < dateFin) {
+          lastDate = dateFin;
+          retour = pActivity;
+        }
+      }
+    }
+    return retour;
+  }
+
   async addActivityIntoPlanningClient(
     planningClient: PlanningClient,
     activity: Activity

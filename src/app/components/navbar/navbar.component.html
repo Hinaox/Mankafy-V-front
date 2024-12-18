@@ -1,31 +1,23 @@
 <div class="site-header__header-one-wrap clearfix">
-  <div class="header_top_one">
+  <div class="header_top_one pb-3">
     <div class="container">
       <div class="header_top_one_inner clearfix">
         <div class="header_top_one_logo_box float-left">
           <div class="header_top_one_logo">
             <a href="index.html"
-              ><img src="assets/images/mankafy.jpg" class="img-fluid w-50" alt=""
+              ><img
+                src="assets/images/mankafy.jpg"
+                class="img-fluid w-50"
+                alt=""
             /></a>
           </div>
         </div>
         <div class="header_top_one_content_box float-right">
-          <div class="header_top_one_content_box_top clearfix">
+          <div
+            class="header_top_one_content_box_top bienvenue-component clearfix"
+          >
             <div class="header_top_one_content_box_top_left float-left">
               <p>Bienvenue chez Mankafy Voyage</p>
-            </div>
-            <div class="header_top_one_content_box_top_right float-right">
-              <ul
-                class="list-unstyled header_top_one_content_box_top_right_list"
-              >
-                <li>
-                  <a href="#">Support<span>/</span></a>
-                </li>
-                <li>
-                  <a href="#">Wish List<span>/</span></a>
-                </li>
-                <li><a href="#">My Account</a></li>
-              </ul>
             </div>
           </div>
           <div class="header_top_one_content_box_bottom">
@@ -34,7 +26,6 @@
                 <div class="header_top_one_content_box_bottom__social">
                   <a href="#"><i class="fab fa-twitter"></i></a>
                   <a href="#"><i class="fab fa-facebook-square"></i></a>
-                  <a href="#"><i class="fab fa-dribbble"></i></a>
                   <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
               </div>
@@ -47,8 +38,8 @@
                       <span class="icon-phone-call"></span>
                     </div>
                     <div class="text">
-                      <p>Call Agent</p>
-                      <a href="tel:92-888-000-2222">92 888 000 2222</a>
+                      <p>Contactez-nous</p>
+                      <a>+261 34 44 444 44</a>
                     </div>
                   </li>
                   <!-- user icon or login-->
@@ -82,7 +73,7 @@
                   </li>
                   <li *ngIf="!user" class="">
                     <a routerLink="/login"
-                      ><button class="btn-couleur2 btn">
+                      ><button class="btn-couleur1 btn">
                         Connectez-vous
                       </button></a
                     >
@@ -97,7 +88,7 @@
     </div>
   </div>
 
-  <header class="main-nav__header-one">
+  <header class="main-nav__header-one ombrer-top ombrer-bottom">
     <div class="container">
       <nav class="header-navigation one stricky">
         <div class="container-box clearfix">
@@ -108,61 +99,8 @@
             </a>
             <div class="main-nav__main-navigation one clearfix">
               <ul class="main-nav__navigation-box float-left">
-                <li class="dropdown">
-                  <a href="index.html">Home</a>
-                  <ul>
-                    <li><a href="index.html">Home 01</a></li>
-                    <li><a href="index2.html">Home 02</a></li>
-                    <li><a href="index3.html">Home 03</a></li>
-                    <li class="dropdown">
-                      <a href="#">Header Versions</a>
-                      <ul>
-                        <li><a href="index.html">Header 01</a></li>
-                        <li><a href="index2.html">Header 02</a></li>
-                        <li><a href="index3.html">Header 03</a></li>
-                      </ul>
-                      <!-- /.sub-menu -->
-                    </li>
-                  </ul>
-                  <!-- /.sub-menu -->
-                </li>
-                <li class="dropdown">
-                  <a href="#">Pages</a>
-                  <ul>
-                    <li><a href="about.html">About</a></li>
-                    <li>
-                      <a href="membership_plans.html">Membership Plans</a>
-                    </li>
-                  </ul>
-                  <!-- /.sub-menu -->
-                </li>
-                <li class="dropdown">
-                  <a href="#">Properties</a>
-                  <ul>
-                    <li><a href="listing-1.html">Listings 01</a></li>
-                    <li><a href="listing-2.html">Listings 02</a></li>
-                    <li><a href="listing-details.html">Listing Details</a></li>
-                  </ul>
-                  <!-- /.sub-menu -->
-                </li>
-                <li class="dropdown">
-                  <a href="#">Members</a>
-                  <ul>
-                    <li><a href="members.html">Members</a></li>
-                    <li><a href="members_details.html">Member Details</a></li>
-                  </ul>
-                  <!-- /.sub-menu -->
-                </li>
-                <li class="dropdown">
-                  <a href="#">News</a>
-                  <ul>
-                    <li><a href="news.html">News</a></li>
-                    <li><a href="news-details.html">News Details</a></li>
-                  </ul>
-                  <!-- /.sub-menu -->
-                </li>
-                <li>
-                  <a href="contact.html">Contact</a>
+                <li *ngFor="let item of navItems" class="">
+                  <a [routerLink]="item.link">{{ item.label }}</a>
                 </li>
               </ul>
             </div>
@@ -170,7 +108,9 @@
           </div>
           <div class="main-nav__right main-nav__right_one float-right">
             <div class="header_btn_1">
-              <a href="#" class="thm-btn">Add New Property</a>
+              <a routerLink="/demande-devis" class="thm-btn"
+                >Réserver un voyage</a
+              >
             </div>
             <div class="icon_cart_box">
               <a href="#">

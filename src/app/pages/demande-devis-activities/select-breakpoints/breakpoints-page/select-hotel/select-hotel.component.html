@@ -1,0 +1,37 @@
+<div class="conteneur">
+  <div>
+    <span (click)="onAnnuler()" class="cursor-pointer couleur2">Retour</span>
+  </div>
+  <div class="mt-2">
+    <h4>
+      En choisissant
+      <b>{{ selectedBreakpoint?.name }}</b> , veuillez choisir un hotel :
+    </h4>
+  </div>
+  <div class="mt-4 hotels-container">
+    <div *ngFor="let hotel of hotels" class="d-flex">
+      <div class="hotel-container col-lg-3">
+        <div class="hotel-body">
+          <div>
+            <img [src]="hotel.imagePath" alt="" />
+          </div>
+          <div class="description d-flex flex-column justify-content-between">
+            <div class="title">{{ hotel.name }}</div>
+            <div>
+              <p>{{ hotel.description }}</p>
+            </div>
+            <div>
+              <button
+                (click)="onHotelSelection(hotel)"
+                style="width: 100%"
+                class="btn btn-success"
+              >
+                Sélectionner
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

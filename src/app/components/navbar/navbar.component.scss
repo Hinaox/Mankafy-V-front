@@ -1,5 +1,26 @@
 @import "../../../styles.scss";
 
+.main-nav__header-one {
+  background-color: $couleur1;
+
+  .main-nav__navigation-box {
+    li {
+      a {
+        color: white !important;
+      }
+    }
+  }
+}
+
+.header_top_one {
+  background-color: #ffd69e;
+}
+
+.bienvenue-component {
+  background-color: rgba(white, 0.4);
+  color: rgb(60, 60, 60);
+}
+
 .userIcon {
   color: $couleur1;
   font-size: 2em;

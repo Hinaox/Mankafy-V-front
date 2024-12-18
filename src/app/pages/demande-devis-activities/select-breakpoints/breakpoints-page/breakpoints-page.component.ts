@@ -10,6 +10,8 @@ import PlanningClient from '../../../../models/PlanningClient';
 import RouteDigraph from '../../../../models/RouteDigraph';
 import { RouteDigraphUtilsService } from '../../../../utils/route-digraph-utils.service';
 import { RouteDigraphService } from '../../../../services/route-digraph.service';
+import Activity from '../../../../models/Activity';
+import { PlanningClientUtilsService } from '../../../../utils/planning-client-utils.service';
 
 @Component({
   selector: 'app-breakpoints-page',
@@ -32,7 +34,8 @@ export class BreakpointsPageComponent implements OnInit, OnChanges {
 
   constructor(
     private routeDigraphUtils: RouteDigraphUtilsService,
-    private routeDigraphService: RouteDigraphService
+    private routeDigraphService: RouteDigraphService,
+    private planningClientUtils: PlanningClientUtilsService
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -97,4 +100,10 @@ export class BreakpointsPageComponent implements OnInit, OnChanges {
       console.error(error);
     }
   }
+
+  onAddBreakpointActivities(data: {
+    location: Location;
+    hotel: Activity;
+    activities: Activity[];
+  }) {}
 }

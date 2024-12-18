@@ -1,8 +1,16 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import PlanningClient from '../../../../../models/PlanningClient';
 import Location from '../../../../../models/Location';
 import { LocationService } from '../../../../../services/location.service';
 import { duration } from 'moment';
+import Activity from '../../../../../models/Activity';
 
 @Component({
   selector: 'app-first-breakpoint-page',
@@ -24,6 +32,9 @@ export class FirstBreakpointPageComponent implements OnChanges {
     distance: number;
     duration: number;
   }[];
+
+  selectedBreakpoint?: Location;
+  selectedHotel?: Activity;
 
   constructor(private locationService: LocationService) {}
 
@@ -78,6 +89,37 @@ export class FirstBreakpointPageComponent implements OnChanges {
       }
     } else {
       console.error('undefined component.breakpointsRoute');
+    }
+  }
+
+  onSelectBreakpoint(location?: Location) {
+    this.selectedBreakpoint = location;
+  }
+
+  @Output() handleChoice = new EventEmitter<{
+    location: Location;
+    hotel: Activity;
+    activities: Activity[];
+  }>();
+  onHotelSelect(hotel: Activity) {
+    try {
+      this.selectedHotel = hotel;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  onSelectActivities(activities: Activity[]) {
+    try {
+      if (!this.selectedBreakpoint) throw 'undefined selected breakpoint';
+      if (!this.selectedHotel) throw 'undefined selected hotel';
+      this.handleChoice.emit({
+        location: this.selectedBreakpoint,
+        hotel: this.selectedHotel,
+        activities: activities,
+      });
+    } catch (error) {
+      console.error(error);
     }
   }
 }

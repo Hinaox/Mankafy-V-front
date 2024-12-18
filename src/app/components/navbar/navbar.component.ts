@@ -4,14 +4,20 @@ import User from '../../models/User';
 import { Subscription } from 'rxjs';
 
 @Component({
-    selector: 'app-navbar',
-    templateUrl: './navbar.component.html',
-    styleUrl: './navbar.component.scss',
-    standalone: false
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrl: './navbar.component.scss',
+  standalone: false,
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   user?: User;
   userSubscription?: Subscription;
+
+  navItems: { label: string; link: string }[] = [
+    { label: 'Accueil', link: '/' },
+    { label: 'Glossaire', link: '/glossaire' },
+    { label: 'Contactez-nous', link: '/contact' },
+  ];
 
   constructor(private authService: AuthService) {}
 

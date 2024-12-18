@@ -1,0 +1,42 @@
+<div class="conteneur">
+  <div class="mt-2">
+    <h4>
+      Vous avez choisi <b>{{ selectedBreakpoint?.name }}</b>
+    </h4>
+    <p>
+      Souhaitez-vous y faire des activités ? &nbsp;
+      <span (click)="loadActivities()" class="yes-not-button">oui</span>&nbsp;
+      <span (click)="scrollToReprendreRoute()" class="yes-not-button">non</span>
+      <br />
+      (peut engendrer une nuitée supplémentaire à
+      {{ selectedBreakpoint?.name }} selon la longueur de l'activité)
+    </p>
+  </div>
+  <div *ngIf="activities" class="mt-2 list-activity d-flex">
+    <div
+      *ngFor="let activity of activities"
+      class="col-lg-3 activity-container"
+    >
+      <div
+        (click)="onSelectActivity(activity)"
+        class="activity-body {{ activityChecked(activity) ? 'checked' : '' }}"
+      >
+        <div
+          class="image"
+          style="background-image: url('{{ activity.imagePath }}');"
+        ></div>
+        <div class="description">
+          <div class="activity-title">{{ activity.name }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="selectedActivities?.length" class="mt-2">
+    <button (click)="onValiderActivities()" class="btn btn-couleur2">
+      Ajouter au planning
+    </button>
+  </div>
+</div>
+<div id="reprendreRoute{{ uniq_id }}" class="mt-4">
+  <h4>Reprendre la route</h4>
+</div>

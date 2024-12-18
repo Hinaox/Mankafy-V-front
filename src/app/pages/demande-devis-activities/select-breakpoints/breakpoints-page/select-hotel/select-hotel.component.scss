@@ -1,0 +1,33 @@
+@import "../../../../../../styles.scss";
+
+.hotels-container {
+  .hotel-container {
+    padding: 5px;
+    .hotel-body {
+      min-height: 350px;
+      border: 1px solid lightgray;
+      border-radius: 5px;
+
+      &:hover {
+        @extend .ombrer;
+        cursor: pointer;
+      }
+
+      .description {
+        padding: 5px;
+
+        .title {
+          margin-top: 10px;
+          text-align: center;
+          font-weight: bold;
+          font-size: 1.3em;
+          color: rgb(53, 53, 53);
+        }
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

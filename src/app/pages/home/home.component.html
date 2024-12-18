@@ -1,5 +1,5 @@
 <!-- Banner Section One Start -->
-<section class="banner-one two">
+<section class="banner-one two ombrer-bottom">
   <div class="banner-two__bg-slide">
     <div
       class="thm-swiper__slider swiper-container"
@@ -13,33 +13,17 @@
         <div class="swiper-slide">
           <div
             class="image-layer"
-            style="
-              background-image: url(assets/images/main-slider/slider-2-1.jpg);
-            "
+            style="background-image: url(/assets/images/banner.jpg)"
           ></div>
           <!-- /.image-layer -->
         </div>
-        <!-- /.swiper-slide -->
         <div class="swiper-slide">
           <div
             class="image-layer"
-            style="
-              background-image: url(assets/images/main-slider/slider-2-2.jpg);
-            "
+            style="background-image: url(/assets/images/banner.webp)"
           ></div>
           <!-- /.image-layer -->
         </div>
-        <!-- /.swiper-slide -->
-        <div class="swiper-slide">
-          <div
-            class="image-layer"
-            style="
-              background-image: url(assets/images/main-slider/slider-2-1.jpg);
-            "
-          ></div>
-          <!-- /.image-layer -->
-        </div>
-        <!-- /.swiper-slide -->
       </div>
       <!-- /.swiper-wrapper -->
     </div>
@@ -54,31 +38,22 @@
           <img src="assets/images/shapes/banner_two_shape.png" alt="" />
         </div>
         <h2>
-          Luxury Downtown <br />
-          Apartments
+          Réservez votre <br />
+          voyage
         </h2>
       </div>
 
       <div class="product-tab-box tabs-box">
-        <ul class="tab-btns tab-buttons clearfix list-unstyled">
-          <li data-tab="#desc" class="tab-btn active-btn">
-            <span>Buy</span>
-          </li>
-          <li data-tab="#addi__info" class="tab-btn">
-            <span>Sale</span>
-          </li>
-          <li data-tab="#review" class="tab-btn"><span>Rent</span></li>
-        </ul>
         <div class="tabs-content">
           <div class="tab active-tab" id="desc">
             <form class="banner_one_search_form" action="/listing-2.html">
               <div class="banner_one_search_form_input_box">
-                <input
-                  type="text"
-                  placeholder="Search for city, property, agent and more..."
-                />
-                <button type="submit" class="thm-btn banner_one_search_btn">
-                  Search Property
+                <input type="text" placeholder="villes, activités..." />
+                <button
+                  type="submit"
+                  class="thm-btn btn-couleur1 banner_one_search_btn"
+                >
+                  Rechercher
                 </button>
                 <div class="banner_one_search_icon">
                   <a href="#"><span class="icon-magnifying-glass"></span></a>
@@ -130,125 +105,23 @@
 <!--Cities One Start-->
 <section class="cities_one">
   <div class="container">
-    <div class="row">
-      <div class="col-xl-4 col-lg-6 col-md-6">
+    <div class="d-flex flex-wrap">
+      <div
+        *ngFor="let city of cities"
+        class="col-xl-4 col-lg-6 col-md-6 city-container"
+      >
         <!--Cities One Single-->
-        <div class="cities_one_single">
-          <div class="cities_one_properties">
-            <div class="cities_one_properties_content">
-              <h4><a href="listing-2.html">Paris</a></h4>
-              <p>2 Properties</p>
-              <div class="cities_flag">
-                <img
-                  src="assets/images/resources/cities_one_flag_1.png"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="cities_one_main_img_box">
-              <img src="assets/images/resources/cities_one_img_1.jpg" alt="" />
-            </div>
+        <div class="city-body d-flex">
+          <div
+            class="col-6 city-description d-flex flex-column justify-content-center"
+          >
+            <span class="city-title">{{ city.name }}</span>
+            <div class="mt-4 pl-2">Voir plus</div>
           </div>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-6 col-md-6">
-        <!--Cities One Single-->
-        <div class="cities_one_single">
-          <div class="cities_one_properties">
-            <div class="cities_one_properties_content">
-              <h4><a href="listing-2.html">Australia</a></h4>
-              <p>16 Properties</p>
-              <div class="cities_flag">
-                <img
-                  src="assets/images/resources/cities_one_flag_2.png"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="cities_one_main_img_box">
-              <img src="assets/images/resources/cities_one_img_2.jpg" alt="" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-6 col-md-6">
-        <!--Cities One Single-->
-        <div class="cities_one_single">
-          <div class="cities_one_properties">
-            <div class="cities_one_properties_content">
-              <h4><a href="listing-2.html">London</a></h4>
-              <p>8 Properties</p>
-              <div class="cities_flag">
-                <img
-                  src="assets/images/resources/cities_one_flag_3.png"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="cities_one_main_img_box">
-              <img src="assets/images/resources/cities_one_img_3.jpg" alt="" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-6 col-md-6">
-        <!--Cities One Single-->
-        <div class="cities_one_single">
-          <div class="cities_one_properties">
-            <div class="cities_one_properties_content">
-              <h4><a href="listing-2.html">New York</a></h4>
-              <p>9 Properties</p>
-              <div class="cities_flag">
-                <img
-                  src="assets/images/resources/cities_one_flag_4.png"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="cities_one_main_img_box">
-              <img src="assets/images/resources/cities_one_img_4.jpg" alt="" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-6 col-md-6">
-        <!--Cities One Single-->
-        <div class="cities_one_single">
-          <div class="cities_one_properties">
-            <div class="cities_one_properties_content">
-              <h4><a href="listing-2.html">Los Angeles</a></h4>
-              <p>5 Properties</p>
-              <div class="cities_flag">
-                <img
-                  src="assets/images/resources/cities_one_flag_5.png"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="cities_one_main_img_box">
-              <img src="assets/images/resources/cities_one_img_5.jpg" alt="" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-6 col-md-6">
-        <!--Cities One Single-->
-        <div class="cities_one_single">
-          <div class="cities_one_properties">
-            <div class="cities_one_properties_content">
-              <h4><a href="listing-2.html">Dubai</a></h4>
-              <p>3 Properties</p>
-              <div class="cities_flag">
-                <img
-                  src="assets/images/resources/cities_one_flag_6.png"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="cities_one_main_img_box">
-              <img src="assets/images/resources/cities_one_img_6.jpg" alt="" />
-            </div>
-          </div>
+          <div
+            class="col-6 city-image"
+            style="background-image: url('{{ city.image }}')"
+          ></div>
         </div>
       </div>
     </div>
@@ -1167,7 +1040,11 @@
           <div class="footer-widget__column footer_widget__about">
             <div class="footer_logo">
               <a href="index.html">
-                <img src="assets/images/mankafy.jpg" class="img-responsive w-100" alt="Mankafy Voyage Logo">
+                <img
+                  src="assets/images/mankafy.jpg"
+                  class="img-responsive w-100"
+                  alt="Mankafy Voyage Logo"
+                />
               </a>
             </div>
             <div class="footer_widget_about_text">
@@ -1181,7 +1058,7 @@
                 <span class="icon-phone-call"></span>
               </div>
               <div class="text">
-                <p>Call Agent</p>
+                <p>Contact</p>
                 <a href="tel:92-888-000-2222">92 888 000 2222</a>
               </div>
             </div>

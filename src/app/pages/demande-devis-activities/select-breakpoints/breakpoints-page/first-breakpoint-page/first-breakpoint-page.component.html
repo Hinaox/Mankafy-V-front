@@ -1,8 +1,10 @@
-<div>
-  <p>
-    Votre départ est progammé le
-    <b>{{ planningClient?.dateDepart | date : "EEEE d MMMM y" }} à 7:00</b>
-  </p>
+<div *ngIf="!selectedBreakpoint" class="conteneur">
+  <div>
+    <p>
+      Votre départ est progammé le
+      <b>{{ planningClient?.dateDepart | date : "EEEE d MMMM y" }} à 7:00</b>
+    </p>
+  </div>
   <h4>Choisissez votre point d'arrêt :</h4>
   <div class="d-flex justify-content-around mt-4">
     <div
@@ -13,6 +15,7 @@
       aria-label="Button that displays a tooltip when focused or hovered over"
     >
       <div
+        (click)="onSelectBreakpoint(location.location)"
         class="location-body d-flex flex-column justify-content-around active"
       >
         <div>
@@ -60,4 +63,19 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="mt-4 ml-2" *ngIf="selectedBreakpoint && !selectedHotel">
+  <app-select-hotel
+    (handleAnnuler)="onSelectBreakpoint(undefined)"
+    [selectedBreakpoint]="selectedBreakpoint"
+    (handleChoice)="onHotelSelect($event)"
+  />
+</div>
+
+<div class="mt-4 ml-2" *ngIf="selectedHotel && selectedBreakpoint">
+  <app-select-activities
+    [selectedBreakpoint]="selectedBreakpoint"
+    (handleValider)="onSelectActivities($event)"
+  />
 </div>

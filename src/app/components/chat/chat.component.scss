@@ -10,11 +10,12 @@
   }
 
   .message-list {
+    padding: 5px;
     height: 78%;
     overflow-y: auto;
 
     .message-bubble {
-      padding: 3px;
+      padding: 5px;
       border-radius: 3px;
       color: white;
       margin-bottom: 10px;
@@ -22,15 +23,15 @@
     }
 
     .message-bubble.user {
-      margin-left: 25px;
-      margin-right: 5px;
+      margin-left: 35px;
+      margin-right: 10px;
       background-color: $couleur1;
     }
 
     .message-bubble.bot {
       background-color: gray;
-      margin-right: 25px;
-      margin-left: 5px;
+      margin-right: 35px;
+      margin-left: 10px;
     }
   }
   .user-field {

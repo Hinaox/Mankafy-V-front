@@ -8,6 +8,7 @@
     <app-first-breakpoint-page
       [breakpointsRoute]="breakpointsRoute"
       [planningClient]="planningClient"
+      (handleChoice)="onAddBreakpointActivities($event)"
     />
   </div>
   <div *ngIf="breakpoints.length">

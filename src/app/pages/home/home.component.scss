@@ -1,0 +1,32 @@
+@import "../../../styles.scss";
+
+.top-title {
+  h2 {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.city-container {
+  padding: 10px;
+  .city-body {
+    @extend .ombrer;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    height: 250px;
+
+    .city-image {
+      background-size: cover;
+      background-position: center;
+    }
+
+    .city-description {
+      padding: 10px;
+      .city-title {
+        @extend .underline-couleur1;
+        font-weight: bold;
+        font-size: 1.6em;
+        color: rgb(63, 63, 63);
+      }
+    }
+  }
+}
