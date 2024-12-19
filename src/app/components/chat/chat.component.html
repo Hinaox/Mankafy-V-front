@@ -22,22 +22,23 @@
   <div class="message-list">
     <div
       *ngFor="let message of messages"
-      class="message-bubble {{ message.sender }}"
+      class="message-bubble {{ message.role == 'user' ? 'user' : 'bot' }}"
     >
-      {{ message.corps }}
+      {{ message.content }}
     </div>
   </div>
   <div class="user-field d-flex flex-column justify-content-center">
     <div class="d-flex">
       <div style="width: 85%">
         <input
+          [(ngModel)]="userInput"
           class="form-control message-input"
           placeholder="Tapez votre message"
           type="text"
         />
       </div>
       <div style="width: 15%">
-        <button style="width: 100%" class="btn">
+        <button style="width: 100%" class="btn" (click)="sendMessage()">
           <i style="font-size: 1.2em" class="bi bi-send"></i>
         </button>
       </div>

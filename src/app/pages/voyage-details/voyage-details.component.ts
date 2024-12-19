@@ -1,5 +1,5 @@
 import { Component,OnInit  } from '@angular/core';
-
+import {GeolocationService} from '@ng-web-apis/geolocation';
 @Component({
   selector: 'app-voyage-details',
   standalone: false,
@@ -14,15 +14,26 @@ export class VoyageDetailsComponent implements OnInit {
     { name: "Activité en cours", status: "in-progress" },  // Activité en cours
     { name: "Activité à venir", status: "upcoming" },  // Activité à venir
   ];
-
+  lat: number= 0.0000000;
+  long: number= 0.0000000;
   // Propriété pour la progression (en pourcentage)
   progress: number = 60;
+  private geolocationInterval: any;
 
-  constructor() { }
-
+  constructor(private readonly geolocation: GeolocationService) { }
+  getPosition() {
+        this.geolocation.subscribe(position =>{ 
+          this.lat = position.coords.latitude;
+          this.long = position.coords.longitude;
+        });
+    }
   ngOnInit(): void {
     // Ici vous pouvez appeler la fonction pour mettre à jour la progression
     this.updateProgress(this.progress);
+    // Démarrer la mise à jour de la position toutes les secondes
+    this.geolocationInterval = setInterval(() => {
+      this.getPosition();
+    }, 100); // Mise à jour toutes les 1000 ms (1 seconde)
   }
 
   // Fonction pour mettre à jour la barre de progression

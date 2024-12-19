@@ -6,8 +6,14 @@
     {{ progress }}%
 </div>
 
+<div class="coordinates">
+    <h3>Position actuelle:</h3>
+    <p>Latitude: {{ lat }}</p>
+    <p>Longitude: {{ long }}</p>
+</div>
 <!-- Détails du voyage -->
 <div class="trip-details">
+<h4>Hotels / Lieux / Activités de votre planning:</h4>
   <div *ngFor="let activity of activities" class="activity">
     <div class="icon" [class]="activity.status">
       <span *ngIf="activity.status === 'done'">✔️</span>
