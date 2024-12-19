@@ -1,0 +1,93 @@
+/* Barre de progression */
+.progress-bar-container {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.progress-bar {
+    width: 90%;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: #28a745;
+    transition: width 0.3s ease-in-out;
+}
+
+/* Détails du voyage */
+.trip-details {
+    margin-top: 60px;
+    /* Espace pour la barre de progression */
+    padding: 20px;
+    overflow-y: auto;
+    max-height: calc(100vh - 60px);
+    /* Limiter la hauteur pour scroll */
+}
+
+.activity {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.activity-name {
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+/* Icônes des activités */
+.icon {
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.done {
+    background-color: #28a745;
+    color: white;
+}
+
+.in-progress {
+    background-color: #ffc107;
+    color: white;
+}
+
+.upcoming {
+    background-color: #17a2b8;
+    color: white;
+}
+
+/* Styles pour les appareils mobiles */
+@media (max-width: 600px) {
+    .progress-bar-container {
+        padding: 8px;
+    }
+
+    .activity-name {
+        font-size: 14px;
+    }
+
+    .icon {
+        font-size: 18px;
+    }
+}

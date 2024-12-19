@@ -15,6 +15,7 @@ import { CreateLocationComponent } from './pages/create-location/create-location
 import { PayementComponent } from './pages/payement/payement.component';
 import { DemandeDevisActivitiesComponent } from './pages/demande-devis-activities/demande-devis-activities.component';
 import { DemandeDevisActivitiesModule } from './pages/demande-devis-activities/demande-devis-activities.module';
+import {VoyageDetailsComponent } from './pages/voyage-details/voyage-details.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -43,6 +44,7 @@ const routes: Routes = [
     component: CreateActivityComponent,
   },
   { path: 'demande-devis', component: DemandeDevisComponent },
+  { path: 'voyage-details', component: VoyageDetailsComponent },
 ];
 
 @NgModule({

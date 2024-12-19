@@ -1,0 +1,19 @@
+<!-- Barre de progression -->
+<div class="progress-bar-container">
+    <div class="progress-bar">
+        <div class="progress" [style.width]="progress + '%'"></div> 
+    </div>
+    {{ progress }}%
+</div>
+
+<!-- Détails du voyage -->
+<div class="trip-details">
+  <div *ngFor="let activity of activities" class="activity">
+    <div class="icon" [class]="activity.status">
+      <span *ngIf="activity.status === 'done'">✔️</span>
+      <span *ngIf="activity.status === 'in-progress'">⏳</span>
+      <span *ngIf="activity.status === 'upcoming'">🔜</span>
+    </div>
+    <div class="activity-name">{{ activity.name }}</div>
+  </div>
+</div>

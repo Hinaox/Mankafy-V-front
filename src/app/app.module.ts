@@ -1,8 +1,9 @@
+import { AppComponent } from './app.component';
+import { DateFRPipe } from './utils/DateFR.pipe';
+import { DatetimeFRPipe } from './utils/DatetimeFR.pipe';
 import { LOCALE_ID, NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -37,8 +38,6 @@ import { CreateActivityTypeComponent } from './components/create-activity-type/c
 import { CreateActivityTypePageComponent } from './pages/create-activity-type-page/create-activity-type-page.component';
 import { CreateLocationComponent } from './pages/create-location/create-location.component';
 import { ChatComponent } from './components/chat/chat.component';
-import { DateFRPipe } from './utils/DateFR.pipe';
-import { DatetimeFRPipe } from './utils/DatetimeFR.pipe';
 import { ModalComponent } from './components/modal/modal.component';
 import { CalendarService } from './services/calendar.service';
 import { ModalLargeComponent } from './components/modal-large/modal-large.component';
@@ -47,14 +46,15 @@ import { PayementInfoComponent } from './components/payement-info/payement-info.
 import { PayementFormComponent } from './components/payement-form/payement-form.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { StylizedButtonComponent } from './components-utils/stylized-button/stylized-button.component';
+import { VoyageDetailsComponent } from './pages/voyage-details/voyage-details.component';
 
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   declarations: [
     DateFRPipe,
-    DatetimeFRPipe,
     AppComponent,
+    DatetimeFRPipe,
     NavbarComponent,
     FooterComponent,
     LoginComponent,
@@ -74,6 +74,7 @@ registerLocaleData(localeFr, 'fr');
     PayementInfoComponent,
     PayementFormComponent,
     StylizedButtonComponent,
+    VoyageDetailsComponent,
   ],
   imports: [
     BrowserModule,
