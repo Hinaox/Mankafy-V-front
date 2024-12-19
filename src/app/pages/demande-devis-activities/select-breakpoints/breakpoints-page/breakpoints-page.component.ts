@@ -12,6 +12,8 @@ import { RouteDigraphUtilsService } from '../../../../utils/route-digraph-utils.
 import { RouteDigraphService } from '../../../../services/route-digraph.service';
 import Activity from '../../../../models/Activity';
 import { PlanningClientUtilsService } from '../../../../utils/planning-client-utils.service';
+import { MessageBoxService } from '../../../../services/message-box.service';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-breakpoints-page',
@@ -35,7 +37,9 @@ export class BreakpointsPageComponent implements OnInit, OnChanges {
   constructor(
     private routeDigraphUtils: RouteDigraphUtilsService,
     private routeDigraphService: RouteDigraphService,
-    private planningClientUtils: PlanningClientUtilsService
+    private planningClientUtils: PlanningClientUtilsService,
+    private messageBox: MessageBoxService,
+    private localStorageService: LocalStorageService
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -101,9 +105,23 @@ export class BreakpointsPageComponent implements OnInit, OnChanges {
     }
   }
 
-  onAddBreakpointActivities(data: {
+  async onAddBreakpointActivities(data: {
     location: Location;
     hotel: Activity;
     activities: Activity[];
-  }) {}
+  }) {
+    try {
+      if (!this.planningClient) throw 'undefined component.planningClient';
+      await this.planningClientUtils.addBreakpointActivities(
+        this.planningClient,
+        data.hotel,
+        data.activities
+      );
+      // enregistrer
+      this.localStorageService.store('devisEnCours', this.planningClient);
+      this.messageBox.success('Enregistrement réussi');
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }

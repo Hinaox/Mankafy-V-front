@@ -1,14 +1,15 @@
 .final-destination-map-container {
-  height: 80vh;
+  border: 1px solid lightgray;
+  height: 750px;
 }
 
 .final-destination-map-frame {
-  height: 100%;
+  height: 750px;
   position: relative;
 }
 
 #final-destination-map {
-  height: 100%;
+  height: 750px;
   cursor: pointer;
 }
 

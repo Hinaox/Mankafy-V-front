@@ -11,15 +11,16 @@ import { LocationService } from '../../../services/location.service';
 import Location from '../../../models/Location';
 import { ColorService } from '../../../services/color.service';
 import { AuthService } from '../../../services/Auth/auth.service';
+import { MapService } from '../../../services/map.service';
 
 @Component({
-    selector: 'app-destination-map',
-    templateUrl: './destination-map.component.html',
-    styleUrl: './destination-map.component.scss',
-    standalone: false
+  selector: 'app-destination-map',
+  templateUrl: './destination-map.component.html',
+  styleUrl: './destination-map.component.scss',
+  standalone: false,
 })
 export class DestinationMapComponent implements AfterViewInit, OnInit {
-  private map: any;
+  private map?: L.Map;
   private readonly defaultZoom = 6.4;
 
   @Output() handleSelectDestination = new EventEmitter<Location>();
@@ -36,7 +37,8 @@ export class DestinationMapComponent implements AfterViewInit, OnInit {
   constructor(
     private locationService: LocationService,
     private colorService: ColorService,
-    private authService: AuthService
+    private authService: AuthService,
+    private mapService: MapService
   ) {}
 
   ngOnInit(): void {}
@@ -48,26 +50,34 @@ export class DestinationMapComponent implements AfterViewInit, OnInit {
   }
 
   initMap() {
-    this.map = L.map('destination-map', {
-      center: [-18.8792, 47.5079], // Centre de Madagascar (Antananarivo)
-      zoom: 6.4,
-      maxBounds: this.madagascarBounds,
-      maxBoundsViscosity: 1.0,
-      minZoom: this.defaultZoom,
-      maxZoom: 18,
-    });
-
-    const tiles = L.tileLayer(
-      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      {
+    try {
+      this.map = L.map('carte', {
+        center: [-18.8792, 47.5079], // Centre de Madagascar (Antananarivo)
+        zoom: 6.4,
+        maxBounds: this.madagascarBounds,
+        maxBoundsViscosity: 1.0,
+        minZoom: this.defaultZoom,
         maxZoom: 18,
-        minZoom: 3,
-        attribution:
-          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      }
-    );
+      });
 
-    tiles.addTo(this.map);
+      const tiles = L.tileLayer(
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        {
+          maxZoom: 18,
+          minZoom: 3,
+          attribution:
+            '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        }
+      );
+
+      tiles.addTo(this.map);
+
+      const marker = L.marker([-25.16444799978048, 44.90324734547442], {
+        icon: this.mapService.activityIcon,
+      }).addTo(this.map);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   // destination functions
@@ -88,6 +98,8 @@ export class DestinationMapComponent implements AfterViewInit, OnInit {
           try {
             const surfaceStr = destination.surface;
             const surfaceTab = JSON.parse('[' + surfaceStr + ']');
+            console.log(surfaceTab.length, surfaceTab);
+
             if (surfaceTab?.length) {
               const coords: L.LatLngExpression[] = surfaceTab;
               const color = this.colorService.getNextColor();
@@ -143,7 +155,9 @@ export class DestinationMapComponent implements AfterViewInit, OnInit {
 
               polygon.bindPopup(content);
 
+              if (!this.map) throw 'undefined component.map';
               polygon.addTo(this.map);
+
               const object = { polygon: polygon, destination: destination };
               this.destinationPolygons.push(object);
             } else {

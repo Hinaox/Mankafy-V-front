@@ -46,6 +46,8 @@ import { PayementInfoComponent } from './components/payement-info/payement-info.
 import { PayementFormComponent } from './components/payement-form/payement-form.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { StylizedButtonComponent } from './components-utils/stylized-button/stylized-button.component';
+import { ActivitySheetComponent } from './components/activity-sheet/activity-sheet.component';
+import { ActivityTooltipButtonComponent } from './components/activity-tooltip-button/activity-tooltip-button.component';
 import { VoyageDetailsComponent } from './pages/voyage-details/voyage-details.component';
 
 registerLocaleData(localeFr, 'fr');
@@ -75,6 +77,8 @@ registerLocaleData(localeFr, 'fr');
     PayementFormComponent,
     StylizedButtonComponent,
     VoyageDetailsComponent,
+    ActivitySheetComponent,
+    ActivityTooltipButtonComponent,
   ],
   imports: [
     BrowserModule,

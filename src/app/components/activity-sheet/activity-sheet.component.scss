@@ -1,0 +1,24 @@
+@import "../../../styles.scss";
+
+.fiche-activity-container {
+  height: 350px;
+  padding: 5px;
+
+  .fiche-activity-body {
+    @extend .ombrer;
+    background-color: white;
+    min-width: 200px;
+    border: 1px solid lightgray;
+    height: 100%;
+    .image-container {
+      height: 50%;
+      background-size: cover;
+      background-position: center;
+    }
+    .description-container {
+      height: 100%;
+      padding: 7px;
+      padding-top: 13px;
+    }
+  }
+}

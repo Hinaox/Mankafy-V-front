@@ -13,6 +13,8 @@ export class ActivityTypeService {
 
   constructor(private authService: AuthService, private http: HttpClient) {}
 
+  activityTypes: ActivityType[] = [];
+
   public findAll(filtres?: any): Promise<ActivityType[]> {
     return new Promise<ActivityType[]>((resolve, reject) => {
       var url = this.authService.baseUrl('/activity-types?');

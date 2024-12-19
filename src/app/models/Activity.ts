@@ -17,6 +17,9 @@ export default class Activity {
     public image?: string,
     public activityTypeId?: number,
     public activityType?: ActivityType,
-    public imagePath?: string
+    public imagePath?: string,
+
+    // données non enregistrées
+    public totalDuration?: number
   ) {}
 }
